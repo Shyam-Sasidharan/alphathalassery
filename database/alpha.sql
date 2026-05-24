@@ -1,0 +1,2 @@
+CREATE TABLE `alpha`.`download_categories` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(200) NOT NULL , `created_at` TIMESTAMP NULL DEFAULT NULL , `updated_at` TIMESTAMP NULL DEFAULT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+ALTER TABLE `downloads` ADD `download_category_id` INT(11) NOT NULL AFTER `id`;

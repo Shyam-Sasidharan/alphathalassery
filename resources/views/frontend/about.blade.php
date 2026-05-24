@@ -1,0 +1,166 @@
+@extends('layouts.alpha')
+
+@section('title', 'About Alpha Institute | The Alpha Institute')
+
+@section('content')
+<!-- Hero Section -->
+<header class="relative pt-48 pb-32 px-8 flex flex-col items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary-container to-primary -z-10"></div>
+    <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/graphy.png')] -z-10"></div>
+    <div class="max-w-4xl text-center space-y-6">
+        <span class="font-label text-tertiary-fixed tracking-[0.2em] uppercase text-xs font-bold">The Pursuit of Truth</span>
+        <h1 class="font-display text-5xl md:text-7xl text-on-primary leading-[1.1] tracking-tight font-bold">About Alpha Institute</h1>
+        <p class="font-body text-xl text-primary-fixed max-w-2xl mx-auto leading-relaxed opacity-90">An intellectual sanctuary dedicated to the profound synthesis of Faith, Reason, and Scientific Inquiry within the Catholic academic tradition.</p>
+    </div>
+</header>
+
+<!-- Welcome Section -->
+<section class="py-24 px-8 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div class="relative group">
+            <div class="absolute -inset-4 bg-tertiary-fixed/10 rounded-xl -rotate-2 -z-10"></div>
+            <img alt="Alpha Institute Campus" class="rounded-xl shadow-2xl w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-[1.02]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyUTmhSQkDcGgREszBRl2P8sbyeYmrctGjSCGoMNPXq0nyWB4p2l7iEoR2fE9PH2MOO6u5jG8fb-oHGuJTf1FefYyySf6QeaU88l2KB2tezifnI0snDmRmuLskDIKcewINgX2ed-8obnmdCiVBglVAA7tUqqjEHzHgI4_lbClD9TfgD_QSFEo6BCfFc5eLnqorSBsbPnrxzKQtCkZmRdHbHxtohJ6OHmdm2DU3xm3wKOqxPDOuUealAY7FY5cVHlIpSVg4DPz_Ug"/>
+        </div>
+        <div class="space-y-8">
+            <h2 class="font-display text-4xl text-primary leading-tight font-bold">Welcome to Alpha Center for Theology and Science</h2>
+            <div class="space-y-4 font-body text-lg text-on-surface-variant leading-relaxed">
+                <p>Alpha Institute of Theology and Science is a premier academic institution under the patronage of the Syro-Malabar Catholic Church. We stand as a beacon of intellectual rigor, bridging the gap between historical revelation and contemporary scientific understanding.</p>
+                <p>Founded with the mission to provide accessible, high-quality theological education, the institute has evolved into a global platform for scholars and students seeking a holistic understanding of existence through the lens of faith and reason.</p>
+            </div>
+            <div class="flex items-center gap-4 pt-4">
+                <div class="h-[2px] w-12 bg-tertiary"></div>
+                <span class="italic font-headline text-primary opacity-80 italic">Rooted in Tradition, Aimed at Infinity.</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Institutional Context: Bento Grid Layout -->
+<section class="py-24 bg-surface-container-low px-8">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+            <!-- Vision & Mission -->
+            <div class="md:col-span-7 bg-surface-container-lowest p-12 rounded-xl shadow-sm border border-outline-variant/10">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="material-symbols-outlined text-tertiary text-3xl">visibility</span>
+                    <h3 class="font-display text-3xl text-primary font-bold">Vision & Mission</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="font-label text-sm font-bold uppercase text-tertiary tracking-widest mb-4">Our Vision</h4>
+                        <p class="font-body text-on-surface-variant leading-relaxed">To be a globally recognized center of excellence in theological education, fostering a community of scholars who can articulately engage with the modern world's challenges while remaining deeply rooted in the Christian tradition.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-label text-sm font-bold uppercase text-tertiary tracking-widest mb-4">Our Mission</h4>
+                        <p class="font-body text-on-surface-variant leading-relaxed">To empower lay people and religious alike through rigorous academic programs that explore the intersections of theology, philosophy, and the natural sciences, promoting an integral humanism.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Purpose -->
+            <div class="md:col-span-5 bg-primary p-12 rounded-xl text-on-primary relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <span class="material-symbols-outlined text-[120px]">school</span>
+                </div>
+                <div class="relative z-10">
+                    <h3 class="font-display text-3xl font-bold mb-6">Purpose</h3>
+                    <p class="font-body text-on-primary-container leading-relaxed text-lg">The primary purpose of Alpha Institute is the systematic study and dissemination of Catholic Theology and Philosophy, tailored for the contemporary intellectual landscape. We strive to provide a scholarly environment where students can pursue academic excellence without geographical constraints.</p>
+                </div>
+            </div>
+            <!-- Orientations and Goals -->
+            <div class="md:col-span-5 bg-surface-container-lowest p-12 rounded-xl shadow-sm border border-outline-variant/10">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="material-symbols-outlined text-tertiary text-3xl">compass_calibration</span>
+                    <h3 class="font-display text-3xl text-primary font-bold">Orientations & Goals</h3>
+                </div>
+                <ul class="space-y-4 font-body text-on-surface-variant">
+                    <li class="flex items-start gap-3">
+                        <span class="text-tertiary mt-1">•</span>
+                        <span>Advancing theological literacy among the Christian community worldwide.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-tertiary mt-1">•</span>
+                        <span>Fostering a dialogue between religious faith and scientific discovery.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-tertiary mt-1">•</span>
+                        <span>Developing curricula that address current socio-ethical issues.</span>
+                    </li>
+                </ul>
+            </div>
+            <!-- Certificates -->
+            <div class="md:col-span-7 bg-tertiary-fixed p-12 rounded-xl flex items-center gap-12">
+                <div class="hidden lg:block w-48 h-48 flex-shrink-0 bg-on-tertiary-fixed-variant/5 rounded-full border-4 border-on-tertiary-fixed-variant/10 p-4">
+                    <div class="w-full h-full border border-dashed border-on-tertiary-fixed-variant/30 rounded-full flex items-center justify-center">
+                        <span class="material-symbols-outlined text-on-tertiary-fixed-variant text-6xl" data-weight="fill">verified</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-display text-3xl text-on-tertiary-fixed font-bold mb-4">Recognized Certificates</h3>
+                    <p class="font-body text-on-tertiary-fixed-variant leading-relaxed text-lg mb-6">Our programs are accredited through the highest ecclesial authorities, ensuring your academic journey is recognized globally within the Catholic Church and beyond. Certificates are awarded upon rigorous assessment and comprehensive examinations.</p>
+                    <button class="font-label text-sm font-bold text-on-tertiary-fixed flex items-center gap-2 hover:translate-x-2 transition-transform">
+                        View Accreditation Details
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Episcopal Patrons Section -->
+<section class="py-24 px-8 max-w-7xl mx-auto">
+    <div class="text-center mb-16 space-y-4">
+        <span class="font-label text-tertiary tracking-[0.2em] uppercase text-xs font-bold">Institutional Governance</span>
+        <h2 class="font-display text-4xl text-primary font-bold">Episcopal Patrons</h2>
+        <div class="w-24 h-1 bg-tertiary mx-auto mt-6"></div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Patron 1 -->
+        <div class="group">
+            <div class="relative overflow-hidden rounded-xl mb-6 aspect-[3/4]">
+                <img alt="Archbishop Mar Joseph Pamplany" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF6ZgyXPf1MZxlJSCa-jDKIHd7Q5doPT4QKmsBxGomGglaR1ZklYCnSWd0GQXuCJDBj3KQR1bfqFwHcIYKaRikhrvX8T7_lIl4F6E6tG3RNopGWFAOZiaiwsud2mQ9QXhyEyIH6W4jQg7xb9i7mymUhVBgtcLWEXe3ioqFnc8x2qw1QjIkJTdDMK-TbASBdIX68278tFy94VSnGrKEIRpTxoK6AoEP1s0BaXt2BhxUOcgKzp5e77R4XcwDr-GkWTsgXUZ62ekiLg"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
+                    <p class="text-on-primary text-xs font-label uppercase tracking-widest">Patron-in-Chief</p>
+                </div>
+            </div>
+            <h4 class="font-headline text-xl text-primary font-bold text-center">Archbishop Mar Joseph Pamplany</h4>
+            <p class="font-label text-sm text-on-surface-variant text-center mt-1">Metropolitan Archbishop of Thalassery</p>
+        </div>
+        <!-- Patron 2 -->
+        <div class="group">
+            <div class="relative overflow-hidden rounded-xl mb-6 aspect-[3/4]">
+                <img alt="Archbishop Mar George Valiamattam" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXDWIG_rHaiHLEi-1hsyVZuWtYu0JmEIlWLkas6kINiCeho2qASezazULkYkjOPe1y-XlyszDry53qu3kSCHnyqSkRmv_JtI8vVmSi82CW7Vo83OhXlQsBudrZ5kjXQ1jIHE_gahVrE-Gg5f3OYnlKua70F5YHTY0fNI7AZkQxKrP4K-RI3iKnashM7qUF_gkDojCZn5l-0ABICcLIvFuqBapak4vyTqrkNEY0kA61UsIktwPFK2Y4dhRXdPgvCEeHmTVoySCNZg"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
+                    <p class="text-on-primary text-xs font-label uppercase tracking-widest">Founding Patron</p>
+                </div>
+            </div>
+            <h4 class="font-headline text-xl text-primary font-bold text-center">Archbishop Mar George Valiamattam</h4>
+            <p class="font-label text-sm text-on-surface-variant text-center mt-1">Archbishop Emeritus of Thalassery</p>
+        </div>
+        <!-- Patron 3 -->
+        <div class="group">
+            <div class="relative overflow-hidden rounded-xl mb-6 aspect-[3/4]">
+                <img alt="Bishop Mar Lawrence Mukkuzhy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWw7N5JyYZWwDrE1sP9ht27wZ_pLWo-7_P8vcZfdwPyAQNihaPxCRdaNuWg4NfCORL0N8ukcUTWQ44DvaWVHCbAgqj7I3k5evs9ycH8y_-63OG98Y4duYADHTqmj23DMEK1wOcTRcEZGnPWvEboLMk9mF-O28_PGWQh_C94uAogUmAkTCScNrMdt_pinfVpdfAvCusA6ACJJFdD_QzUr7J_TqVtFrA9eTQFfUOS1z3cbSJulQbkGf-VfiIHZxE-XEbIPKGt4T0VA"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
+                    <p class="text-on-primary text-xs font-label uppercase tracking-widest">Patron</p>
+                </div>
+            </div>
+            <h4 class="font-headline text-xl text-primary font-bold text-center">Bishop Mar Lawrence Mukkuzhy</h4>
+            <p class="font-label text-sm text-on-surface-variant text-center mt-1">Bishop of Belthangady</p>
+        </div>
+        <!-- Patron 4 -->
+        <div class="group">
+            <div class="relative overflow-hidden rounded-xl mb-6 aspect-[3/4]">
+                <img alt="Bishop Mar Remigiose Inchananiyil" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPjQoWpKGU7SU6G5M8MR7VFybCjqF1cIhSU6lB8B0NqJffiAiqMYW-my4SgSC9XJTZxZrdnHvMaiz32ekTxW6UDBqgH-GUTjYoDvi-6Ty3PIegCa-TRT3OAibO6Wg_GUX6CTOqYmIMHo4i7sSZsv0FNzuI4bxyyxe9_2p6h361ceGRBZS5brG2RqDjFkEO8A4OA3D3fBuA4Ph4S4Niyiv6ND095GSRpVBQ3IDKV2gty3ls7RgxwBJzTSutpkYqMyIHcktGTUXOaw"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
+                    <p class="text-on-primary text-xs font-label uppercase tracking-widest">Patron</p>
+                </div>
+            </div>
+            <h4 class="font-headline text-xl text-primary font-bold text-center">Bishop Mar Remigiose Inchananiyil</h4>
+            <p class="font-label text-sm text-on-surface-variant text-center mt-1">Bishop of Thamarassery</p>
+        </div>
+    </div>
+</section>
+@endsection
+
+
