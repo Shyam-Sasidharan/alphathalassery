@@ -227,9 +227,14 @@
     <div class="relative">
         <div class="professor-carousel flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-8" data-professor-carousel>
             @forelse($professors as $prof)
+                @php
+                    $professorImage = !empty($prof->image) && file_exists(public_path(ltrim($prof->image, '/')))
+                        ? asset(ltrim($prof->image, '/'))
+                        : $professorPlaceholder;
+                @endphp
                 <article class="professor-card snap-start shrink-0 basis-full sm:basis-[calc(50%-12px)] lg:basis-[calc(33.333%-16px)] xl:basis-[calc(25%-18px)] bg-surface border border-outline-variant/15 rounded-xl overflow-hidden group transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
                     <div class="aspect-[4/5] overflow-hidden bg-surface-container-high">
-                        <img class="w-full h-full object-cover transition-all duration-500" src="{{ !empty($prof->image) ? asset($prof->image) : $professorPlaceholder }}" alt="{{ $prof->name }}" onerror="this.onerror=null; this.src='{{ $professorPlaceholder }}';"/>
+                        <img class="w-full h-full object-cover transition-all duration-500" src="{{ $professorImage }}" alt="{{ $prof->name }}"/>
                     </div>
                     <div class="p-6">
                         <h4 class="font-headline font-bold text-xl text-primary">{{ $prof->name }}</h4>
@@ -342,8 +347,8 @@
             for (let index = 0; index < pageCount; index += 1) {
                 const dot = document.createElement('button');
                 dot.type = 'button';
-                dot.setAttribute('aria-label', Go to ${label} slide ${index + 1});
-                dot.className = h-2 rounded-full transition-all ${index === activePage ? 'w-8 bg-primary' : 'w-2 bg-outline-variant hover:bg-primary/50'};
+                dot.setAttribute('aria-label', 'Go to ' + label + ' slide ' + (index + 1));
+                dot.className = 'h-2 rounded-full transition-all ' + (index === activePage ? 'w-8 bg-primary' : 'w-2 bg-outline-variant hover:bg-primary/50');
                 dot.addEventListener('click', () => {
                     carousel.scrollTo({ left: index * getStep(), behavior: 'smooth' });
                 });
