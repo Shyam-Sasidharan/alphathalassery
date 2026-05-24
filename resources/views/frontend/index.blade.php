@@ -4,15 +4,18 @@
 
 @section('css')
 <style>
-    .professor-carousel {
+    .professor-carousel,
+    .gallery-carousel {
         scrollbar-width: none;
     }
 
-    .professor-carousel::-webkit-scrollbar {
+    .professor-carousel::-webkit-scrollbar,
+    .gallery-carousel::-webkit-scrollbar {
         display: none;
     }
 
-    .professor-card {
+    .professor-card,
+    .gallery-card {
         box-shadow: 0 18px 40px rgba(27, 28, 28, 0.08);
     }
 </style>
@@ -218,6 +221,7 @@
 
     @php
         $professors = \App\Models\Professor::latest()->get();
+        $professorPlaceholder = asset('front/images/user-profile-icon-flat-style.avif');
     @endphp
 
     <div class="relative">
@@ -225,7 +229,7 @@
             @forelse($professors as $prof)
                 <article class="professor-card snap-start shrink-0 basis-full sm:basis-[calc(50%-12px)] lg:basis-[calc(33.333%-16px)] xl:basis-[calc(25%-18px)] bg-surface border border-outline-variant/15 rounded-xl overflow-hidden group transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
                     <div class="aspect-[4/5] overflow-hidden bg-surface-container-high">
-                        <img class="w-full h-full object-cover transition-all duration-500" src="{{ asset($prof->image) }}" alt="{{ $prof->name }}"/>
+                        <img class="w-full h-full object-cover transition-all duration-500" src="{{ !empty($prof->image) ? asset($prof->image) : $professorPlaceholder }}" alt="{{ $prof->name }}" onerror="this.onerror=null; this.src='{{ $professorPlaceholder }}';"/>
                     </div>
                     <div class="p-6">
                         <h4 class="font-headline font-bold text-xl text-primary">{{ $prof->name }}</h4>
@@ -237,7 +241,7 @@
             @empty
                 <article class="professor-card snap-start shrink-0 basis-full sm:basis-[calc(50%-12px)] lg:basis-[calc(33.333%-16px)] xl:basis-[calc(25%-18px)] bg-surface border border-outline-variant/15 rounded-xl overflow-hidden group transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
                     <div class="aspect-[4/5] overflow-hidden bg-surface-container-high">
-                        <img class="w-full h-full object-cover transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTbYN7BLRZkPRVS_do5T3JNOHaWzU-1Sv5DFM5r_KqG2QgqdhM6bz3a0vk3THhmpZrUVjgLTD0xOs2fFH7-W27OFtTNM0XRRUdNAqgzQQVwzkTZ6Ck93-XGRkruzmPln803FZdOORFrpyae4VVsUnMLZHFr8HJNc_5aKZA8Nc1t8HDzeRFTFgMD2cT3VBF4rvDzo5yekQNkRYmhwFvmrOCiVTfskGnY0mOvVjMxWd3-Ctu1IlkH0JycoQj4btF52xqO2ZcFyWB4w" alt="Dr. Julian Vance"/>
+                        <img class="w-full h-full object-cover transition-all duration-500" src="{{ $professorPlaceholder }}" alt="Professor image placeholder"/>
                     </div>
                     <div class="p-6">
                         <h4 class="font-headline font-bold text-xl text-primary">Dr. Julian Vance</h4>
@@ -253,28 +257,45 @@
 
 <!-- Gallery Section -->
 <section class="py-24 bg-surface-container-highest/30">
-    <div class="max-w-7xl mx-auto px-12">
-        <div class="mb-12">
-            <h2 class="font-headline text-4xl font-bold text-primary mb-2">Gallery</h2>
-            <p class="text-on-surface-variant font-body">Snapshots of life, ceremony, and scholarship across our campuses.</p>
+    <div class="max-w-7xl mx-auto px-6 md:px-12" data-gallery-section>
+        <div class="flex flex-col gap-8 md:flex-row md:items-end md:justify-between mb-12">
+            <div>
+                <h2 class="font-headline text-4xl font-bold text-primary mb-2">Gallery</h2>
+                <p class="text-on-surface-variant font-body">Snapshots of life, ceremony, and scholarship across our campuses.</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <button type="button" class="h-11 w-11 rounded-full border border-outline-variant/40 bg-surface text-primary shadow-sm hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center" data-gallery-prev aria-label="Previous gallery image">
+                    <span class="material-symbols-outlined text-[22px]">chevron_left</span>
+                </button>
+                <button type="button" class="h-11 w-11 rounded-full border border-outline-variant/40 bg-surface text-primary shadow-sm hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center" data-gallery-next aria-label="Next gallery image">
+                    <span class="material-symbols-outlined text-[22px]">chevron_right</span>
+                </button>
+            </div>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            @php
-                $galleries = \App\Models\Gallery::latest()->take(4)->get();
-            @endphp
-            @foreach($galleries as $gallery)
-                <div class="aspect-square overflow-hidden rounded-xl group relative">
-                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="{{ $gallery->photo }}"/>
-                    <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </div>
-            @endforeach
 
-            @if($galleries->isEmpty())
-                <div class="aspect-square overflow-hidden rounded-xl group relative">
-                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoIBOuTPgW0pCi8LieKwjpQ0PWLsOHYNHjESZJd-0JoZWR7P_Cjh0fH0drJeJm2yuGkyvyibPGGWPlcWe9PM2Vttz3p1VF9p0lMzDZ9mjrwsfUC6yeyqljuNlRhC1oxHDtdBf4QIV044e8bLMcSj7_BMam9kcyOXH9wm7tDqM-j_STKTHTK7LEaSbFfANkZglfEI7stsGL8IN5Xz6TOaoN0uJyTbV4S97IIKESLjsdOdqwxaQ3-n8FWK7hui8P0-sDy1cjRsHVlw"/>
-                    <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </div>
-            @endif
+        @php
+            $galleries = \App\Models\Gallery::latest()->get()->filter(function ($gallery) {
+                return !empty($gallery->image) && file_exists(public_path(ltrim($gallery->image, '/')));
+            });
+            $galleryPlaceholder = asset('front/images/gallery-placeholder.svg');
+        @endphp
+
+        <div class="relative">
+            <div class="gallery-carousel flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-8" data-gallery-carousel>
+                @forelse($galleries as $gallery)
+                    <article class="gallery-card snap-start shrink-0 basis-[calc(85%-10px)] sm:basis-[calc(50%-10px)] lg:basis-[calc(33.333%-14px)] xl:basis-[calc(25%-15px)] aspect-square overflow-hidden rounded-xl group relative bg-surface border border-outline-variant/15">
+                        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="{{ $gallery->photo }}" alt="Gallery image"/>
+                        <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    </article>
+                @empty
+                    <article class="gallery-card snap-start shrink-0 basis-[calc(85%-10px)] sm:basis-[calc(50%-10px)] lg:basis-[calc(33.333%-14px)] xl:basis-[calc(25%-15px)] aspect-square overflow-hidden rounded-xl group relative bg-surface border border-outline-variant/15">
+                        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="{{ $galleryPlaceholder }}" alt="Gallery image placeholder"/>
+                        <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    </article>
+                @endforelse
+            </div>
+
+            <div class="flex justify-center gap-2" data-gallery-dots></div>
         </div>
     </div>
 </section>
@@ -283,30 +304,31 @@
 @section('js')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const section = document.querySelector('[data-professor-section]');
-        if (!section) return;
+        const setupCarousel = ({ sectionSelector, carouselSelector, prevSelector, nextSelector, dotsSelector, label }) => {
+            const section = document.querySelector(sectionSelector);
+            if (!section) return;
 
-        const carousel = section.querySelector('[data-professor-carousel]');
-        const prevBtn = section.querySelector('[data-professor-prev]');
-        const nextBtn = section.querySelector('[data-professor-next]');
-        const dotsWrap = section.querySelector('[data-professor-dots]');
-        if (!carousel || !prevBtn || !nextBtn || !dotsWrap) return;
+            const carousel = section.querySelector(carouselSelector);
+            const prevBtn = section.querySelector(prevSelector);
+            const nextBtn = section.querySelector(nextSelector);
+            const dotsWrap = section.querySelector(dotsSelector);
+            if (!carousel || !prevBtn || !nextBtn || !dotsWrap) return;
 
-        const getStep = () => {
+            const getStep = () => {
             const card = carousel.querySelector('article');
             if (!card) return carousel.clientWidth;
 
             const styles = window.getComputedStyle(carousel);
             const gap = parseFloat(styles.columnGap || styles.gap || 0);
             return card.getBoundingClientRect().width + gap;
-        };
+            };
 
-        const getPageCount = () => {
+            const getPageCount = () => {
             if (carousel.scrollWidth <= carousel.clientWidth) return 1;
             return Math.ceil((carousel.scrollWidth - carousel.clientWidth) / getStep()) + 1;
-        };
+            };
 
-        const updateControls = () => {
+            const updateControls = () => {
             const maxScroll = carousel.scrollWidth - carousel.clientWidth;
             const pageCount = getPageCount();
             const activePage = Math.min(pageCount - 1, Math.round(carousel.scrollLeft / getStep()));
@@ -320,26 +342,45 @@
             for (let index = 0; index < pageCount; index += 1) {
                 const dot = document.createElement('button');
                 dot.type = 'button';
-                dot.setAttribute('aria-label', `Go to professor slide ${index + 1}`);
-                dot.className = `h-2 rounded-full transition-all ${index === activePage ? 'w-8 bg-primary' : 'w-2 bg-outline-variant hover:bg-primary/50'}`;
+                dot.setAttribute('aria-label', Go to ${label} slide ${index + 1});
+                dot.className = h-2 rounded-full transition-all ${index === activePage ? 'w-8 bg-primary' : 'w-2 bg-outline-variant hover:bg-primary/50'};
                 dot.addEventListener('click', () => {
                     carousel.scrollTo({ left: index * getStep(), behavior: 'smooth' });
                 });
                 dotsWrap.appendChild(dot);
             }
+            };
+
+            prevBtn.addEventListener('click', () => {
+            carousel.scrollBy({ left: -getStep(), behavior: 'smooth' });
+            });
+
+            nextBtn.addEventListener('click', () => {
+            carousel.scrollBy({ left: getStep(), behavior: 'smooth' });
+            });
+
+            carousel.addEventListener('scroll', window.requestAnimationFrame ? () => window.requestAnimationFrame(updateControls) : updateControls);
+            window.addEventListener('resize', updateControls);
+            updateControls();
         };
 
-        prevBtn.addEventListener('click', () => {
-            carousel.scrollBy({ left: -getStep(), behavior: 'smooth' });
+        setupCarousel({
+            sectionSelector: '[data-professor-section]',
+            carouselSelector: '[data-professor-carousel]',
+            prevSelector: '[data-professor-prev]',
+            nextSelector: '[data-professor-next]',
+            dotsSelector: '[data-professor-dots]',
+            label: 'professor'
         });
 
-        nextBtn.addEventListener('click', () => {
-            carousel.scrollBy({ left: getStep(), behavior: 'smooth' });
+        setupCarousel({
+            sectionSelector: '[data-gallery-section]',
+            carouselSelector: '[data-gallery-carousel]',
+            prevSelector: '[data-gallery-prev]',
+            nextSelector: '[data-gallery-next]',
+            dotsSelector: '[data-gallery-dots]',
+            label: 'gallery'
         });
-
-        carousel.addEventListener('scroll', window.requestAnimationFrame ? () => window.requestAnimationFrame(updateControls) : updateControls);
-        window.addEventListener('resize', updateControls);
-        updateControls();
     });
 </script>
 @endsection
