@@ -39,11 +39,15 @@
             <h5 class="text-tertiary-fixed font-semibold text-sm uppercase tracking-widest">Contact</h5>
             <div class="text-on-primary/70 text-sm flex items-start gap-3">
                 <span class="material-symbols-outlined text-sm mt-1">location_on</span>
-                <span>Alpha Center for Theology and Science<br>Sandesa Bhavan, Thalassery-1<br>Kerala, India</span>
+                <span>Alpha Center for Theology and Science<br>Sandesa Bhavan, Thalassery-1<br>PB.No.71, Kerala, India</span>
             </div>
             <div class="text-on-primary/70 text-sm flex items-center gap-3">
                 <span class="material-symbols-outlined text-sm">call</span>
-                <a class="hover:text-white transition-colors" href="tel:+914902343707">0091 490 2343707</a>
+                <span>Phone: <a class="hover:text-white transition-colors" href="tel:+914902343707">0091 490 2343707</a>, <a class="hover:text-white transition-colors" href="tel:+914902344727">2344727</a></span>
+            </div>
+            <div class="text-on-primary/70 text-sm flex items-center gap-3">
+                <span class="material-symbols-outlined text-sm">smartphone</span>
+                <span>Mobile: <a class="hover:text-white transition-colors" href="tel:+914902344727">0091 490 2344727</a></span>
             </div>
             <div class="text-on-primary/70 text-sm flex items-center gap-3">
                 <span class="material-symbols-outlined text-sm">mail</span>

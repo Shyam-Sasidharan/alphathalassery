@@ -1,17 +1,17 @@
-<nav class="bg-surface/80 dark:bg-surface-container-highest/80 backdrop-blur-xl sticky top-0 w-full z-50 shadow-[0_32px_32px_rgba(27,28,28,0.06)] border-b border-outline-variant/20 flex justify-between items-center px-6 py-4">
-    <div class="flex items-center gap-4">
+<nav class="bg-surface/80 dark:bg-surface-container-highest/80 backdrop-blur-xl sticky top-0 w-full z-50 shadow-[0_32px_32px_rgba(27,28,28,0.06)] border-b border-outline-variant/20 flex items-center gap-6 px-6 lg:px-10 2xl:px-14 py-4">
+    <div class="flex items-center gap-4 shrink-0 xl:min-w-[60px]">
         <a href="{{ url('/') }}">
             <img alt="The Alpha Institute Logo" class="h-10 w-10 object-contain rounded-sm" src="{{ asset('front/images/logo.png') }}"/>
         </a>
     </div>
-    
+
     <!-- Desktop Navigation Links -->
-    <div class="hidden xl:flex items-center space-x-3 font-['Noto_Serif'] font-bold tracking-tight text-[13px]">
+    <div class="hidden xl:flex flex-1 items-center justify-between whitespace-nowrap font-['Noto_Serif'] font-bold tracking-tight text-[14px]">
         <a class="text-on-surface-variant dark:text-surface-variant hover:text-primary-container transition-all duration-300 {{ request()->is('about') ? 'text-primary' : '' }}" href="{{ url('about') }}">About</a>
-        
+
         <div class="nav-dropdown relative group cursor-pointer">
-            <span class="text-on-surface-variant dark:text-surface-variant font-bold pb-1 flex items-center gap-1 {{ request()->is('course*') || request()->is('courses') ? 'text-primary border-b-2 border-tertiary-fixed' : '' }}">Courses <span class="material-symbols-outlined text-[16px]">expand_more</span></span>
-            <div class="dropdown-content hidden absolute top-full left-0 mt-1 bg-surface border border-outline-variant/20 shadow-xl rounded-lg py-3 w-52 glass-effect z-50">
+            <span class="text-on-surface-variant dark:text-surface-variant font-bold flex items-center gap-1 {{ request()->is('course*') || request()->is('courses') ? 'text-primary border-b-2 border-tertiary-fixed' : '' }}">Courses <span class="material-symbols-outlined text-[16px]">expand_more</span></span>
+            <div class="dropdown-content hidden absolute top-full left-0 mt-1 bg-surface border border-outline-variant/20 shadow-xl rounded-lg py-3 w-72 glass-effect z-50">
                 <a class="block px-6 py-2 hover:bg-primary/5 text-primary" href="{{ url('courses') }}">All Programs</a>
                 @if (($courses = \App\Models\Course::orderBy('created_at')->get()) && !$courses->isEmpty())
                     @foreach($courses->take(5) as $course)
@@ -36,7 +36,7 @@
     </div>
 
     <!-- Right-side Buttons -->
-    <div class="flex items-center space-x-3">
+    <div class="flex items-center justify-end space-x-4 shrink-0 xl:min-w-[260px] ml-auto">
         <!-- Student Login (Desktop) -->
         <div class="nav-dropdown relative group cursor-pointer hidden lg:block">
             <button class="text-primary font-bold text-sm hover:opacity-80 transition-all py-2 flex items-center gap-1">
@@ -77,13 +77,13 @@
             <span class="material-symbols-outlined">close</span>
         </button>
     </div>
-    
+
     <!-- Drawer Body (Scrollable) -->
     <div class="flex-1 overflow-y-auto px-6 py-6 space-y-6">
         <!-- Main Nav Links -->
         <div class="flex flex-col space-y-4 font-['Noto_Serif'] font-bold text-[15px] tracking-tight">
             <a class="text-on-surface-variant hover:text-primary transition-all py-1 {{ request()->is('about') ? 'text-primary border-l-2 border-primary pl-2' : '' }}" href="{{ url('about') }}">About</a>
-            
+
             <!-- Courses Dropdown Accordion -->
             <div class="space-y-2">
                 <button type="button" class="mobile-collapse-btn flex items-center justify-between w-full text-on-surface-variant hover:text-primary transition-all py-1">
