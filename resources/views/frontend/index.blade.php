@@ -233,8 +233,10 @@
                         : $professorPlaceholder;
                 @endphp
                 <article class="professor-card snap-start shrink-0 basis-full sm:basis-[calc(50%-12px)] lg:basis-[calc(33.333%-16px)] xl:basis-[calc(25%-18px)] bg-surface border border-outline-variant/15 rounded-xl overflow-hidden group transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
-                    <div class="aspect-[4/5] overflow-hidden bg-surface-container-high">
-                        <img class="w-full h-full object-cover transition-all duration-500" src="{{ $professorImage }}" alt="{{ $prof->name }}"/>
+                    <div class="pt-12 px-8 flex justify-center bg-surface">
+                        <div class="h-56 w-56 md:h-64 md:w-64 rounded-full overflow-hidden border-[6px] border-white shadow-[0_18px_45px_rgba(27,28,28,0.16)] bg-surface-container-high">
+                            <img class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105" src="{{ $professorImage }}" alt="{{ $prof->name }}"/>
+                        </div>
                     </div>
                     <div class="p-5">
                         <h4 class="font-headline font-bold text-xl text-primary">{{ $prof->name }}</h4>
