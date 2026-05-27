@@ -236,8 +236,11 @@
                     <div class="aspect-[4/5] overflow-hidden bg-surface-container-high">
                         <img class="w-full h-full object-cover transition-all duration-500" src="{{ $professorImage }}" alt="{{ $prof->name }}"/>
                     </div>
-                    <div class="p-5 text-center">
+                    <div class="p-5">
                         <h4 class="font-headline font-bold text-xl text-primary">{{ $prof->name }}</h4>
+                        <div class="font-body text-sm leading-relaxed text-on-surface-variant mt-3 [&_strong]:text-tertiary [&_strong]:font-bold [&_ul]:mt-2 [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-1">
+                            {!! $prof->content !!}
+                        </div>
                     </div>
                 </article>
             @empty
