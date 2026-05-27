@@ -8,6 +8,7 @@ class Admission extends Model
 {
     //
     protected $fillable = [
+            'college',
             'course',
             'centre',
             'language',

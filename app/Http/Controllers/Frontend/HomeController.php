@@ -86,8 +86,14 @@ class HomeController extends Controller
 
     public function register()
     {
+        $colleges = [
+            'ahirs' => 'Alpha Higher Institute of Religious Sciences',
+            'tacrs' => 'Tely Alpha Center For Religious Sciences',
+        ];
+
         request()->flash();
         $this->validate(\request(), [
+            'college' => 'required|in:ahirs,tacrs',
             'course' => 'required',
             'centre' => '',
             'language' => 'required',
@@ -110,6 +116,7 @@ class HomeController extends Controller
         ], ['captcha'=>'Invalid captcha']);
 
         $admissionData = \request()->except('_token', 'certificate', 'photo', 'fee');
+        $admissionData['college'] = $colleges[\request('college')];
     
         $filename = null;
         $photo = null;
@@ -139,9 +146,9 @@ class HomeController extends Controller
         $admission->save();
 
         $content = [
-            'subject' => 'You have received a new enquiry from '.\request('name'),
+            'subject' => $admissionData['college'].' registration from '.\request('name'),
             'title' => 'Hello!',
-            'paragraph' => \request('name'). ' has requested an information at '.config('app.name').'. Details about the request is shown below.',
+            'paragraph' => \request('name'). ' has submitted a registration for '.$admissionData['college'].'. Details about the request is shown below.',
             'template' => 'emails.admission_template',
             'certificate' => $filename?public_path("user_files/admission/{$filename}"):'',
             'photo' => $photo? public_path("user_files/admission/{$photo}"):'',
@@ -149,9 +156,9 @@ class HomeController extends Controller
         ];
 
         
-        $allContent = array_merge($content, \request()->except('_token', 'certificate', 'photo', 'fee'));
+        $allContent = array_merge($content, $admissionData);
         
-        Mail::to('alphits@gmail.com')->send(new Admission(array_merge($content, \request()->except('_token', 'certificate', 'photo', 'fee'))));
+        Mail::to('alphits@gmail.com')->send(new Admission($allContent));
         
 
         

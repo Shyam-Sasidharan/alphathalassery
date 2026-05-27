@@ -18,6 +18,7 @@ class SyncAlphaAppRequiredColumns extends Migration
                 $table->string('image', 191)->nullable()->after('phone');
             });
         }
+
     }
 
     /**
@@ -32,5 +33,6 @@ class SyncAlphaAppRequiredColumns extends Migration
                 $table->dropColumn('image');
             });
         }
+
     }
 }

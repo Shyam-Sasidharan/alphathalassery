@@ -25,7 +25,9 @@
                     <div class="flex justify-between items-start mb-8">
                         <div>
                             <h3 class="font-display text-2xl text-primary font-bold">Online Registration</h3>
-                            <p class="text-on-surface-variant text-sm mt-1">Please fill in all required details carefully.</p>
+                            <p class="text-on-surface-variant text-sm mt-1">
+                                <span data-registration-college-label>Alpha Higher Institute of Religious Sciences</span>
+                            </p>
                         </div>
                         <button type="button" class="text-on-surface-variant hover:text-error transition-colors" data-dismiss="modal">
                             <span class="material-symbols-outlined">close</span>
@@ -51,9 +53,15 @@
 
                     <form action="{{ url('register') }}" method="POST" enctype="multipart/form-data" class="space-y-8">
                         {!! csrf_field() !!}
-                        
                         <!-- Course Selection & Medium of Language -->
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+                            <div class="space-y-2">
+                                <label class="font-label text-xs font-bold uppercase tracking-wider text-on-surface-variant">College *</label>
+                                <select name="college" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" required data-registration-college-input>
+                                    <option value="ahirs" {{ old('college', 'ahirs') == 'ahirs' ? 'selected' : '' }}>Alpha Higher Institute</option>
+                                    <option value="tacrs" {{ old('college') == 'tacrs' ? 'selected' : '' }}>Tely Alpha Center</option>
+                                </select>
+                            </div>
                             <div class="space-y-2">
                                 <label class="font-label text-xs font-bold uppercase tracking-wider text-on-surface-variant">Course Applied For *</label>
                                 <select name="course" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" required>

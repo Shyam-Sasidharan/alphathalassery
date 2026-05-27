@@ -14,6 +14,14 @@
                cellspacing="0" style="border: 1px solid #ddd;">
             <tr>
                 <th align="left" style="border-bottom: 1px solid #ddd;padding: 5px;border-right: 1px solid #ddd">
+                    College
+                </th>
+                <td style="border-bottom: 1px solid #ddd;padding: 5px;">
+                    {{ $content['college'] ?? '' }}
+                </td>
+            </tr>
+            <tr>
+                <th align="left" style="border-bottom: 1px solid #ddd;padding: 5px;border-right: 1px solid #ddd">
                     Course
                 </th>
                 <td style="border-bottom: 1px solid #ddd;padding: 5px;">

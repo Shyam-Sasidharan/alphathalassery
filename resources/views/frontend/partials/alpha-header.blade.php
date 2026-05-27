@@ -50,11 +50,12 @@
 
         <!-- Registration Button (Desktop & Mobile) -->
         <div class="nav-dropdown relative group cursor-pointer">
-            <button type="button" data-registration-open class="bg-primary text-on-primary px-5 py-2.5 rounded-md font-bold text-sm shadow-sm hover:shadow-md active:scale-95 transition-all flex items-center gap-1">
+            <button type="button" class="bg-primary text-on-primary px-5 py-2.5 rounded-md font-bold text-sm shadow-sm hover:shadow-md active:scale-95 transition-all flex items-center gap-1">
                 Registration <span class="material-symbols-outlined text-[16px]">expand_more</span>
             </button>
             <div class="dropdown-content hidden absolute top-full right-0 mt-1 bg-surface border border-outline-variant/20 shadow-xl rounded-lg py-3 w-52 glass-effect z-50">
-                <a class="block px-6 py-2 hover:bg-primary/5 text-on-surface-variant text-sm" href="javascript:;" data-target="#registerModal" data-toggle="modal">Online Registration</a>
+                <a class="block px-6 py-2 hover:bg-primary/5 text-on-surface-variant text-sm" href="javascript:;" data-registration-open data-registration-college="ahirs">AHIRS Registration</a>
+                <a class="block px-6 py-2 hover:bg-primary/5 text-on-surface-variant text-sm" href="javascript:;" data-registration-open data-registration-college="tacrs">TACRS Registration</a>
             </div>
         </div>
 
@@ -133,8 +134,11 @@
             </div>
 
             <!-- Online Registration button -->
-            <button type="button" data-registration-open class="w-full bg-primary text-on-primary py-3 rounded-md font-bold text-sm shadow-sm hover:shadow-md active:scale-[0.98] transition-all flex items-center justify-center gap-1">
-                Online Registration <span class="material-symbols-outlined text-[16px]">how_to_reg</span>
+            <button type="button" data-registration-open data-registration-college="ahirs" class="w-full bg-primary text-on-primary py-3 rounded-md font-bold text-sm shadow-sm hover:shadow-md active:scale-[0.98] transition-all flex items-center justify-center gap-1">
+                AHIRS Registration <span class="material-symbols-outlined text-[16px]">how_to_reg</span>
+            </button>
+            <button type="button" data-registration-open data-registration-college="tacrs" class="w-full border border-primary/30 text-primary py-3 rounded-md font-bold text-sm shadow-sm hover:bg-primary/5 active:scale-[0.98] transition-all flex items-center justify-center gap-1">
+                TACRS Registration <span class="material-symbols-outlined text-[16px]">how_to_reg</span>
             </button>
         </div>
     </div>

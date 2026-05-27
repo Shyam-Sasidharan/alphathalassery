@@ -80,10 +80,41 @@
     @yield('js')
 
     <script>
+        const registrationColleges = {
+            ahirs: 'Alpha Higher Institute of Religious Sciences',
+            tacrs: 'Tely Alpha Center For Religious Sciences'
+        };
+
+        function setRegistrationCollege(college) {
+            const selectedCollege = registrationColleges[college] ? college : 'ahirs';
+            const selectedLabel = registrationColleges[selectedCollege];
+
+            $('[data-registration-college-input]').val(selectedCollege);
+            $('[data-registration-college-label]').text(selectedLabel);
+
+            $('[data-registration-college-option]').each(function() {
+                const isActive = $(this).data('registration-college-option') === selectedCollege;
+                $(this)
+                    .toggleClass('bg-primary text-on-primary', isActive)
+                    .toggleClass('bg-surface-container-low text-on-surface', !isActive);
+            });
+        }
+
         // Registration modal trigger
         $(document).on('click', '[data-registration-open]', function() {
+            setRegistrationCollege($(this).data('registration-college'));
             $('#registerModal').modal('show');
         });
+
+        $(document).on('click', '[data-registration-college-option]', function() {
+            setRegistrationCollege($(this).data('registration-college-option'));
+        });
+
+        $(document).on('change', '[data-registration-college-input]', function() {
+            setRegistrationCollege($(this).val());
+        });
+
+        setRegistrationCollege($('[data-registration-college-input]').val());
     </script>
 </body>
 </html>
