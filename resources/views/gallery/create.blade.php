@@ -77,36 +77,3 @@
         <!-- /.row -->
     </section>
 @endsection
-@section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/css/fileinput.min.css" />
-@stop
-@section('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/js/fileinput.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.7.4/tinymce.min.js"></script>
-    <script>
-        $(function () {
-            let initEditor = (el, dir) => {
-                tinymce.init({
-                    selector: el,
-                    branding: false,
-                    height: "300",
-                    theme_advanced_statusbar_location: "",
-                    menubar: false,
-                    plugins: [
-                        'advlist autolink lists link image charmap print preview anchor textcolor',
-                        'searchreplace visualblocks code fullscreen',
-                        'insertdatetime media table contextmenu paste code help wordcount'
-                    ],
-                    toolbar: 'undo redo |  formatselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
-                    forced_root_block : false,
-                    directionality: dir
-                });
-            };
-
-            initEditor('#content', 'ltr');
-            $('#image').fileinput({'showUpload':false});
-
-        });
-
-    </script>
-@stop
