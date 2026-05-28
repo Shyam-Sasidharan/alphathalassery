@@ -52,6 +52,9 @@ class CourseController extends Controller
 
         $data = $request->except('_token', 'image', 'pdf');
         $data['slug'] = '';
+        $data['heading'] = $request->input('heading') ?: '';
+        $data['image'] = '';
+        $data['pdf'] = '';
         if ($image) {
             $data['image'] = upload($image, 'user_files/course');
         } elseif ($request->input('image')) {
@@ -101,7 +104,8 @@ class CourseController extends Controller
             'heading' => '',
         ]);
         $data = $request->except('_token', 'image', 'pdf');
-        $data['slug'] = ''; 
+        $data['slug'] = '';
+        $data['heading'] = $request->input('heading') ?: '';
         if ($image) {
             if ($course && $course->image && is_file(public_path($course->image))){
                 @unlink(public_path($course->image));
