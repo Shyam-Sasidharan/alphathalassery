@@ -1,7 +1,6 @@
 
 <footer class="main-footer text-right">
-    <strong>Copyright &copy; 2020 <a href="{{ url('/') }}">Alpha Center for Theology and Science</a>.</strong> All rights
-    reserved.
+    <strong>Copyright &copy; 2026 <a href="{{ url('/') }}">Alpha Center for Theology and Science</a>.</strong> All rights reserved.
 </footer>
 
 </div>
