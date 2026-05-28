@@ -79,19 +79,59 @@
                                     <span class="text-red">{!! $errors->first('content') !!}</span>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-md-6 col-lg-6">
+                            <div class="col-sm-6 col-md-3 col-lg-3">
                                 <div class="form-group {{ $errors->first('duration') ? 'has-error' : '' }}">
                                     <label for="duration"> Course Duration</label>
                                     <input type="text"
                                            class="form-control"
                                            value="{{ old('duration') ?? $course->duration }}"
                                            id="duration"
-                                           placeholder="Course Name"
+                                           placeholder="Duration"
                                            autocomplete="off"
                                            name="duration">
                                     <span class="text-red">{!! $errors->first('duration') !!}</span>
                                 </div>
                             </div>
+                            <div class="col-sm-6 col-md-3 col-lg-3">
+                                <div class="form-group {{ $errors->first('mode') ? 'has-error' : '' }}">
+                                    <label for="mode"> Course Mode</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           value="{{ old('mode') ?? $course->mode }}"
+                                           id="mode"
+                                           placeholder="Full-Time"
+                                           autocomplete="off"
+                                           name="mode">
+                                    <span class="text-red">{!! $errors->first('mode') !!}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3 col-lg-3">
+                                <div class="form-group {{ $errors->first('type') ? 'has-error' : '' }}">
+                                    <label for="type"> Course Type</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           value="{{ old('type') ?? $course->type }}"
+                                           id="type"
+                                           placeholder="Diploma"
+                                           autocomplete="off"
+                                           name="type">
+                                    <span class="text-red">{!! $errors->first('type') !!}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3 col-lg-3">
+                                <div class="form-group {{ $errors->first('intake') ? 'has-error' : '' }}">
+                                    <label for="intake"> Course Intake</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           value="{{ old('intake') ?? $course->intake }}"
+                                           id="intake"
+                                           placeholder="May 2026"
+                                           autocomplete="off"
+                                           name="intake">
+                                    <span class="text-red">{!! $errors->first('intake') !!}</span>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
                             <div class="col-sm-6 col-md-6 col-lg-6">
                                 <div class="form-group {{ $errors->first('fee') ? 'has-error' : '' }}">
                                     <label for="fee"> Course Fee</label>
@@ -99,7 +139,7 @@
                                            class="form-control"
                                            value="{{ old('fee') ?? $course->fee }}"
                                            id="fee"
-                                           placeholder="Course Name"
+                                           placeholder="Course Fee"
                                            autocomplete="off"
                                            name="fee">
                                     <span class="text-red">{!! $errors->first('fee') !!}</span>

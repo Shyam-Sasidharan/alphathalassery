@@ -46,6 +46,9 @@ class CourseController extends Controller
             'home_content' => 'required',
             'content' => 'required',
             'duration' => '',
+            'mode' => '',
+            'type' => '',
+            'intake' => '',
             'fee' => '',
             'heading' => '',
         ]);
@@ -100,6 +103,9 @@ class CourseController extends Controller
             'home_content' => 'required',
             'content' => 'required',
             'duration' => '',
+            'mode' => '',
+            'type' => '',
+            'intake' => '',
             'fee' => '',
             'heading' => '',
         ]);

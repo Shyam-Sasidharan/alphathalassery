@@ -54,15 +54,15 @@
                 </div>
                 <div class="px-8 text-center">
                     <p class="text-label text-xs uppercase tracking-widest text-on-surface-variant font-semibold mb-1">Mode</p>
-                    <p class="font-headline text-2xl font-bold text-primary">Full-Time</p>
+                    <p class="font-headline text-2xl font-bold text-primary">{{ $course->mode ?: 'Full-Time' }}</p>
                 </div>
                 <div class="px-8 text-center">
                     <p class="text-label text-xs uppercase tracking-widest text-on-surface-variant font-semibold mb-1">Type</p>
-                    <p class="font-headline text-2xl font-bold text-primary">{{ $course->type ?? 'Diploma' }}</p>
+                    <p class="font-headline text-2xl font-bold text-primary">{{ $course->type ?: 'Diploma' }}</p>
                 </div>
                 <div class="px-8 text-center border-none">
                     <p class="text-label text-xs uppercase tracking-widest text-on-surface-variant font-semibold mb-1">Intake</p>
-                    <p class="font-headline text-2xl font-bold text-primary">{{ date('F Y') }}</p>
+                    <p class="font-headline text-2xl font-bold text-primary">{{ $course->intake ?: date('F Y') }}</p>
                 </div>
             </div>
         </div>

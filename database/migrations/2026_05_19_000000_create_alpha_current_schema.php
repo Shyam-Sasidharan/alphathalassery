@@ -47,6 +47,9 @@ class CreateAlphaCurrentSchema extends Migration
                 $table->string('name', 250)->nullable();
                 $table->text('content')->nullable();
                 $table->string('duration', 250)->nullable();
+                $table->string('mode', 250)->nullable();
+                $table->string('type', 250)->nullable();
+                $table->string('intake', 250)->nullable();
                 $table->string('fee', 250)->nullable();
                 $table->string('slug', 250)->nullable();
                 $table->string('image', 250);
