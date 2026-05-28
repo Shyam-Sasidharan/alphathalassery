@@ -6,6 +6,7 @@ use App\Models\HandBook;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Models\Library;
+use Symfony\Component\HttpFoundation\File\UploadedFile as SymfonyUploadedFile;
 
 class HandBookController extends Controller
 {
@@ -37,12 +38,15 @@ class HandBookController extends Controller
      */
     public function store()
     {
-        request()->validate([
-            'file'=>'nullable|mimes:pdf'
-        ]);
-        $data = request()->except('_token');
-        if (request()->hasFile('file')) {
-            $data['file'] = upload(request()->file, 'user_files/hand-books');
+        $request = request();
+        $this->removeInvalidUploadedFiles($request);
+        $file = $this->getUploadedPdf($request);
+
+        $data = $request->except('_token', 'file');
+        if ($file) {
+            $data['file'] = upload($file, 'user_files/hand-books');
+        } else {
+            return redirect()->back()->withInput()->with('error', 'Please select a valid hand book PDF');
         }
         if (HandBook::create($data)){
             return redirect()->route('hand-book')->with('success', 'HandBook Details has been added');
@@ -70,16 +74,19 @@ class HandBookController extends Controller
      */
     public function update(HandBook $hand_book)
     {
-        request()->validate([
-            'file'=>'nullable|mimes:pdf'
-        ]);
-        $data = request()->except('_token');
-        if (request()->hasFile('file')) {
+        $request = request();
+        $this->removeInvalidUploadedFiles($request);
+        $file = $this->getUploadedPdf($request);
+
+        $data = $request->except('_token', 'file');
+        if ($file) {
             if ($hand_book && $hand_book->file && is_file(public_path($hand_book->file))){
                 @unlink(public_path($hand_book->file));
             }
-            $data['file'] = upload(request()->file, 'user_files/hand-books');
-        } 
+            $data['file'] = upload($file, 'user_files/hand-books');
+        } elseif ($request->input('file')) {
+            return redirect()->back()->withInput()->with('error', 'Selected PDF was not uploaded. Please choose the PDF again.');
+        }
         if ($hand_book->update($data)){
             return redirect()->route('hand-book')->with('success', 'HandBook Details has been updated');
         }
@@ -101,5 +108,64 @@ class HandBookController extends Controller
         } catch (ModelNotFoundException $ex) {
             return redirect()->back()->with('error', 'Could not find the hand-book details');
         }
+    }
+
+    private function removeInvalidUploadedFiles(Request $request)
+    {
+        $request->files->replace($this->cleanUploadedFiles($request->files->all()));
+
+        if (!$request->files->has('file')) {
+            $request->request->remove('file');
+        }
+    }
+
+    private function cleanUploadedFiles(array $files)
+    {
+        foreach ($files as $key => $file) {
+            if (is_array($file)) {
+                $file = $this->cleanUploadedFiles($file);
+
+                if (empty($file)) {
+                    unset($files[$key]);
+                    continue;
+                }
+
+                $files[$key] = $file;
+                continue;
+            }
+
+            if (!$file instanceof SymfonyUploadedFile) {
+                unset($files[$key]);
+            }
+        }
+
+        return $files;
+    }
+
+    private function getUploadedPdf(Request $request)
+    {
+        $file = $request->files->get('file');
+
+        if (!$file instanceof SymfonyUploadedFile && isset($_FILES['file']) && is_array($_FILES['file'])) {
+            $uploadedFile = $_FILES['file'];
+            $tmpName = isset($uploadedFile['tmp_name']) ? $uploadedFile['tmp_name'] : null;
+
+            if ($tmpName && is_uploaded_file($tmpName)) {
+                $file = new SymfonyUploadedFile(
+                    $tmpName,
+                    isset($uploadedFile['name']) ? $uploadedFile['name'] : 'hand-book.pdf',
+                    isset($uploadedFile['type']) ? $uploadedFile['type'] : null,
+                    isset($uploadedFile['size']) ? $uploadedFile['size'] : null,
+                    isset($uploadedFile['error']) ? $uploadedFile['error'] : UPLOAD_ERR_OK,
+                    true
+                );
+            }
+        }
+
+        if (!$file instanceof SymfonyUploadedFile || !$file->isValid()) {
+            return null;
+        }
+
+        return strtolower($file->getClientOriginalExtension()) === 'pdf' ? $file : null;
     }
 }
