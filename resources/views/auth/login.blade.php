@@ -4,10 +4,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+            <div class="panel panel-default cms-login-panel">
+                <div class="panel-heading">
+                    <img src="{{ asset('front/images/logo.png') }}" alt="Alpha Center for Theology and Science">
+                    <span>Alpha CMS</span>
+                </div>
 
                 <div class="panel-body">
+                    <h1>Welcome back</h1>
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
@@ -38,19 +42,19 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <button type="submit" class="btn btn-primary pull-right">
+                            <div class="col-md-12 cms-login-actions">
+                                <button type="submit" class="btn btn-primary">
                                     Login
                                 </button>
 
-                                <a class="btn btn-link pull-right" href="{{ route('password.request') }}">
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
                                     Forgot Your Password?
                                 </a>
                             </div>

@@ -14,19 +14,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <style>
-        body{
-            background-image: url("{{asset('img/logo-sm.png')}}");
-            background-repeat: no-repeat;
-            background-size: cover;
-            min-width: 100%;
-            min-height: 100%;
-        }
-    </style>
+    <link href="{{ asset('css/cms.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="cms-login">
     <div id="app">
-        <div class="" style="margin-top: 10%"></div>
         @yield('content')
     </div>
 

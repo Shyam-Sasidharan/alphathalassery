@@ -5,7 +5,7 @@
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><img style="display: inline-block" src="{{ asset('front')}}/images/logo.png" alt="{{ config('app.name') }}" class="img-responsive"/> </span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Alpha Institute</b></span>
+        <span class="logo-lg"><img src="{{ asset('front')}}/images/logo.png" alt="{{ config('app.name') }}"> <b>Alpha</b> CMS</span>
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
@@ -20,6 +20,7 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="cms-user-avatar">{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</span>
                         <span class="hidden-xs">{{ auth()->user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu">

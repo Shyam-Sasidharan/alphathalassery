@@ -9,12 +9,12 @@
             </div>
             <div class="pull-left info">
                 <p>{{ auth()->user()->name }}</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Admin</a>
+                <a href="#"><i class="fa fa-circle text-success"></i> Content Admin</a>
             </div>
         </div>
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">MAIN NAVIGATION</li>
+            <li class="header">CMS NAVIGATION</li>
             <li class=" {{ request()->is('dashboard') ? 'active' : '' }} ">
                 <a href="{{ route('dashboard') }}">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>

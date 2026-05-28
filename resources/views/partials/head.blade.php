@@ -16,38 +16,8 @@
     <link rel="stylesheet" href="{{ asset('css/AdminLTE.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/skins/_all-skins.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
-
-    <style>
-        body {
-            font-family: "Helvetica Neue", Arial, sans-serif;
-        }
-
-        .content-wrapper {
-            background: #f4f6f9;
-        }
-
-        .box {
-            border-radius: 6px;
-            overflow: hidden;
-            border-top-width: 3px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-        }
-
-        .box-header.with-border {
-            background: #fff;
-        }
-
-        .table > thead > tr > th {
-            background: #f8fafc;
-            color: #334155;
-            font-weight: 700;
-        }
-
-        .btn {
-            border-radius: 4px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/cms.css') }}">
     @yield('css')
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini cms-admin">
 <div class="wrapper">
