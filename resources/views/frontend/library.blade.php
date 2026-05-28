@@ -2,31 +2,80 @@
 
 @section('title', 'Library | The Alpha Institute')
 
+@section('css')
+<style>
+    .library-catalog-card {
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(47, 76, 127, 0.12);
+        box-shadow: 0 18px 44px rgba(27, 28, 28, 0.06);
+    }
+
+    .library-catalog-list li {
+        padding-left: 0.75rem;
+        margin-bottom: 0.9rem;
+        line-height: 1.7;
+    }
+</style>
+@endsection
+
 @section('content')
 <!-- Hero Section -->
 <section class="relative bg-primary overflow-hidden">
     <div class="absolute inset-0">
         <img alt="Library Background" class="w-full h-full object-cover opacity-40 mix-blend-overlay" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyuAFuvEDK_BlqYoUz9kD1HVboIB67S6m222mvk0Gv2tk644wj1BXSCL2rf6sk7Lj_fZkjTgqLNC8vO-B5ZNMtx5Ya-mFjKl_Zl4mLe-jf4Ua9h5geDZDvU2JQB66jdxbl5dxU--2UtUNdUF-QTe-kU1LfuYmxR1bYecJ8tJFsJePbmd409o2PBm-KYSEQbWssUs2p5Vm7GPrt_JlQ3rNNpqKatV1Eq5eNjSiG892gOth6sOhrnESjSyqOrN-kNf-TlKcWsjLHwQ"/>
     </div>
-    <div class="relative z-10 max-w-7xl mx-auto px-8 py-24 md:py-32 flex flex-col items-center text-center">
-        <div class="w-20 h-1 bg-tertiary-fixed mb-8"></div>
-        <h1 class="font-display text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">Library</h1>
-        <p class="font-body text-xl md:text-2xl text-on-primary-container max-w-3xl mx-auto leading-relaxed opacity-90 mb-10">
-            Explore our curated digital collection of historical manuscripts, modern theological research, and sacred liturgical art.
+    <div class="relative z-10 max-w-7xl mx-auto px-8 py-16 md:py-20 flex flex-col items-center text-center">
+        <div class="w-20 h-1 bg-tertiary-fixed mb-6"></div>
+        <h1 class="font-display text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight">Library</h1>
+        <p class="font-body text-xl md:text-2xl text-on-primary-container max-w-3xl mx-auto leading-relaxed opacity-90 mb-6">
+            Access Alpha Central Library facilities and collaborating theological libraries for research and reference.
         </p>
         <div class="flex items-center gap-3 text-tertiary-fixed">
             <span class="material-symbols-outlined">menu_book</span>
-            <span class="font-label font-bold uppercase tracking-[0.3em] text-xs">Ex Cellentia In Litteris</span>
+            <span class="font-label font-bold uppercase tracking-[0.3em] text-xs">Alpha Library Catalogue</span>
         </div>
     </div>
 </section>
 
-<section class="bg-surface-bright py-24 px-8 border-b border-outline-variant/10">
+<section class="bg-surface-bright py-12 px-8 border-b border-outline-variant/10">
+    <div class="max-w-5xl mx-auto">
+        <div class="text-center">
+            <h2 class="font-display text-4xl md:text-5xl font-bold text-primary mb-4 tracking-tight">Alpha Library Catalogue</h2>
+            <div class="w-12 h-0.5 bg-tertiary-fixed mx-auto mb-6"></div>
+        </div>
+
+        <div class="library-catalog-card rounded-xl p-6 md:p-8">
+            <div class="mb-5">
+                <h3 class="font-display text-2xl font-bold text-primary mb-3">Alpha Central Library at Thalassery</h3>
+                <p class="font-body text-on-surface-variant leading-relaxed">
+                    The students can make use of the library facilities available at Alpha Research Center.
+                </p>
+            </div>
+
+            <div class="mb-5">
+                <h3 class="font-display text-2xl font-bold text-primary mb-3">Collaborating Libraries</h3>
+                <p class="font-body text-on-surface-variant leading-relaxed">
+                    Besides the library facilities available at the Alpha Center, the research scholars of the Alpha Centre will have access to nationally reputed libraries of various theological centers across India. The tie-up made between the Alpha Centre and these institutions enables mutual sharing of library and infrastructure facilities.
+                </p>
+            </div>
+
+            <ul class="library-catalog-list font-body text-on-surface-variant list-disc pl-5">
+                <li><strong class="text-primary">St. Joseph's Pontifical Library, Alwaye</strong> - More than 80000 books in Christian Theology and Asian Christian Studies.</li>
+                <li><strong class="text-primary">St. Thomas Paurasthya Vidhyapeedam Library, Kottayam</strong> - More than 70000 books in various branches of Christian Theology.</li>
+                <li><strong class="text-primary">Good Shepherd Major Seminary Library, Kunnoth, Kannur</strong> - More than 30000 books on various branches of Christian Theology.</li>
+                <li><strong class="text-primary">Jnanadeepa Vidya Pidam, Pune</strong> - More than 100000 books on various branches of Christian Theology in English, French, German, and Italian languages.</li>
+                <li><strong class="text-primary">Dharmaram Vidykshetra Library</strong> - More than 100000 books on various branches of Christian Theology in English, French, German, and Italian languages.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="bg-surface-bright py-10 px-8 border-b border-outline-variant/10">
     <div class="max-w-4xl mx-auto text-center">
-        <h2 class="font-display text-4xl md:text-5xl font-bold text-primary mb-8 tracking-tight">A Sanctuary of Sacred Knowledge</h2>
-        <div class="w-12 h-0.5 bg-tertiary-fixed mx-auto mb-8"></div>
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-primary mb-4 tracking-tight">E-Books</h2>
+        <div class="w-12 h-0.5 bg-tertiary-fixed mx-auto mb-6"></div>
         <p class="font-body text-lg md:text-xl text-on-surface-variant leading-relaxed">
-            The Alpha Institute Library stands as a curated digital sanctuary dedicated to the preservation and dissemination of historical manuscripts, modern theological research, and sacred liturgical art. Our collection serves as a vital bridge between ancient tradition and contemporary scholarship.
+            Browse available digital books and reference materials from the Alpha Library collection.
         </p>
     </div>
 </section>
@@ -36,13 +85,12 @@
 @endphp
 
 <!-- Main Content -->
-<div class="max-w-7xl mx-auto px-8 pt-16 pb-24">
+<div class="max-w-7xl mx-auto px-8 pt-10 pb-16">
     @foreach($libraries as $lib)
-    <section class="mb-20 scroll-mt-40" id="lib-{{ $lib->slug }}">
-        <div class="flex items-end justify-between mb-10 border-b border-outline-variant/20 pb-4">
+    <section class="mb-12 scroll-mt-40" id="lib-{{ $lib->slug }}">
+        <div class="flex items-end justify-between mb-6 border-b border-outline-variant/20 pb-4">
             <div>
                 <h2 class="font-headline text-3xl font-bold text-primary italic">{{ $lib->name }}</h2>
-                <p class="text-on-surface-variant text-sm mt-2">{!! $lib->content !!}</p>
             </div>
         </div>
         
