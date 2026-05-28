@@ -1,8 +1,16 @@
-<nav class="bg-surface/80 dark:bg-surface-container-highest/80 backdrop-blur-xl sticky top-0 w-full z-50 shadow-[0_32px_32px_rgba(27,28,28,0.06)] border-b border-outline-variant/20 flex items-center gap-6 px-6 lg:px-10 2xl:px-14 py-4">
-    <div class="flex items-center gap-4 shrink-0 xl:min-w-[60px]">
-        <a href="{{ url('/') }}">
+<nav class="bg-surface/80 dark:bg-surface-container-highest/80 backdrop-blur-xl sticky top-0 w-full z-50 shadow-[0_32px_32px_rgba(27,28,28,0.06)] border-b border-outline-variant/20 flex items-center gap-3 lg:gap-6 px-4 sm:px-6 lg:px-10 2xl:px-14 py-4">
+    <div class="flex items-center gap-3 shrink-0 xl:min-w-[150px]">
+        {{-- <a href="{{ url('/') }}">
             <img alt="The Alpha Institute Logo" class="h-10 w-10 object-contain rounded-sm" src="{{ asset('front/images/logo.png') }}"/>
-        </a>
+        </a> --}}
+        <div class="flex items-center gap-2">
+            <a href="{{ url('/') }}" aria-label="Alpha Higher Institute">
+                <img alt="Alpha Higher Institute Logo" class="h-8 w-8 sm:h-10 sm:w-10 object-contain rounded-sm" src="{{ asset('front/images/alpha-higher-institute.png') }}"/>
+            </a>
+            <a href="{{ url('/') }}" aria-label="TELY-ALPHA">
+                <img alt="TELY-ALPHA Logo" class="h-8 w-8 sm:h-10 sm:w-10 object-contain rounded-sm" src="{{ asset('front/images/tely-alpha.png') }}"/>
+            </a>
+        </div>
     </div>
 
     <!-- Desktop Navigation Links -->
@@ -36,7 +44,7 @@
     </div>
 
     <!-- Right-side Buttons -->
-    <div class="flex items-center justify-end space-x-4 shrink-0 xl:min-w-[260px] ml-auto">
+    <div class="flex items-center justify-end space-x-2 sm:space-x-4 shrink-0 xl:min-w-[260px] ml-auto">
         <!-- Student Login (Desktop) -->
         <div class="nav-dropdown relative group cursor-pointer hidden lg:block">
             <button class="text-primary font-bold text-sm hover:opacity-80 transition-all py-2 flex items-center gap-1">
@@ -50,7 +58,7 @@
 
         <!-- Registration Button (Desktop & Mobile) -->
         <div class="nav-dropdown relative group cursor-pointer">
-            <button type="button" class="bg-primary text-on-primary px-5 py-2.5 rounded-md font-bold text-sm shadow-sm hover:shadow-md active:scale-95 transition-all flex items-center gap-1">
+            <button type="button" class="bg-primary text-on-primary px-3 sm:px-5 py-2.5 rounded-md font-bold text-sm shadow-sm hover:shadow-md active:scale-95 transition-all flex items-center gap-1">
                 Registration <span class="material-symbols-outlined text-[16px]">expand_more</span>
             </button>
             <div class="dropdown-content hidden absolute top-full right-0 mt-1 bg-surface border border-outline-variant/20 shadow-xl rounded-lg py-3 w-52 glass-effect z-50">
