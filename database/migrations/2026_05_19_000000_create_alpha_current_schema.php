@@ -150,7 +150,8 @@ class CreateAlphaCurrentSchema extends Migration
 
         if (! Schema::hasTable('publications')) {
             Schema::create('publications', function (Blueprint $table) {
-                $this->latin1($table);
+                $table->charset = 'utf8mb4';
+                $table->collation = 'utf8mb4_unicode_ci';
 
                 $table->increments('id');
                 $table->integer('category_id')->index();

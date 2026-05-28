@@ -2,6 +2,21 @@
 
 @section('title', 'Publications | The Alpha Institute')
 
+@section('css')
+<style>
+    .publication-summary {
+        max-height: 4.8rem;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    .publication-card:hover .publication-summary,
+    .publication-card:focus-within .publication-summary {
+        max-height: 32rem;
+    }
+</style>
+@endsection
+
 @section('content')
 <!-- Scholarly Hero Section -->
 <section class="relative h-[450px] flex items-center justify-center overflow-hidden">
@@ -78,10 +93,10 @@
             </div>
 
             <!-- Bento Grid Layout -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
                 @forelse($publications as $pub)
-                <div class="group bg-surface-container-lowest p-6 rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.03)] border border-outline-variant/10 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)] transition-all flex flex-col md:flex-row gap-6">
-                    <div class="w-full md:w-32 h-44 bg-surface-container-highest rounded flex-shrink-0 relative overflow-hidden group-hover:scale-[1.02] transition-transform">
+                <div class="publication-card group bg-surface-container-lowest p-4 rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.03)] border border-outline-variant/10 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)] transition-all flex flex-col gap-4">
+                    <div class="w-full aspect-[3/4] bg-surface-container-highest rounded flex-shrink-0 relative overflow-hidden group-hover:scale-[1.02] transition-transform">
                         <img alt="{{ $pub->name }}" class="w-full h-full object-cover shadow-lg" src="{{ $pub->photo }}"/>
                     </div>
                     <div class="flex flex-col justify-between py-1 flex-grow">
@@ -92,8 +107,8 @@
                                     <span class="text-primary font-bold font-body text-sm">₹{{ $pub->price }}</span>
                                 @endif
                             </div>
-                            <h3 class="font-display text-xl text-primary leading-tight group-hover:text-primary-container transition-colors mb-2">{{ $pub->name }}</h3>
-                            <div class="text-on-surface-variant text-sm leading-relaxed line-clamp-3">
+                            <h3 class="font-display text-lg text-primary leading-tight group-hover:text-primary-container transition-colors mb-2">{{ $pub->name }}</h3>
+                            <div class="publication-summary text-on-surface-variant text-xs leading-relaxed">
                                 {!! strip_tags($pub->content) !!}
                             </div>
                             @if($pub->author)
