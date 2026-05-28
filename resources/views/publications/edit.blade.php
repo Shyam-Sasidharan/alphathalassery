@@ -134,16 +134,10 @@
     </section>
 @endsection
 
-@section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/css/fileinput.min.css" />
-@stop
-
 @section('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/js/fileinput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.7.4/tinymce.min.js"></script>
     <script>
         $(function () {
-            $('#image').fileinput({'showUpload':false});
             let initEditor = (el, dir) => {
                 tinymce.init({
                     selector: el,
@@ -163,7 +157,6 @@
             };
 
             initEditor('#content');
-            $('#image').fileinput({'showUpload':false});
         });
 
     </script>
