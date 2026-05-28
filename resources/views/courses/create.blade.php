@@ -47,7 +47,7 @@
                             <div class="col-sm-12 col-md-12 col-lg-12">
                                 <div class="form-group {{ $errors->first('home_content') ? 'has-error' : '' }}">
                                     <label for="home_content">Home Content</label>
-                                    <textarea rows="10" class="form-control" id="content" placeholder="Course Content" autocompletehome_="off" name="home_content">{{ old('home_content') }}</textarea>
+                                    <textarea rows="10" class="form-control" id="home_content" placeholder="Course Content" autocomplete="off" name="home_content">{{ old('home_content') }}</textarea>
                                     <span class="text-red">{!! $errors->first('home_content') !!}</span>
                                 </div>
                             </div>
@@ -122,11 +122,7 @@
         <!-- /.row -->
     </section>
 @endsection
-@section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/css/fileinput.min.css" />
-@stop
 @section('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/js/fileinput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.7.4/tinymce.min.js"></script>
     <script>
         $(function () {
@@ -149,7 +145,6 @@
             };
 
             initEditor('#content, #home_content', 'ltr');
-            $('#image, #pdf').fileinput({'showUpload':false});
         });
 
     </script>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\File\UploadedFile as SymfonyUploadedFile;
 
 class CourseController extends Controller
 {
@@ -35,24 +36,31 @@ class CourseController extends Controller
      */
     public function store()
     {
-        $this->validate(\request(), [
+        $request = request();
+        $this->removeInvalidUploadedFiles($request);
+        $image = $this->getUploadedImage($request);
+        $pdf = $this->getUploadedPdf($request);
+
+        $this->validate($request, [
             'name' => 'required',
             'home_content' => 'required',
             'content' => 'required',
             'duration' => '',
             'fee' => '',
-            'image' => 'nullable|image',
             'heading' => '',
-            'pdf' => 'nullable|mimes:pdf'
         ]);
 
-        $data = request()->except('_token');
+        $data = $request->except('_token', 'image', 'pdf');
         $data['slug'] = '';
-        if (request()->hasFile('image')) {
-            $data['image'] = upload(request()->image, 'user_files/course');
+        if ($image) {
+            $data['image'] = upload($image, 'user_files/course');
+        } elseif ($request->input('image')) {
+            return redirect()->back()->withInput()->with('error', 'Selected image was not uploaded. Please choose the image again.');
         }
-        if (request()->hasFile('pdf')) {
-            $data['pdf'] = upload(request()->pdf, 'user_files/course');
+        if ($pdf) {
+            $data['pdf'] = upload($pdf, 'user_files/course');
+        } elseif ($request->input('pdf')) {
+            return redirect()->back()->withInput()->with('error', 'Selected PDF was not uploaded. Please choose the PDF again.');
         }
         if (Course::create($data)){
             return redirect()->route('course')->with('success', 'Course has been added');
@@ -79,30 +87,37 @@ class CourseController extends Controller
      */
     public function update( Course $course)
     {
-        $this->validate(\request(), [
+        $request = request();
+        $this->removeInvalidUploadedFiles($request);
+        $image = $this->getUploadedImage($request);
+        $pdf = $this->getUploadedPdf($request);
+
+        $this->validate($request, [
             'name' => 'required',
             'home_content' => 'required',
             'content' => 'required',
             'duration' => '',
             'fee' => '',
-            'image' => 'nullable|image',
             'heading' => '',
-            'pdf' => 'nullable|mimes:pdf'
         ]);
-        $data = request()->except('_token'); 
+        $data = $request->except('_token', 'image', 'pdf');
         $data['slug'] = ''; 
-        if (request()->hasFile('image')) {
+        if ($image) {
             if ($course && $course->image && is_file(public_path($course->image))){
                 @unlink(public_path($course->image));
             }
-            $data['image'] = upload(request()->image, 'user_files/course');
-        }  
-        if (request()->hasFile('pdf')) {
+            $data['image'] = upload($image, 'user_files/course');
+        } elseif ($request->input('image')) {
+            return redirect()->back()->withInput()->with('error', 'Selected image was not uploaded. Please choose the image again.');
+        }
+        if ($pdf) {
             if ($course && $course->pdf && is_file(public_path($course->pdf))){
                 @unlink(public_path($course->pdf));
             }
-            $data['pdf'] = upload(request()->pdf, 'user_files/course');
-        } 
+            $data['pdf'] = upload($pdf, 'user_files/course');
+        } elseif ($request->input('pdf')) {
+            return redirect()->back()->withInput()->with('error', 'Selected PDF was not uploaded. Please choose the PDF again.');
+        }
         if ($course->update($data)){
             return redirect()->route('course')->with('success', 'Course has been updated');
         }
@@ -124,5 +139,84 @@ class CourseController extends Controller
         } catch (ModelNotFoundException $ex) {
             return redirect()->back()->with('error', 'Could not find the selected course');
         }
+    }
+
+    private function removeInvalidUploadedFiles(Request $request)
+    {
+        $request->files->replace($this->cleanUploadedFiles($request->files->all()));
+
+        foreach (['image', 'pdf'] as $field) {
+            if (!$request->files->has($field)) {
+                $request->request->remove($field);
+            }
+        }
+    }
+
+    private function cleanUploadedFiles(array $files)
+    {
+        foreach ($files as $key => $file) {
+            if (is_array($file)) {
+                $file = $this->cleanUploadedFiles($file);
+
+                if (empty($file)) {
+                    unset($files[$key]);
+                    continue;
+                }
+
+                $files[$key] = $file;
+                continue;
+            }
+
+            if (!$file instanceof SymfonyUploadedFile) {
+                unset($files[$key]);
+            }
+        }
+
+        return $files;
+    }
+
+    private function getUploadedImage(Request $request)
+    {
+        $image = $this->getUploadedFile($request, 'image', 'course-image');
+
+        if (!$image) {
+            return null;
+        }
+
+        return @getimagesize($image->getPathname()) ? $image : null;
+    }
+
+    private function getUploadedPdf(Request $request)
+    {
+        $pdf = $this->getUploadedFile($request, 'pdf', 'course-document');
+
+        if (!$pdf) {
+            return null;
+        }
+
+        return strtolower($pdf->getClientOriginalExtension()) === 'pdf' ? $pdf : null;
+    }
+
+    private function getUploadedFile(Request $request, $field, $fallbackName)
+    {
+        $file = $request->files->get($field);
+
+        if (!$file instanceof SymfonyUploadedFile && isset($_FILES[$field]) && is_array($_FILES[$field])) {
+            $uploadedFile = $_FILES[$field];
+            $tmpName = isset($uploadedFile['tmp_name']) ? $uploadedFile['tmp_name'] : null;
+
+            if ($tmpName && is_uploaded_file($tmpName)) {
+                $file = new SymfonyUploadedFile(
+                    $tmpName,
+                    isset($uploadedFile['name']) ? $uploadedFile['name'] : $fallbackName,
+                    isset($uploadedFile['type']) ? $uploadedFile['type'] : null,
+                    isset($uploadedFile['size']) ? $uploadedFile['size'] : null,
+                    isset($uploadedFile['error']) ? $uploadedFile['error'] : UPLOAD_ERR_OK,
+                    true
+                );
+            }
+        }
+
+        return $file instanceof SymfonyUploadedFile && $file->isValid() ? $file : null;
     }
 }
