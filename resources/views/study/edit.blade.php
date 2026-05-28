@@ -81,7 +81,7 @@
                                             <img src="{{ asset($study_centre->image) }}" class="img-thumbnail" style="max-height: 150px;">
                                         </div>
                                     @endif
-                                    <input type="file" class="form-control" id="image" name="image">
+                                    <input type="file" class="form-control" id="image" name="image" accept="image/*">
                                     <span class="text-red">{!! $errors->first('image') !!}</span>
                                 </div>
                             </div>                         

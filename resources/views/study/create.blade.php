@@ -76,7 +76,7 @@
                             <div class="col-sm-12 col-md-12 col-lg-12">
                                 <div class="form-group {{ $errors->first('image') ? 'has-error' : '' }}">
                                     <label for="image">Center Image / Cover</label>
-                                    <input type="file" class="form-control" id="image" name="image">
+                                    <input type="file" class="form-control" id="image" name="image" accept="image/*">
                                     <span class="text-red">{!! $errors->first('image') !!}</span>
                                 </div>
                             </div>                         
