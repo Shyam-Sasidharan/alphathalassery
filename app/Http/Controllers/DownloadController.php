@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Download;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\File\UploadedFile as SymfonyUploadedFile;
 
 class DownloadController extends Controller
 {
@@ -35,17 +36,21 @@ class DownloadController extends Controller
      */
     public function store()
     {
-        $this->validate(\request(), [
+        $request = request();
+        $this->removeInvalidUploadedFiles($request);
+        $doc = $this->getUploadedDoc($request);
+
+        $this->validate($request, [
             'title' => 'required',
             'content' => '',
-            'doc' => 'nullable|mimes:jpg,jpeg,png,pdf,xls',
             'download_category_id' => ''
         ]);
 
-        $data = request()->except('_token');
-        // $data['image'] = '';
-        if (request()->hasFile('doc')) {
-            $data['doc'] = upload(request()->doc, 'user_files/downloads');
+        $data = $request->except('_token', 'doc');
+        if ($doc) {
+            $data['doc'] = upload($doc, 'user_files/downloads');
+        } else {
+            return redirect()->back()->withInput()->with('error', 'Please select a valid download file');
         }
         if (Download::create($data)){
             return redirect()->route('downloads')->with('success', 'Download Doc has been added');
@@ -72,19 +77,24 @@ class DownloadController extends Controller
      */
     public function update( Download $downloads)
     {
-        $this->validate(\request(), [
+        $request = request();
+        $this->removeInvalidUploadedFiles($request);
+        $doc = $this->getUploadedDoc($request);
+
+        $this->validate($request, [
             'title' => 'required',
             'content' => '',
-            'doc' => 'nullable|mimes:jpg,jpeg,png,pdf,xls',
             'download_category_id' => ''
         ]);
-        $data = request()->except('_token');        
-        if (request()->hasFile('doc')) {
+        $data = $request->except('_token', 'doc');
+        if ($doc) {
             if ($downloads && $downloads->doc && is_file(public_path($downloads->doc))){
                 @unlink(public_path($downloads->doc));
             }
-            $data['doc'] = upload(request()->doc, 'user_files/downloads');
-        }   
+            $data['doc'] = upload($doc, 'user_files/downloads');
+        } elseif ($request->input('doc')) {
+            return redirect()->back()->withInput()->with('error', 'Selected file was not uploaded. Please choose the file again.');
+        }
         if ($downloads->update($data)){
             return redirect()->route('downloads')->with('success', 'Download Doc has been updated');
         }
@@ -109,5 +119,67 @@ class DownloadController extends Controller
         } catch (ModelNotFoundException $ex) {
             return redirect()->back()->with('error', 'Could not find the selected doc');
         }
+    }
+
+    private function removeInvalidUploadedFiles(Request $request)
+    {
+        $request->files->replace($this->cleanUploadedFiles($request->files->all()));
+
+        if (!$request->files->has('doc')) {
+            $request->request->remove('doc');
+        }
+    }
+
+    private function cleanUploadedFiles(array $files)
+    {
+        foreach ($files as $key => $file) {
+            if (is_array($file)) {
+                $file = $this->cleanUploadedFiles($file);
+
+                if (empty($file)) {
+                    unset($files[$key]);
+                    continue;
+                }
+
+                $files[$key] = $file;
+                continue;
+            }
+
+            if (!$file instanceof SymfonyUploadedFile) {
+                unset($files[$key]);
+            }
+        }
+
+        return $files;
+    }
+
+    private function getUploadedDoc(Request $request)
+    {
+        $doc = $request->files->get('doc');
+
+        if (!$doc instanceof SymfonyUploadedFile && isset($_FILES['doc']) && is_array($_FILES['doc'])) {
+            $uploadedDoc = $_FILES['doc'];
+            $tmpName = isset($uploadedDoc['tmp_name']) ? $uploadedDoc['tmp_name'] : null;
+
+            if ($tmpName && is_uploaded_file($tmpName)) {
+                $doc = new SymfonyUploadedFile(
+                    $tmpName,
+                    isset($uploadedDoc['name']) ? $uploadedDoc['name'] : 'download-file',
+                    isset($uploadedDoc['type']) ? $uploadedDoc['type'] : null,
+                    isset($uploadedDoc['size']) ? $uploadedDoc['size'] : null,
+                    isset($uploadedDoc['error']) ? $uploadedDoc['error'] : UPLOAD_ERR_OK,
+                    true
+                );
+            }
+        }
+
+        if (!$doc instanceof SymfonyUploadedFile || !$doc->isValid()) {
+            return null;
+        }
+
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'pdf', 'doc', 'docx', 'xls', 'xlsx'];
+        $extension = strtolower($doc->getClientOriginalExtension());
+
+        return in_array($extension, $allowedExtensions) ? $doc : null;
     }
 }

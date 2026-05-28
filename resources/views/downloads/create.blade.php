@@ -76,7 +76,7 @@
                                            id="doc"
                                            placeholder="Profile"
                                            autocomplete="off"
-                                           accept=".pdf,.docx"
+                                           accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png"
                                            name="doc">
                                     <span class="text-red">{!! $errors->first('doc') !!}</span>
                                 </div>
@@ -97,11 +97,7 @@
         <!-- /.row -->
     </section>
 @endsection
-@section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/css/fileinput.min.css" />
-@stop
 @section('js')
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/js/fileinput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.7.4/tinymce.min.js"></script>
     <script>
         $(function () {
@@ -124,7 +120,6 @@
             };
 
             initEditor('#content', 'ltr');
-            $('#doc').fileinput({'showUpload':false});
         });
 
     </script>
