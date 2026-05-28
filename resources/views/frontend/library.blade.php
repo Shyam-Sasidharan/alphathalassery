@@ -48,24 +48,68 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             @forelse($lib->items as $book)
+            @php
+                $bookUrl = asset($book->pdf);
+                $bookTitle = trim($book->title) ?: 'Alpha Library Book '.$loop->iteration;
+                $bookExtension = strtolower(pathinfo($book->pdf, PATHINFO_EXTENSION) ?: 'pdf');
+                $downloadName = trim(preg_replace('/[^A-Za-z0-9]+/', '-', $bookTitle), '-').'.'.$bookExtension;
+                $viewerId = 'libraryBookViewer'.$book->id;
+            @endphp
             <div class="group flex flex-col bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-outline-variant/10 hover:shadow-xl transition-all duration-300">
                 <div class="relative aspect-[3/4] mb-6 overflow-hidden rounded-lg bg-primary/5 flex items-center justify-center">
-                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="{{ $book->photo }}" alt="{{ $book->title ?? 'Book Cover' }}"/>
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="{{ $book->photo }}" alt="{{ $bookTitle }}"/>
                     <div class="absolute top-3 right-3 bg-tertiary text-on-tertiary px-3 py-1 rounded-full text-[10px] font-bold font-label tracking-tighter uppercase">
-                        {{ pathinfo($book->pdf, PATHINFO_EXTENSION) ?: 'PDF' }}
+                        {{ $bookExtension }}
                     </div>
                 </div>
-                <div class="px-2">
-                    <h3 class="font-headline text-xl font-bold text-on-surface mb-2">{{ $book->title ?? 'Untitled Book' }}</h3>
+                <div class="px-2 flex flex-col flex-1">
+                    <h3 class="font-headline text-xl font-bold text-on-surface mb-2">{{ $bookTitle }}</h3>
                     @if(isset($book->author))
                         <p class="font-body text-on-surface-variant text-sm mb-6 italic">by {{ $book->author }}</p>
                     @endif
-                    <a href="{{ asset($book->pdf) }}" download class="w-full bg-primary text-on-primary py-3 rounded-md flex items-center justify-center gap-2 hover:bg-primary-container transition-colors duration-300">
-                        <span class="material-symbols-outlined text-sm">download</span>
-                        <span class="font-label text-sm font-bold">Download E-Book</span>
-                    </a>
+                    <div class="grid grid-cols-2 gap-3 mt-auto">
+                        @if($bookExtension === 'pdf')
+                            <button type="button" data-toggle="modal" data-target="#{{ $viewerId }}" class="w-full bg-surface-container-low text-primary border border-primary/20 py-3 rounded-md flex items-center justify-center gap-2 hover:bg-primary/10 transition-colors duration-300">
+                                <span class="material-symbols-outlined text-sm">visibility</span>
+                                <span class="font-label text-sm font-bold">View</span>
+                            </button>
+                        @else
+                            <a href="{{ $bookUrl }}" target="_blank" class="w-full bg-surface-container-low text-primary border border-primary/20 py-3 rounded-md flex items-center justify-center gap-2 hover:bg-primary/10 transition-colors duration-300">
+                                <span class="material-symbols-outlined text-sm">open_in_new</span>
+                                <span class="font-label text-sm font-bold">View</span>
+                            </a>
+                        @endif
+                        <a href="{{ $bookUrl }}" download="{{ $downloadName }}" class="w-full bg-primary text-on-primary py-3 rounded-md flex items-center justify-center gap-2 hover:bg-primary-container transition-colors duration-300">
+                            <span class="material-symbols-outlined text-sm">download</span>
+                            <span class="font-label text-sm font-bold">Download</span>
+                        </a>
+                    </div>
                 </div>
             </div>
+
+            @if($bookExtension === 'pdf')
+            <div class="modal fade" id="{{ $viewerId }}" tabindex="-1" role="dialog" aria-labelledby="{{ $viewerId }}Label" aria-hidden="true">
+                <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                    <div class="modal-content overflow-hidden rounded-xl border-0">
+                        <div class="bg-primary text-on-primary px-6 py-4 flex items-center justify-between">
+                            <h5 class="font-display text-xl font-bold m-0" id="{{ $viewerId }}Label">{{ $bookTitle }}</h5>
+                            <button type="button" class="text-on-primary/80 hover:text-on-primary" data-dismiss="modal" aria-label="Close">
+                                <span class="material-symbols-outlined">close</span>
+                            </button>
+                        </div>
+                        <div class="bg-surface p-4">
+                            <iframe src="{{ $bookUrl }}" class="w-full h-[75vh] rounded-lg border border-outline-variant/20" frameborder="0"></iframe>
+                            <div class="mt-4 flex justify-end">
+                                <a href="{{ $bookUrl }}" download="{{ $downloadName }}" class="bg-primary text-on-primary px-5 py-3 rounded-md flex items-center gap-2 hover:bg-primary-container transition-colors duration-300">
+                                    <span class="material-symbols-outlined text-sm">download</span>
+                                    <span class="font-label text-sm font-bold">Download PDF</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
             @empty
             <div class="col-span-full py-12 text-center text-on-surface-variant italic">
                 No books available in this section.
