@@ -111,54 +111,34 @@
 <section class="py-24 px-8 max-w-7xl mx-auto">
     <div class="text-center mb-16 space-y-4">
         <span class="font-label text-tertiary tracking-[0.2em] uppercase text-xs font-bold">Institutional Governance</span>
-        <h2 class="font-display text-4xl text-primary font-bold">Episcopal Patrons</h2>
+        <h2 class="font-display text-4xl text-primary font-bold">Episcopal Patrons of Alpha Institute</h2>
         <div class="w-24 h-1 bg-tertiary mx-auto mt-6"></div>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        <!-- Patron 1 -->
-        <div class="group">
-            <div class="relative overflow-hidden rounded-xl mb-6 aspect-[3/4]">
-                <img alt="Archbishop Mar Joseph Pamplany" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF6ZgyXPf1MZxlJSCa-jDKIHd7Q5doPT4QKmsBxGomGglaR1ZklYCnSWd0GQXuCJDBj3KQR1bfqFwHcIYKaRikhrvX8T7_lIl4F6E6tG3RNopGWFAOZiaiwsud2mQ9QXhyEyIH6W4jQg7xb9i7mymUhVBgtcLWEXe3ioqFnc8x2qw1QjIkJTdDMK-TbASBdIX68278tFy94VSnGrKEIRpTxoK6AoEP1s0BaXt2BhxUOcgKzp5e77R4XcwDr-GkWTsgXUZ62ekiLg"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-                    <p class="text-on-primary text-xs font-label uppercase tracking-widest">Patron-in-Chief</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-7 gap-5">
+        @foreach([
+            ['name' => 'Archbishop Mar Joseph Pamplany', 'role' => 'Chancellor', 'image' => 'front/images/Pamplany.jpg'],
+            ['name' => 'Archbishop Mar George Valiamattam', 'role' => 'Founder', 'image' => 'front/images/valiamattam.jpg'],
+            ['name' => 'Bishop Mar Joseph Srampickal', 'role' => 'Patron at UK', 'image' => 'front/images/srampickal.jpg'],
+            ['name' => 'Ret. Rev. Dr. Paul Hinder', 'role' => 'Patron at Gulf Region', 'image' => 'front/images/hinder.jpg'],
+            ['name' => 'Bishop Mar Lawrence Mukkuzhy', 'role' => 'Patron at Karnataka', 'image' => 'front/images/mukkuzhy.jpg'],
+            ['name' => 'Bishop Mar Joseph Kollamparabil', 'role' => 'Patron at Jagadalpur', 'image' => 'front/images/kollamparambil.jpg'],
+            ['name' => 'Bishop Mar Jacob Angadiyath', 'role' => 'Patron at USA', 'image' => 'front/images/CMM.jpg'],
+        ] as $patron)
+            <article class="group h-full">
+                <div class="relative overflow-hidden rounded-xl mb-6 aspect-[3/4] bg-surface-container-high">
+                    <img
+                        alt="{{ $patron['name'] }}"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        src="{{ asset($patron['image']) }}"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
+                        <p class="text-on-primary text-xs font-label uppercase tracking-widest">{{ $patron['role'] }}</p>
+                    </div>
                 </div>
-            </div>
-            <h4 class="font-headline text-xl text-primary font-bold text-center">Archbishop Mar Joseph Pamplany</h4>
-            <p class="font-label text-sm text-on-surface-variant text-center mt-1">Metropolitan Archbishop of Thalassery</p>
-        </div>
-        <!-- Patron 2 -->
-        <div class="group">
-            <div class="relative overflow-hidden rounded-xl mb-6 aspect-[3/4]">
-                <img alt="Archbishop Mar George Valiamattam" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXDWIG_rHaiHLEi-1hsyVZuWtYu0JmEIlWLkas6kINiCeho2qASezazULkYkjOPe1y-XlyszDry53qu3kSCHnyqSkRmv_JtI8vVmSi82CW7Vo83OhXlQsBudrZ5kjXQ1jIHE_gahVrE-Gg5f3OYnlKua70F5YHTY0fNI7AZkQxKrP4K-RI3iKnashM7qUF_gkDojCZn5l-0ABICcLIvFuqBapak4vyTqrkNEY0kA61UsIktwPFK2Y4dhRXdPgvCEeHmTVoySCNZg"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-                    <p class="text-on-primary text-xs font-label uppercase tracking-widest">Founding Patron</p>
-                </div>
-            </div>
-            <h4 class="font-headline text-xl text-primary font-bold text-center">Archbishop Mar George Valiamattam</h4>
-            <p class="font-label text-sm text-on-surface-variant text-center mt-1">Archbishop Emeritus of Thalassery</p>
-        </div>
-        <!-- Patron 3 -->
-        <div class="group">
-            <div class="relative overflow-hidden rounded-xl mb-6 aspect-[3/4]">
-                <img alt="Bishop Mar Lawrence Mukkuzhy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWw7N5JyYZWwDrE1sP9ht27wZ_pLWo-7_P8vcZfdwPyAQNihaPxCRdaNuWg4NfCORL0N8ukcUTWQ44DvaWVHCbAgqj7I3k5evs9ycH8y_-63OG98Y4duYADHTqmj23DMEK1wOcTRcEZGnPWvEboLMk9mF-O28_PGWQh_C94uAogUmAkTCScNrMdt_pinfVpdfAvCusA6ACJJFdD_QzUr7J_TqVtFrA9eTQFfUOS1z3cbSJulQbkGf-VfiIHZxE-XEbIPKGt4T0VA"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-                    <p class="text-on-primary text-xs font-label uppercase tracking-widest">Patron</p>
-                </div>
-            </div>
-            <h4 class="font-headline text-xl text-primary font-bold text-center">Bishop Mar Lawrence Mukkuzhy</h4>
-            <p class="font-label text-sm text-on-surface-variant text-center mt-1">Bishop of Belthangady</p>
-        </div>
-        <!-- Patron 4 -->
-        <div class="group">
-            <div class="relative overflow-hidden rounded-xl mb-6 aspect-[3/4]">
-                <img alt="Bishop Mar Remigiose Inchananiyil" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPjQoWpKGU7SU6G5M8MR7VFybCjqF1cIhSU6lB8B0NqJffiAiqMYW-my4SgSC9XJTZxZrdnHvMaiz32ekTxW6UDBqgH-GUTjYoDvi-6Ty3PIegCa-TRT3OAibO6Wg_GUX6CTOqYmIMHo4i7sSZsv0FNzuI4bxyyxe9_2p6h361ceGRBZS5brG2RqDjFkEO8A4OA3D3fBuA4Ph4S4Niyiv6ND095GSRpVBQ3IDKV2gty3ls7RgxwBJzTSutpkYqMyIHcktGTUXOaw"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-                    <p class="text-on-primary text-xs font-label uppercase tracking-widest">Patron</p>
-                </div>
-            </div>
-            <h4 class="font-headline text-xl text-primary font-bold text-center">Bishop Mar Remigiose Inchananiyil</h4>
-            <p class="font-label text-sm text-on-surface-variant text-center mt-1">Bishop of Thamarassery</p>
-        </div>
+                <h4 class="font-headline text-lg xl:text-base text-primary font-bold text-center leading-snug">{{ $patron['name'] }}</h4>
+                <p class="font-label text-sm text-on-surface-variant text-center mt-1">{{ $patron['role'] }}</p>
+            </article>
+        @endforeach
     </div>
 </section>
 @endsection
