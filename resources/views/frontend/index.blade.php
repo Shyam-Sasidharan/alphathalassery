@@ -232,7 +232,7 @@
                         ? asset(ltrim($prof->image, '/'))
                         : $professorPlaceholder;
                 @endphp
-                <article class="professor-card snap-start shrink-0 basis-full sm:basis-[calc(50%-12px)] lg:basis-[calc(33.333%-16px)] xl:basis-[calc(25%-18px)] bg-surface border border-outline-variant/15 rounded-xl overflow-hidden group transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+                <article tabindex="0" class="professor-card snap-start shrink-0 basis-full sm:basis-[calc(50%-12px)] lg:basis-[calc(33.333%-16px)] xl:basis-[calc(25%-18px)] bg-surface border border-outline-variant/15 rounded-xl overflow-hidden group transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl focus-within:-translate-y-1 focus-within:shadow-2xl outline-none">
                     <div class="pt-12 px-8 flex justify-center bg-surface">
                         <div class="h-56 w-56 md:h-64 md:w-64 rounded-full overflow-hidden border-[6px] border-white shadow-[0_18px_45px_rgba(27,28,28,0.16)] bg-surface-container-high">
                             <img class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105" src="{{ $professorImage }}" alt="{{ $prof->name }}"/>
@@ -240,7 +240,7 @@
                     </div>
                     <div class="p-5">
                         <h4 class="font-headline font-bold text-xl text-primary">{{ $prof->name }}</h4>
-                        <div class="font-body text-sm leading-relaxed text-on-surface-variant mt-3 [&_strong]:text-tertiary [&_strong]:font-bold [&_ul]:mt-2 [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-1">
+                        <div class="font-body text-sm leading-relaxed text-on-surface-variant mt-0 max-h-0 overflow-y-auto opacity-0 transition-all duration-300 group-hover:mt-3 group-hover:max-h-44 group-hover:opacity-100 group-focus-within:mt-3 group-focus-within:max-h-44 group-focus-within:opacity-100 [&_strong]:text-tertiary [&_strong]:font-bold [&_ul]:mt-2 [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-1">
                             {!! $prof->content !!}
                         </div>
                     </div>
@@ -303,7 +303,7 @@
 @section('js')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const setupCarousel = ({ sectionSelector, carouselSelector, prevSelector, nextSelector, dotsSelector, label }) => {
+        const setupCarousel = ({ sectionSelector, carouselSelector, prevSelector, nextSelector, dotsSelector, label, autoPlay = false }) => {
             const section = document.querySelector(sectionSelector);
             if (!section) return;
 
@@ -361,6 +361,39 @@
             carousel.addEventListener('scroll', window.requestAnimationFrame ? () => window.requestAnimationFrame(updateControls) : updateControls);
             window.addEventListener('resize', updateControls);
             updateControls();
+
+            if (autoPlay) {
+                let timer = null;
+
+                const start = () => {
+                    stop();
+                    timer = window.setInterval(() => {
+                        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+
+                        if (maxScroll <= 0) return;
+
+                        if (carousel.scrollLeft >= maxScroll - 4) {
+                            carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                            return;
+                        }
+
+                        carousel.scrollBy({ left: getStep(), behavior: 'smooth' });
+                    }, 3500);
+                };
+
+                const stop = () => {
+                    if (timer) {
+                        window.clearInterval(timer);
+                        timer = null;
+                    }
+                };
+
+                section.addEventListener('mouseenter', stop);
+                section.addEventListener('mouseleave', start);
+                section.addEventListener('focusin', stop);
+                section.addEventListener('focusout', start);
+                start();
+            }
         };
 
         setupCarousel({
@@ -369,7 +402,8 @@
             prevSelector: '[data-professor-prev]',
             nextSelector: '[data-professor-next]',
             dotsSelector: '[data-professor-dots]',
-            label: 'professor'
+            label: 'professor',
+            autoPlay: true
         });
 
         setupCarousel({
