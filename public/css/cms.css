@@ -20,7 +20,12 @@ body.cms-admin,
 .cms-admin .main-header {
     border-bottom: 1px solid #e7e9ee;
     box-shadow: none;
+    left: 0;
     max-height: none;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1030;
 }
 
 .cms-admin .main-header .logo {
@@ -195,8 +200,11 @@ body.cms-admin,
 .cms-admin .left-side {
     background: #ffffff;
     border-right: 1px solid #e4e7ec;
+    bottom: 0;
     box-shadow: 24px 20px 40px rgba(31, 42, 55, 0.08);
     padding-top: 72px;
+    position: fixed;
+    top: 0;
     transition: transform 180ms ease;
     width: 340px;
     z-index: 820;
@@ -281,6 +289,7 @@ body.cms-admin,
 .cms-admin .content-wrapper {
     border-left: 0;
     min-height: calc(100vh - 72px);
+    padding-top: 72px;
 }
 
 .cms-admin .content-header {
