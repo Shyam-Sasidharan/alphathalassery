@@ -1,22 +1,30 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="{{ url('/') }}" class="logo">
-        <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><img style="display: inline-block" src="{{ asset('front')}}/images/logo.png" alt="{{ config('app.name') }}" class="img-responsive"/> </span>
-        <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><img src="{{ asset('front')}}/images/logo.png" alt="{{ config('app.name') }}"> <b>Alpha</b> CMS</span>
+    <a href="#" class="logo" data-toggle="push-menu" role="button">
+        <span class="logo-mini"><img src="{{ asset('front')}}/images/logo.png" alt="{{ config('app.name') }}"></span>
+        <span class="logo-lg"><img src="{{ asset('front')}}/images/logo.png" alt="{{ config('app.name') }}"></span>
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
-        <!-- Sidebar toggle button-->
-        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-            <span class="sr-only">Toggle navigation</span>
-        </a>
+        <div class="cms-top-brand">
+            <span>Alpha Institute</span>
+            <small>CMS Workspace</small>
+        </div>
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+                <li>
+                    <a href="{{ url('/') }}" target="_blank" title="View website">
+                        <i class="fa fa-external-link"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('course.create') }}" title="Add course">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </li>
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -26,12 +34,13 @@
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="{{ asset('front')}}/images/logo.png" alt="User Image">
+                            <span class="cms-dropdown-logo">
+                                <img src="{{ asset('front')}}/images/logo.png" alt="Alpha Institute">
+                            </span>
 
-                            <p>
-                                {{ auth()->user()->name }} - {{ auth()->user()->email }}
-                                <small>{{ auth()->user()->phone }}</small>
-                            </p>
+                            <p class="cms-dropdown-user-name">{{ auth()->user()->name ?: 'Admin' }}</p>
+                            <p class="cms-dropdown-user-meta">{{ auth()->user()->email }}</p>
+                            <p class="cms-dropdown-user-meta">{{ auth()->user()->phone ?: 'Phone not added' }}</p>
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">

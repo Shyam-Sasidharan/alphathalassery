@@ -2,129 +2,68 @@
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="{{ asset('front')}}/images/logo.png" class="img-circle" alt="User Image">
-            </div>
-            <div class="pull-left info">
-                <p>{{ auth()->user()->name }}</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Content Admin</a>
-            </div>
+        <div class="cms-app-launcher">
+            <a href="{{ route('dashboard') }}" class="cms-app-tile cms-tile-blue {{ request()->is('dashboard') ? 'active' : '' }}">
+                <i class="fa fa-th-large"></i>
+                <span>Overview</span>
+            </a>
+            <a href="{{ route('course') }}" class="cms-app-tile cms-tile-mint {{ request()->is('admin/courses') || request()->is('admin/course/*') ? 'active' : '' }}">
+                <i class="fa fa-paper-plane-o"></i>
+                <span>Courses</span>
+            </a>
+            <a href="{{ route('semester') }}" class="cms-app-tile cms-tile-lavender {{ request()->is('admin/semesters') || request()->is('admin/semester/*') ? 'active' : '' }}">
+                <i class="fa fa-sliders"></i>
+                <span>Semesters</span>
+            </a>
+            <a href="{{ route('gallery') }}" class="cms-app-tile cms-tile-pink {{ request()->is('admin/gallery') ? 'active' : '' }}">
+                <i class="fa fa-image"></i>
+                <span>Gallery</span>
+            </a>
+            <a href="{{ route('category') }}" class="cms-app-tile cms-tile-green {{ request()->is('admin/categories') || request()->is('admin/category/*') ? 'active' : '' }}">
+                <i class="fa fa-sitemap"></i>
+                <span>Publication Category</span>
+            </a>
+            <a href="{{ route('publications') }}" class="cms-app-tile cms-tile-amber {{ request()->is('admin/publications') || request()->is('admin/publications/*') ? 'active' : '' }}">
+                <i class="fa fa-book"></i>
+                <span>Publications</span>
+            </a>
+            <a href="{{ route('library') }}" class="cms-app-tile cms-tile-violet {{ request()->is('admin/libraries') || request()->is('admin/library/*') ? 'active' : '' }}">
+                <i class="fa fa-university"></i>
+                <span>Library Category</span>
+            </a>
+            <a href="{{ route('book') }}" class="cms-app-tile cms-tile-sky {{ request()->is('admin/books') || request()->is('admin/book/*') ? 'active' : '' }}">
+                <i class="fa fa-leanpub"></i>
+                <span>Books</span>
+            </a>
+            <a href="{{ route('news') }}" class="cms-app-tile cms-tile-rose {{ request()->is('admin/news') ? 'active' : '' }}">
+                <i class="fa fa-newspaper-o"></i>
+                <span>News</span>
+            </a>
+            <a href="{{ route('download_category') }}" class="cms-app-tile cms-tile-soft {{ request()->is('admin/download_categories') || request()->is('admin/download_category/*') ? 'active' : '' }}">
+                <i class="fa fa-folder-o"></i>
+                <span>Download Cat.</span>
+            </a>
+            <a href="{{ route('downloads') }}" class="cms-app-tile cms-tile-cyan {{ request()->is('admin/downloads') || request()->is('admin/downloads/*') ? 'active' : '' }}">
+                <i class="fa fa-download"></i>
+                <span>Downloads</span>
+            </a>
+            <a href="{{ route('study_centre') }}" class="cms-app-tile cms-tile-lime {{ request()->is('admin/study_centres') ? 'active' : '' }}">
+                <i class="fa fa-building"></i>
+                <span>Centres</span>
+            </a>
+            <a href="{{ route('faq') }}" class="cms-app-tile cms-tile-fade {{ request()->is('admin/faq') ? 'active' : '' }}">
+                <i class="fa fa-question"></i>
+                <span>FAQ</span>
+            </a>
+            <a href="{{ route('professor') }}" class="cms-app-tile cms-tile-aqua {{ request()->is('admin/professors') ? 'active' : '' }}">
+                <i class="fa fa-users"></i>
+                <span>Professors</span>
+            </a>
+            <a href="{{ route('hand-book') }}" class="cms-app-tile cms-tile-warm {{ request()->is('admin/hand-books') ? 'active' : '' }}">
+                <i class="fa fa-file-pdf-o"></i>
+                <span>Hand Book</span>
+            </a>
         </div>
-        <!-- sidebar menu: : style can be found in sidebar.less -->
-        <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">CMS NAVIGATION</li>
-            <li class=" {{ request()->is('dashboard') ? 'active' : '' }} ">
-                <a href="{{ route('dashboard') }}">
-                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                </a>
-            </li>
-            <li class="treeview {{ request()->is('admin/courses') || request()->is('admin/course/*') || request()->is('admin/semesters') || request()->is('admin/semester/*') ? 'active' : ''  }} ">
-                <a href="#">
-                    <i class="fa fa-paper-plane-o"></i> <span>Courses</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu" style="">
-                    <li class="{{request()->is('admin/courses') || request()->is('admin/course/*') ? 'active' : ''}}"><a href="{{ route('course') }}"><i class="fa fa-list"></i> Manage Course</a></li>
-                    <li class="{{request()->is('admin/semesters') || request()->is('admin/semester/*') ? 'active' : ''}}"><a href="{{ route('semester') }}"><i class="fa fa-list"></i> Manage Semester</a></li>
-                </ul>
-            </li>
-            <li class="{{request()->is('admin/gallery') ? 'active' : ''}}">
-                <a href="{{ route('gallery') }}">
-                    <i class="fa fa-image"></i> Gallery
-                </a>
-            </li>
-            <li class="treeview {{request()->is('admin/publications') || request()->is('admin/publications/*') || request()->is('admin/categories') || request()->is('admin/category/*') ? 'active' : ''}}">
-                <a href="#">
-                    <i class="fa fa-book"></i> <span>Publications</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{request()->is('admin/categories') || request()->is('admin/category/*') ? 'active' : ''}}">
-                        <a href="{{ route('category') }}">
-                            <i class="fa fa-list"></i> Publication Category
-                        </a>
-                    </li>
-                    <li class="{{request()->is('admin/publications') || request()->is('admin/publications/*') ? 'active' : ''}}">
-                        <a href="{{ route('publications') }}">
-                            <i class="fa fa-list"></i> Publications
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="treeview {{request()->is('admin/books') || request()->is('admin/book/*') || request()->is('admin/library_categories') || request()->is('admin/library_category/*') ? 'active' : ''}}">
-                <a href="#">
-                    <i class="fa fa-book"></i> <span>Library</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{request()->is('admin/libraries') || request()->is('admin/library/*') ? 'active' : ''}}">
-                        <a href="{{ route('library') }}">
-                            <i class="fa fa-list"></i> Category
-                        </a>
-                    </li>
-                    <li class="{{request()->is('admin/books') || request()->is('admin/book/*') ? 'active' : ''}}">
-                        <a href="{{ route('book') }}">
-                            <i class="fa fa-list"></i> Library Books
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="{{request()->is('admin/news') ? 'active' : ''}}">
-                <a href="{{ route('news') }}">
-                    <i class="fa fa-book"></i> Latest News
-                </a>
-            </li>
-
-            <li class="treeview {{request()->is('admin/download_categories') || request()->is('admin/download_category/*') || request()->is('admin/downloads') || request()->is('admin/downloads/*') ? 'active' : ''}}">
-                <a href="#">
-                    <i class="fa fa-download"></i> <span>Downloads</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{request()->is('admin/download_categories') || request()->is('admin/download_category/*') ? 'active' : ''}}">
-                        <a href="{{ route('download_category') }}">
-                            <i class="fa fa-download"></i> Category
-                        </a>                        
-                    </li>
-                    <li class="{{request()->is('admin/downloads') || request()->is('admin/downloads/*') ? 'active' : ''}}">
-                        <a href="{{ route('downloads') }}">
-                            <i class="fa fa-download"></i> Downloads
-                        </a>                        
-                    </li>
-                </ul>
-            </li>
-            <li class="{{request()->is('admin/study_centres') ? 'active' : ''}}">
-                <a href="{{ route('study_centre') }}">
-                    <i class="fa fa-building"></i> Study Centres
-                </a>
-            </li>
-            <li class="{{request()->is('admin/faq') ? 'active' : ''}}">
-                <a href="{{ route('faq') }}">
-                    <i class="fa fa-question"></i> FAQ
-                </a>
-            </li>
-            <li class="{{request()->is('admin/professors') ? 'active' : ''}}">
-                <a href="{{ route('professor') }}">
-                    <i class="fa fa-user"></i> Our Professors
-                </a>
-            </li>
-            <li class="{{request()->is('admin/hand-books') ? 'active' : ''}}">
-                <a href="{{ route('hand-book') }}">
-                    <i class="fa fa-user"></i> Hand Book
-                </a>
-            </li>
-        </ul>
     </section>
     <!-- /.sidebar -->
 </aside>
