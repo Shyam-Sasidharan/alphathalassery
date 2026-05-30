@@ -91,6 +91,13 @@ class HomeController extends Controller
             'tacrs' => 'Tely Alpha Center For Religious Sciences',
         ];
 
+        foreach (['certificate', 'photo', 'fee'] as $fileField) {
+            if (isset($_FILES[$fileField]) && (int) ($_FILES[$fileField]['error'] ?? UPLOAD_ERR_OK) === UPLOAD_ERR_NO_FILE) {
+                \request()->files->remove($fileField);
+                unset($_FILES[$fileField]);
+            }
+        }
+
         request()->flash();
         $this->validate(\request(), [
             'college' => 'required|in:ahirs,tacrs',
@@ -121,23 +128,23 @@ class HomeController extends Controller
         $filename = null;
         $photo = null;
         $fee = null;
-        $file = \request()->certificate;
-        $filephoto = \request()->photo;
-        $filefee = \request()->fee;
-        if($file){
+        $file = \request()->file('certificate');
+        $filephoto = \request()->file('photo');
+        $filefee = \request()->file('fee');
+        if($file && $file->isValid()){
             $filename = explode('.', $file->getClientOriginalName())[0] . '-'.time().'.'.$file->getClientOriginalExtension();
             $admissionData['certificate']=$filename;
-            \request()->certificate->move(public_path('user_files/admission'), $filename);
+            $file->move(public_path('user_files/admission'), $filename);
         }
-        if($filephoto){
+        if($filephoto && $filephoto->isValid()){
             $photo = explode('.', $filephoto->getClientOriginalName())[0] . '-'.time().'.'.$filephoto->getClientOriginalExtension();
             $admissionData['photo']=$photo;
-            \request()->photo->move(public_path('user_files/admission'), $photo);
+            $filephoto->move(public_path('user_files/admission'), $photo);
         }
-        if($filefee){ 
+        if($filefee && $filefee->isValid()){
             $fee = explode('.', $filefee->getClientOriginalName())[0] . '-'.time().'.'.$filefee->getClientOriginalExtension();
             $admissionData['fee']=$fee;
-            \request()->fee->move(public_path('user_files/admission'), $fee);
+            $filefee->move(public_path('user_files/admission'), $fee);
         }
 
         
