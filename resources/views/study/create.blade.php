@@ -40,7 +40,7 @@
                                     <label for="college">College</label>
                                     <select name="college" id="college" class="form-control">
                                         <option value="ahirs" {{ old('college', 'ahirs') == 'ahirs' ? 'selected' : '' }}>Alpha Higher Institute of Religious Sciences</option>
-                                        <option value="tacrs" {{ old('college') == 'tacrs' ? 'selected' : '' }}>Tely Alpha Center For Religious Sciences</option>
+                                        <option value="tacrs" {{ old('college') == 'tacrs' ? 'selected' : '' }}>Tely-Alpha Center For Religious Sciences</option>
                                     </select>
                                     <span class="text-red">{!! $errors->first('college') !!}</span>
                                 </div>
@@ -67,14 +67,14 @@
                                     <input type="text" class="form-control" value="{{ old('address') }}" id="address" placeholder="Address" autocomplete="off" name="address">
                                     <span class="text-red">{!! $errors->first('address') !!}</span>
                                 </div>
-                            </div> 
+                            </div>
                             <div class="col-sm-12 col-md-12 col-lg-12">
                                 <div class="form-group {{ $errors->first('coordinator') ? 'has-error' : '' }}">
                                     <label for="coordinator">Course Coordinator</label>
                                     <input type="text" class="form-control" value="{{ old('coordinator') }}" id="coordinator" placeholder="Course Coordinator" autocomplete="off" name="coordinator">
                                     <span class="text-red">{!! $errors->first('coordinator') !!}</span>
                                 </div>
-                            </div> 
+                            </div>
                             <div class="col-sm-12 col-md-12 col-lg-12">
                                 <div class="form-group {{ $errors->first('phone') ? 'has-error' : '' }}">
                                     <label for="phone">Contact No.</label>
@@ -88,7 +88,7 @@
                                     <input type="file" class="form-control" id="image" name="image" accept="image/*">
                                     <span class="text-red">{!! $errors->first('image') !!}</span>
                                 </div>
-                            </div>                         
+                            </div>
                         </div>
                         <!-- /.box-body -->
 

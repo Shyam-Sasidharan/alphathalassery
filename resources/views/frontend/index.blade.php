@@ -88,13 +88,13 @@
                 </div>
             </div>
         </div>
-        <!-- Tely Alpha Center Side -->
+        <!-- Tely-Alpha Center Side -->
         <div class="relative group overflow-hidden rounded-xl bg-primary-container">
             <img class="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC92nHtixkb-WM8OccT16gfRuEvpRJypL1O1SqFop3JWMDMz5MWsjIsXXKPlae-IyS2O5GDgxibmOeNp_VMFc8kzqEsVzcNQ_9VJSlBYWxaWkDI-xbLy4c7cjVyGXtCfAH6wn4gCup4F2C6TAsvsUnpV6P6czG2YZMEA3x8IcEXiVIJM21eToRI_OWOwC0_rdMo4NF2_-0wBy0-2p8WvNGJdpqcSInS0GX0jomsJUM2N2jVztYu9qe6bAE6LrKh89Qy723pHPpgBQ"/>
             <div class="absolute inset-0 bg-gradient-to-t from-primary-container via-primary-container/20 to-transparent"></div>
             <div class="relative h-full flex flex-col justify-end p-12 text-on-primary">
                 <span class="font-label text-xs uppercase tracking-[0.3em] text-tertiary-fixed mb-4">Spiritual Heritage</span>
-                <h1 class="font-headline text-4xl md:text-5xl font-black mb-6 leading-tight max-w-md">Tely Alpha Center For Religious Sciences</h1>
+                <h1 class="font-headline text-4xl md:text-5xl font-black mb-6 leading-tight max-w-md">Tely-Alpha Center For Religious Sciences</h1>
                 <p class="font-body text-lg text-on-primary/80 mb-8 max-w-sm">Preserving and interpreting sacred traditions for the modern world through specialized curation.</p>
                 <div class="flex">
                     <a href="{{ url('courses') }}" class="bg-tertiary-fixed text-on-tertiary-fixed px-8 py-4 rounded-md font-bold flex items-center gap-3 hover:bg-white transition-colors group/btn">
@@ -123,7 +123,7 @@
             {{-- <br/><span class="italic text-tertiary">Two Paths.</span> --}}
         </h2>
         <p class="font-body text-xl leading-relaxed text-on-surface-variant">
-            The Alpha Institute stands as the guardian of dual legacies. While the Higher Institute focuses on the rigorous intellectual framework of theology, the Tely Alpha Center serves as the experiential heart, curating the living history of religious expression. Together, we provide a holistic education that honors both the mind and the spirit.
+            The Alpha Institute stands as the guardian of dual legacies. While the Higher Institute focuses on the rigorous intellectual framework of theology, the Tely-Alpha Center serves as the experiential heart, curating the living history of religious expression. Together, we provide a holistic education that honors both the mind and the spirit.
         </p>
         <div class="grid grid-cols-2 gap-8 pt-4 hidden">
             <div class="border-l-4 border-tertiary-fixed pl-6">
@@ -183,7 +183,7 @@
             <!-- TACRS Column -->
             <div class="space-y-6">
                 <div class="flex items-center gap-4 mb-4">
-                    <h3 class="font-label text-xs font-bold uppercase tracking-[0.4em] text-secondary">Tely Alpha Center (TACRS)</h3>
+                    <h3 class="font-label text-xs font-bold uppercase tracking-[0.4em] text-secondary">Tely-Alpha Center (TACRS)</h3>
                     <div class="h-px flex-grow bg-outline-variant/30"></div>
                 </div>
                 <div class="grid gap-4">

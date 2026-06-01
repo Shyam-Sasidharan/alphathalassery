@@ -63,7 +63,7 @@
                                 @forelse ($courses as $course)
                                     <tr>
                                         <td>{{ (($courses->currentPage() - 1) * $courses->perPage() + ($loop->index + 1)) }}</td>
-                                        <td>{{ $course->college == 'tacrs' ? 'Tely Alpha Center For Religious Sciences' : 'Alpha Higher Institute of Religious Sciences' }}</td>
+                                        <td>{{ $course->college == 'tacrs' ? 'Tely-Alpha Center For Religious Sciences' : 'Alpha Higher Institute of Religious Sciences' }}</td>
                                         <td>{{ $course->name }}</td>
                                         <td>{{ $course->duration }}</td>
                                         <td>{{ $course->fee }}</td>

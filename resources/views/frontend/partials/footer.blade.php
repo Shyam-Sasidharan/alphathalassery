@@ -104,7 +104,7 @@
 										<label>College</label>
 										<select name="college" class="form-control {{ $errors->has('college') ?'is-invalid':'' }}" required="">
 											<option value="ahirs" {{ old('college', 'ahirs') == 'ahirs' ? 'selected' : '' }}>Alpha Higher Institute of Religious Sciences</option>
-											<option value="tacrs" {{ old('college') == 'tacrs' ? 'selected' : '' }}>Tely Alpha Center For Religious Sciences</option>
+											<option value="tacrs" {{ old('college') == 'tacrs' ? 'selected' : '' }}>Tely-Alpha Center For Religious Sciences</option>
 										</select>
 										<span class="invalid-feedback"> {{ $errors->first('college') }}</span>
 									</div>
@@ -112,7 +112,7 @@
 										<label>Course</label>
 										<select name="course" id="course" class="form-control {{ $errors->has('course') ?'is-invalid':'' }}" required="">
 											<option value="">Select Course</option>
-											@foreach(['ahirs' => 'Alpha Higher Institute of Religious Sciences', 'tacrs' => 'Tely Alpha Center For Religious Sciences'] as $collegeKey => $collegeLabel)
+											@foreach(['ahirs' => 'Alpha Higher Institute of Religious Sciences', 'tacrs' => 'Tely-Alpha Center For Religious Sciences'] as $collegeKey => $collegeLabel)
 												<optgroup label="{{ $collegeLabel }}">
 													@php
 														$courseQuery = \App\Models\Course::orderBy('name');
@@ -132,7 +132,7 @@
 										<label>Contact Class Centre</label>
 										<select name="centre" class="form-control {{ $errors->has('centre') ?'is-invalid':'' }}">
 											<option value="">Select Centre</option>
-											@foreach(['ahirs' => 'Alpha Higher Institute of Religious Sciences', 'tacrs' => 'Tely Alpha Center For Religious Sciences'] as $collegeKey => $collegeLabel)
+											@foreach(['ahirs' => 'Alpha Higher Institute of Religious Sciences', 'tacrs' => 'Tely-Alpha Center For Religious Sciences'] as $collegeKey => $collegeLabel)
 												<optgroup label="{{ $collegeLabel }}">
 													@php
 														$centerQuery = \App\Models\Center::orderBy('center');
@@ -207,7 +207,7 @@
 										<label>Parish</label>
 										<input type="text" name="parish" class="form-control {{ $errors->has('parish') ?'is-invalid':'' }}" value="{{old('parish')}}">
 										<span class="invalid-feedback"> {{ $errors->first('parish') }}</span>
-									</div>									
+									</div>
 									<div class="form-group col-md-4">
 										<label>Highest Qualification</label>
 										<input type="text" name="qualification" class="form-control {{ $errors->has('qualification') ?'is-invalid':'' }}" value="{{old('qualification')}}" required="">
@@ -347,7 +347,7 @@
 		    'Integrated MA in Theology - Dogmatic Theology' : '(Upload Scanned Copy of PG Certificate)',
 		    'Ph.D in Theology' : ''
 		};
-		    
+
 		$('#course').change(function() {
 		    item = $(this).val();
 		    pr = courses[item];

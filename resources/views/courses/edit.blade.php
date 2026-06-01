@@ -26,7 +26,7 @@
                                 <label for="college">College</label>
                                 <select name="college" id="college" class="form-control">
                                     <option value="ahirs" {{ old('college', $course->college ?? 'ahirs') == 'ahirs' ? 'selected' : '' }}>Alpha Higher Institute of Religious Sciences</option>
-                                    <option value="tacrs" {{ old('college', $course->college ?? 'ahirs') == 'tacrs' ? 'selected' : '' }}>Tely Alpha Center For Religious Sciences</option>
+                                    <option value="tacrs" {{ old('college', $course->college ?? 'ahirs') == 'tacrs' ? 'selected' : '' }}>Tely-Alpha Center For Religious Sciences</option>
                                 </select>
                                 <span class="text-red">{!! $errors->first('college') !!}</span>
                             </div>
@@ -152,7 +152,7 @@
                                            name="fee">
                                     <span class="text-red">{!! $errors->first('fee') !!}</span>
                                 </div>
-                            </div>    
+                            </div>
                             <div class="col-sm-12">
                                 <div class="form-group {{ $errors->first('image') ? 'has-error' : '' }}">
                                     <label for="image">Image</label>
@@ -166,14 +166,14 @@
                                     <span class="text-red">{!! $errors->first('image') !!}</span>
                                 </div>
                             </div>
-                            
+
                             <div class="col-sm-12 col-md-12 col-lg-12">
                                 <div class="form-group {{ $errors->first('heading') ? 'has-error' : '' }}">
                                     <label for="heading">Course Heading</label>
                                     <input type="text" class="form-control" value="{{ old('heading') ?? $course->heading }}" id="heading" placeholder="Course Name" autocomplete="off" name="heading">
                                     <span class="text-red">{!! $errors->first('heading') !!}</span>
                                 </div>
-                            </div> 
+                            </div>
                             <div class="col-sm-12">
                                 <div class="form-group {{ $errors->first('pdf') ? 'has-error' : '' }}">
                                     <label for="pdf">Course Content Document</label>
@@ -186,7 +186,7 @@
                                            name="pdf">
                                     <span class="text-red">{!! $errors->first('pdf') !!}</span>
                                 </div>
-                            </div> 
+                            </div>
                             @if ($course && $course->pdf && is_file(public_path($course->pdf)))
                               <div class="col-md-12">
                                 <div class="form-group">
@@ -196,8 +196,8 @@
                                   <div class="clearfix"></div><br>
                                   <iframe id="fred" style="border:1px solid #666CCC" title="PDF in an i-Frame" src="{{asset($course->pdf)}}" frameborder="1" scrolling="auto" height="500" width="100%" ></iframe>
                                 </div>
-                              </div>  
-                            @endif                      
+                              </div>
+                            @endif
                         </div>
                         <!-- /.box-body -->
 

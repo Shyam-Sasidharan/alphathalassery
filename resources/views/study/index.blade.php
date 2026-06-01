@@ -69,7 +69,7 @@
                                                 <span class="text-muted">No Image</span>
                                             @endif
                                         </td>
-                                        <td>{{ $centre->college == 'tacrs' ? 'Tely Alpha Center For Religious Sciences' : 'Alpha Higher Institute of Religious Sciences' }}</td>
+                                        <td>{{ $centre->college == 'tacrs' ? 'Tely-Alpha Center For Religious Sciences' : 'Alpha Higher Institute of Religious Sciences' }}</td>
                                         <td>{{ $centre->center }}</td>
                                         <td>{{ $centre->location }}</td>
                                         <td>

@@ -59,14 +59,14 @@
                                 <label class="font-label text-xs font-bold uppercase tracking-wider text-on-surface-variant">College *</label>
                                 <select name="college" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" required data-registration-college-input>
                                     <option value="ahirs" {{ old('college', 'ahirs') == 'ahirs' ? 'selected' : '' }}>Alpha Higher Institute</option>
-                                    <option value="tacrs" {{ old('college') == 'tacrs' ? 'selected' : '' }}>Tely Alpha Center</option>
+                                    <option value="tacrs" {{ old('college') == 'tacrs' ? 'selected' : '' }}>Tely-Alpha Center</option>
                                 </select>
                             </div>
                             <div class="space-y-2">
                                 <label class="font-label text-xs font-bold uppercase tracking-wider text-on-surface-variant">Course Applied For *</label>
                                 <select name="course" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" required>
                                     <option value="">Select Course</option>
-                                    @foreach(['ahirs' => 'Alpha Higher Institute of Religious Sciences', 'tacrs' => 'Tely Alpha Center For Religious Sciences'] as $collegeKey => $collegeLabel)
+                                    @foreach(['ahirs' => 'Alpha Higher Institute of Religious Sciences', 'tacrs' => 'Tely-Alpha Center For Religious Sciences'] as $collegeKey => $collegeLabel)
                                         <optgroup label="{{ $collegeLabel }}" data-registration-college-group="{{ $collegeKey }}">
                                             @php
                                                 $courseQuery = \App\Models\Course::orderBy('name');
@@ -85,7 +85,7 @@
                                 <label class="font-label text-xs font-bold uppercase tracking-wider text-on-surface-variant">Preferred Centre</label>
                                 <select name="centre" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all">
                                     <option value="">Select Centre</option>
-                                    @foreach(['ahirs' => 'Alpha Higher Institute of Religious Sciences', 'tacrs' => 'Tely Alpha Center For Religious Sciences'] as $collegeKey => $collegeLabel)
+                                    @foreach(['ahirs' => 'Alpha Higher Institute of Religious Sciences', 'tacrs' => 'Tely-Alpha Center For Religious Sciences'] as $collegeKey => $collegeLabel)
                                         <optgroup label="{{ $collegeLabel }}" data-registration-college-group="{{ $collegeKey }}">
                                             @php
                                                 $centerQuery = \App\Models\Center::orderBy('center');

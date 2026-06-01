@@ -26,7 +26,7 @@
                                 <label for="college">College</label>
                                 <select name="college" id="college" class="form-control">
                                     <option value="ahirs" {{ old('college', 'ahirs') == 'ahirs' ? 'selected' : '' }}>Alpha Higher Institute of Religious Sciences</option>
-                                    <option value="tacrs" {{ old('college') == 'tacrs' ? 'selected' : '' }}>Tely Alpha Center For Religious Sciences</option>
+                                    <option value="tacrs" {{ old('college') == 'tacrs' ? 'selected' : '' }}>Tely-Alpha Center For Religious Sciences</option>
                                 </select>
                                 <span class="text-red">{!! $errors->first('college') !!}</span>
                             </div>
@@ -102,7 +102,7 @@
                                     <input type="text" class="form-control" value="{{ old('fee') }}" id="fee" placeholder="Course Fee" autocomplete="off" name="fee">
                                     <span class="text-red">{!! $errors->first('fee') !!}</span>
                                 </div>
-                            </div> 
+                            </div>
                             <div class="col-sm-12">
                                 <div class="form-group {{ $errors->first('image') ? 'has-error' : '' }}">
                                     <label for="image">Image</label>
@@ -122,7 +122,7 @@
                                     <input type="text" class="form-control" value="{{ old('heading') }}" id="heading" placeholder="Course Name" autocomplete="off" name="heading">
                                     <span class="text-red">{!! $errors->first('heading') !!}</span>
                                 </div>
-                            </div> 
+                            </div>
                             <div class="col-sm-12">
                                 <div class="form-group {{ $errors->first('pdf') ? 'has-error' : '' }}">
                                     <label for="pdf">Course Content Document</label>
@@ -135,7 +135,7 @@
                                            name="pdf">
                                     <span class="text-red">{!! $errors->first('pdf') !!}</span>
                                 </div>
-                            </div>                          
+                            </div>
                         </div>
                         <!-- /.box-body -->
 

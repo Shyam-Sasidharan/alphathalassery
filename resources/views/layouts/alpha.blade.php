@@ -19,10 +19,10 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script src="{{ asset('js/tailwind-config.js') }}"></script>
-    
+
     <!-- Custom Styles -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
-    
+
     @yield('css')
 
     <style>
@@ -31,7 +31,7 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
-        
+
         .animate-ticker {
             display: flex;
             width: fit-content;
@@ -46,7 +46,7 @@
         .nav-dropdown:hover .dropdown-content {
             display: block;
         }
-        
+
         [data-registration-open] {
             cursor: pointer;
         }
@@ -82,7 +82,7 @@
     <script>
         const registrationColleges = {
             ahirs: 'Alpha Higher Institute of Religious Sciences',
-            tacrs: 'Tely Alpha Center For Religious Sciences'
+            tacrs: 'Tely-Alpha Center For Religious Sciences'
         };
 
         function setRegistrationCollege(college) {
