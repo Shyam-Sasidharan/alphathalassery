@@ -111,7 +111,7 @@
 <section class="max-w-7xl mx-auto py-24 px-12 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
     <div class="md:col-span-5 relative">
         <div class="aspect-square rounded-xl overflow-hidden shadow-2xl">
-            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5aZ9peXQwkujXUNlhmpeSu3rDwOT4vHotyIvbWbFeAkpCk33Te99pnOBZIO1ezXi9O6fQnLGqevJj9SkiNNQIvBO_9bmEaLCx_T3jLP54ibentIXG5GOEQ6W6ty8v8-XLGdnPC6SMwyvcYYzDZ9YbkhWcxsvG01JCZp9X7kfkBN3XQyjfuaGzOxF_HkPUXj48tH7uGVTl6e-4hkBYEu4JrBuIbBbpfpZY5NQEQaH5nQ9Lm9PEFj4EO7BBNyEVgP2GGiOk8PKQ3w"/>
+            <img class="w-full h-full object-cover" src="{{ asset('front/images/alpha2.jpg') }}" alt="Alpha Institute project ceremony"/>
         </div>
         <div class="absolute -bottom-8 -right-8 bg-tertiary-fixed p-8 rounded-xl shadow-xl hidden lg:block">
             <span class="font-headline italic text-2xl text-on-tertiary-fixed block">Established 1894</span>
