@@ -19,20 +19,57 @@
 
         <div class="nav-dropdown relative group cursor-pointer">
             <span class="text-on-surface-variant dark:text-surface-variant font-bold flex items-center gap-1 {{ request()->is('course*') || request()->is('courses') ? 'text-primary border-b-2 border-tertiary-fixed' : '' }}">Courses <span class="material-symbols-outlined text-[16px]">expand_more</span></span>
-            <div class="dropdown-content hidden absolute top-full left-0 mt-1 bg-surface border border-outline-variant/20 shadow-xl rounded-lg py-3 w-72 glass-effect z-50">
+            <div class="dropdown-content hidden absolute top-full left-0 mt-1 bg-surface border border-outline-variant/20 shadow-xl rounded-lg py-3 w-80 glass-effect z-50">
                 <a class="block px-6 py-2 hover:bg-primary/5 text-primary" href="{{ url('courses') }}">All Programs</a>
-                @if (($courses = \App\Models\Course::orderBy('created_at')->get()) && !$courses->isEmpty())
-                    @foreach($courses->take(5) as $course)
-                        <a class="block px-6 py-2 hover:bg-primary/5 text-on-surface-variant text-xs" href="{{ url('course/'.$course->slug) }}">{{$course->name}}</a>
-                    @endforeach
-                @endif
+                @foreach(['ahirs' => 'AHIRS Portal', 'tacrs' => 'TACRS Portal'] as $collegeKey => $collegeLabel)
+                    <div class="px-6 py-2">
+                        <button type="button" class="college-toggle flex items-center justify-between w-full text-sm font-semibold text-on-surface hover:text-primary" data-college-toggle>
+                            <span>{{ $collegeLabel }}</span>
+                            <span class="material-symbols-outlined text-[16px] transition-transform duration-200">expand_more</span>
+                        </button>
+                        @php
+                            $courseQuery = \App\Models\Course::orderBy('name');
+                            if (\Illuminate\Support\Facades\Schema::hasColumn('courses', 'college')) {
+                                $courseQuery->where('college', $collegeKey);
+                            }
+                        @endphp
+                        <div class="college-toggle-content hidden pt-2 pl-3 border-l border-outline-variant/20">
+                            @forelse($courseQuery->get() as $course)
+                                <a class="block py-1 hover:text-primary text-on-surface-variant text-xs leading-snug" href="{{ url('course/'.$course->slug) }}">{{$course->name}}</a>
+                            @empty
+                                <span class="block py-1 text-on-surface-variant text-xs opacity-60">No courses added</span>
+                            @endforelse
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
 
         <div class="nav-dropdown relative group cursor-pointer">
             <span class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary-container flex items-center gap-1 {{ request()->is('study-centres') ? 'text-primary' : '' }}">Study Centers <span class="material-symbols-outlined text-[16px]">expand_more</span></span>
-            <div class="dropdown-content hidden absolute top-full left-0 mt-1 bg-surface border border-outline-variant/20 shadow-xl rounded-lg py-3 w-52 glass-effect z-50">
+            <div class="dropdown-content hidden absolute top-full left-0 mt-1 bg-surface border border-outline-variant/20 shadow-xl rounded-lg py-3 w-80 glass-effect z-50">
                 <a class="block px-6 py-2 hover:bg-primary/5 text-on-surface-variant" href="{{ url('study-centres') }}">View Centers</a>
+                @foreach(['ahirs' => 'AHIRS Portal', 'tacrs' => 'TACRS Portal'] as $collegeKey => $collegeLabel)
+                    <div class="px-6 py-2">
+                        <button type="button" class="college-toggle flex items-center justify-between w-full text-sm font-semibold text-on-surface hover:text-primary" data-college-toggle>
+                            <span>{{ $collegeLabel }}</span>
+                            <span class="material-symbols-outlined text-[16px] transition-transform duration-200">expand_more</span>
+                        </button>
+                        @php
+                            $centerQuery = \App\Models\Center::orderBy('center');
+                            if (\Illuminate\Support\Facades\Schema::hasColumn('centers', 'college')) {
+                                $centerQuery->where('college', $collegeKey);
+                            }
+                        @endphp
+                        <div class="college-toggle-content hidden pt-2 pl-3 border-l border-outline-variant/20">
+                            @forelse($centerQuery->get() as $center)
+                                <a class="block py-1 hover:text-primary text-on-surface-variant text-xs leading-snug" href="{{ url('study-centres') }}">{{$center->center}}</a>
+                            @empty
+                                <span class="block py-1 text-on-surface-variant text-xs opacity-60">No study centers added</span>
+                            @endforelse
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
 
@@ -101,11 +138,27 @@
                 </button>
                 <div class="mobile-collapse-content hidden pl-4 border-l border-outline-variant/20 space-y-2 py-1 text-sm font-medium">
                     <a class="block py-1 hover:text-primary text-primary" href="{{ url('courses') }}">All Programs</a>
-                    @if (($courses = \App\Models\Course::orderBy('created_at')->get()) && !$courses->isEmpty())
-                        @foreach($courses as $course)
-                            <a class="block py-1 text-on-surface-variant hover:text-primary text-[13px]" href="{{ url('course/'.$course->slug) }}">{{$course->name}}</a>
-                        @endforeach
-                    @endif
+                    @foreach(['ahirs' => 'AHIRS Portal', 'tacrs' => 'TACRS Portal'] as $collegeKey => $collegeLabel)
+                        <div class="pt-2">
+                            <button type="button" class="college-toggle flex items-center justify-between w-full text-primary font-semibold text-[13px] mb-1" data-college-toggle>
+                                <span>{{ $collegeLabel }}</span>
+                                <span class="material-symbols-outlined text-[16px] transition-transform duration-200">expand_more</span>
+                            </button>
+                            @php
+                                $courseQuery = \App\Models\Course::orderBy('name');
+                                if (\Illuminate\Support\Facades\Schema::hasColumn('courses', 'college')) {
+                                    $courseQuery->where('college', $collegeKey);
+                                }
+                            @endphp
+                            <div class="college-toggle-content hidden pl-3 border-l border-outline-variant/20">
+                                @forelse($courseQuery->get() as $course)
+                                    <a class="block py-1 text-on-surface-variant hover:text-primary text-[13px]" href="{{ url('course/'.$course->slug) }}">{{$course->name}}</a>
+                                @empty
+                                    <span class="block py-1 text-on-surface-variant text-xs opacity-60">No courses added</span>
+                                @endforelse
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
 
@@ -117,6 +170,27 @@
                 </button>
                 <div class="mobile-collapse-content hidden pl-4 border-l border-outline-variant/20 space-y-2 py-1 text-sm font-medium">
                     <a class="block py-1 text-on-surface-variant hover:text-primary" href="{{ url('study-centres') }}">View Centers</a>
+                    @foreach(['ahirs' => 'AHIRS Portal', 'tacrs' => 'TACRS Portal'] as $collegeKey => $collegeLabel)
+                        <div class="pt-2">
+                            <button type="button" class="college-toggle flex items-center justify-between w-full text-primary font-semibold text-[13px] mb-1" data-college-toggle>
+                                <span>{{ $collegeLabel }}</span>
+                                <span class="material-symbols-outlined text-[16px] transition-transform duration-200">expand_more</span>
+                            </button>
+                            @php
+                                $centerQuery = \App\Models\Center::orderBy('center');
+                                if (\Illuminate\Support\Facades\Schema::hasColumn('centers', 'college')) {
+                                    $centerQuery->where('college', $collegeKey);
+                                }
+                            @endphp
+                            <div class="college-toggle-content hidden pl-3 border-l border-outline-variant/20">
+                                @forelse($centerQuery->get() as $center)
+                                    <a class="block py-1 text-on-surface-variant hover:text-primary text-[13px]" href="{{ url('study-centres') }}">{{$center->center}}</a>
+                                @empty
+                                    <span class="block py-1 text-on-surface-variant text-xs opacity-60">No study centers added</span>
+                                @endforelse
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
 
@@ -191,6 +265,26 @@
             btn.addEventListener('click', function() {
                 const content = this.nextElementSibling;
                 const arrow = this.querySelector('.material-symbols-outlined');
+                if (content.classList.contains('hidden')) {
+                    content.classList.remove('hidden');
+                    if (arrow) arrow.style.transform = 'rotate(180deg)';
+                } else {
+                    content.classList.add('hidden');
+                    if (arrow) arrow.style.transform = '';
+                }
+            });
+        });
+
+        const collegeToggleBtns = document.querySelectorAll('[data-college-toggle]');
+        collegeToggleBtns.forEach(btn => {
+            btn.addEventListener('click', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                const content = this.nextElementSibling;
+                const arrow = this.querySelector('.material-symbols-outlined');
+                if (!content) return;
+
                 if (content.classList.contains('hidden')) {
                     content.classList.remove('hidden');
                     if (arrow) arrow.style.transform = 'rotate(180deg)';

@@ -21,7 +21,15 @@
             <div class="col-md-12">
                 <!-- form start -->
                 <form role="form" action="{{ route('course.edit', $course->id) }}" lpformnum="1" method="post" enctype="multipart/form-data">
-                    {!! csrf_field() !!}
+							{!! csrf_field() !!}
+                            <div class="form-group {{ $errors->first('college') ? 'has-error' : '' }}">
+                                <label for="college">College</label>
+                                <select name="college" id="college" class="form-control">
+                                    <option value="ahirs" {{ old('college', $course->college ?? 'ahirs') == 'ahirs' ? 'selected' : '' }}>Alpha Higher Institute of Religious Sciences</option>
+                                    <option value="tacrs" {{ old('college', $course->college ?? 'ahirs') == 'tacrs' ? 'selected' : '' }}>Tely Alpha Center For Religious Sciences</option>
+                                </select>
+                                <span class="text-red">{!! $errors->first('college') !!}</span>
+                            </div>
                     <div class="box box-success">
                         <div class="box-header with-border">
                             <h3 class="box-title">Update Course</h3>

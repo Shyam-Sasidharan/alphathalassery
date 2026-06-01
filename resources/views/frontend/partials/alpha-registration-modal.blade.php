@@ -66,8 +66,18 @@
                                 <label class="font-label text-xs font-bold uppercase tracking-wider text-on-surface-variant">Course Applied For *</label>
                                 <select name="course" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" required>
                                     <option value="">Select Course</option>
-                                    @foreach(\App\Models\Course::all() as $course)
-                                        <option value="{{ $course->name }}" {{ old('course') == $course->name ? 'selected' : '' }}>{{ $course->name }}</option>
+                                    @foreach(['ahirs' => 'Alpha Higher Institute of Religious Sciences', 'tacrs' => 'Tely Alpha Center For Religious Sciences'] as $collegeKey => $collegeLabel)
+                                        <optgroup label="{{ $collegeLabel }}" data-registration-college-group="{{ $collegeKey }}">
+                                            @php
+                                                $courseQuery = \App\Models\Course::orderBy('name');
+                                                if (\Illuminate\Support\Facades\Schema::hasColumn('courses', 'college')) {
+                                                    $courseQuery->where('college', $collegeKey);
+                                                }
+                                            @endphp
+                                            @foreach($courseQuery->get() as $course)
+                                                <option value="{{ $course->name }}" {{ old('course') == $course->name ? 'selected' : '' }}>{{ $course->name }}</option>
+                                            @endforeach
+                                        </optgroup>
                                     @endforeach
                                 </select>
                             </div>
@@ -75,8 +85,18 @@
                                 <label class="font-label text-xs font-bold uppercase tracking-wider text-on-surface-variant">Preferred Centre</label>
                                 <select name="centre" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all">
                                     <option value="">Select Centre</option>
-                                    @foreach(\App\Models\Center::all() as $center)
-                                        <option value="{{ $center->center }}" {{ old('centre') == $center->center ? 'selected' : '' }}>{{ $center->center }}</option>
+                                    @foreach(['ahirs' => 'Alpha Higher Institute of Religious Sciences', 'tacrs' => 'Tely Alpha Center For Religious Sciences'] as $collegeKey => $collegeLabel)
+                                        <optgroup label="{{ $collegeLabel }}" data-registration-college-group="{{ $collegeKey }}">
+                                            @php
+                                                $centerQuery = \App\Models\Center::orderBy('center');
+                                                if (\Illuminate\Support\Facades\Schema::hasColumn('centers', 'college')) {
+                                                    $centerQuery->where('college', $collegeKey);
+                                                }
+                                            @endphp
+                                            @foreach($centerQuery->get() as $center)
+                                                <option value="{{ $center->center }}" {{ old('centre') == $center->center ? 'selected' : '' }}>{{ $center->center }}</option>
+                                            @endforeach
+                                        </optgroup>
                                     @endforeach
                                 </select>
                             </div>

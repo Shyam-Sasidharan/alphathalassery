@@ -98,6 +98,19 @@
                     .toggleClass('bg-primary text-on-primary', isActive)
                     .toggleClass('bg-surface-container-low text-on-surface', !isActive);
             });
+
+            $('[data-registration-college-group]').each(function() {
+                const isActive = $(this).data('registration-college-group') === selectedCollege;
+                $(this).toggle(isActive).prop('disabled', !isActive);
+                $(this).find('option').prop('disabled', !isActive);
+            });
+
+            $('select[name="course"], select[name="centre"]').each(function() {
+                const selectedOption = $(this).find('option:selected');
+                if (selectedOption.closest('[data-registration-college-group]').data('registration-college-group') !== selectedCollege) {
+                    $(this).val('');
+                }
+            });
         }
 
         // Registration modal trigger

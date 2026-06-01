@@ -36,6 +36,15 @@
 
                             {{--English Title--}}
                             <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group {{ $errors->first('college') ? 'has-error' : '' }}">
+                                    <label for="college">College</label>
+                                    <select name="college" id="college" class="form-control">
+                                        <option value="ahirs" {{ old('college', $study_centre->college ?? 'ahirs') == 'ahirs' ? 'selected' : '' }}>Alpha Higher Institute of Religious Sciences</option>
+                                        <option value="tacrs" {{ old('college', $study_centre->college ?? 'ahirs') == 'tacrs' ? 'selected' : '' }}>Tely Alpha Center For Religious Sciences</option>
+                                    </select>
+                                    <span class="text-red">{!! $errors->first('college') !!}</span>
+                                </div>
+
                                 <div class="form-group {{ $errors->first('location') ? 'has-error' : '' }}">
                                     <label for="center">Location</label>
                                     <select name="location" class="form-control">

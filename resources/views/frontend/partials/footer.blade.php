@@ -101,24 +101,51 @@
 							{!! csrf_field() !!}
 								<div class="row">
 									<div class="col-md-6 form-group">
+										<label>College</label>
+										<select name="college" class="form-control {{ $errors->has('college') ?'is-invalid':'' }}" required="">
+											<option value="ahirs" {{ old('college', 'ahirs') == 'ahirs' ? 'selected' : '' }}>Alpha Higher Institute of Religious Sciences</option>
+											<option value="tacrs" {{ old('college') == 'tacrs' ? 'selected' : '' }}>Tely Alpha Center For Religious Sciences</option>
+										</select>
+										<span class="invalid-feedback"> {{ $errors->first('college') }}</span>
+									</div>
+									<div class="col-md-6 form-group">
 										<label>Course</label>
 										<select name="course" id="course" class="form-control {{ $errors->has('course') ?'is-invalid':'' }}" required="">
-											<option selected="" disabled="">Select Course</option>
-											<option value="Diploma in Theology">Diploma in Theology</option>
-											<option value="Bachelors Degree in Theology">Bachelors Degree in Theology</option>
-											<option value="Masters Degree in Theology - Biblical Theology">Masters Degree in Theology - Biblical Theology</option>
-											<option value="Masters Degree in Theology - Moral Theology">Masters Degree in Theology - Moral Theology</option>
-											<!-- <option value="Masters Degree in Theology - Dogmatic Theology">Masters Degree in Theology - Dogmatic Theology</option> -->
-											<!-- <option value="Integrated MA in Theology - Biblical Theology">Integrated MA in Theology - Biblical Theology</option>
-											<option value="Integrated MA in Theology - Moral Theology">Integrated MA in Theology - Moral Theology</option>
-											<option value="Integrated MA in Theology - Dogmatic Theology">Integrated MA in Theology - Dogmatic Theology</option> -->
-											<option value="Ph.D in Theology">Ph.D in Theology</option>
+											<option value="">Select Course</option>
+											@foreach(['ahirs' => 'Alpha Higher Institute of Religious Sciences', 'tacrs' => 'Tely Alpha Center For Religious Sciences'] as $collegeKey => $collegeLabel)
+												<optgroup label="{{ $collegeLabel }}">
+													@php
+														$courseQuery = \App\Models\Course::orderBy('name');
+														if (\Illuminate\Support\Facades\Schema::hasColumn('courses', 'college')) {
+															$courseQuery->where('college', $collegeKey);
+														}
+													@endphp
+													@foreach($courseQuery->get() as $course)
+														<option value="{{ $course->name }}" {{ old('course') == $course->name ? 'selected' : '' }}>{{ $course->name }}</option>
+													@endforeach
+												</optgroup>
+											@endforeach
 										</select>
 										<span class="invalid-feedback"> {{ $errors->first('course') }}</span>
 									</div>
 									<div class="col-md-6 form-group">
 										<label>Contact Class Centre</label>
-										<input type="text" name="centre"  class="form-control {{ $errors->has('centre') ?'is-invalid':'' }}" value="{{old('centre')}}">
+										<select name="centre" class="form-control {{ $errors->has('centre') ?'is-invalid':'' }}">
+											<option value="">Select Centre</option>
+											@foreach(['ahirs' => 'Alpha Higher Institute of Religious Sciences', 'tacrs' => 'Tely Alpha Center For Religious Sciences'] as $collegeKey => $collegeLabel)
+												<optgroup label="{{ $collegeLabel }}">
+													@php
+														$centerQuery = \App\Models\Center::orderBy('center');
+														if (\Illuminate\Support\Facades\Schema::hasColumn('centers', 'college')) {
+															$centerQuery->where('college', $collegeKey);
+														}
+													@endphp
+													@foreach($centerQuery->get() as $center)
+														<option value="{{ $center->center }}" {{ old('centre') == $center->center ? 'selected' : '' }}>{{ $center->center }}</option>
+													@endforeach
+												</optgroup>
+											@endforeach
+										</select>
 										<span class="invalid-feedback"> {{ $errors->first('centre') }}</span>
 									</div>
 									<div class="col-md-4 form-group">

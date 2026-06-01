@@ -98,6 +98,10 @@ class HomeController extends Controller
             }
         }
 
+        if (! \request()->filled('college')) {
+            \request()->merge(['college' => 'ahirs']);
+        }
+
         request()->flash();
         $this->validate(\request(), [
             'college' => 'required|in:ahirs,tacrs',

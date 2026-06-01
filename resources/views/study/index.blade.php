@@ -52,7 +52,8 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Image</th>
-                                    <th>Center</th>
+                                <th>College</th>
+                                <th>Center</th>
                                     <th>Location</th>
                                     <th>Action</th>
                                 </tr>
@@ -68,6 +69,7 @@
                                                 <span class="text-muted">No Image</span>
                                             @endif
                                         </td>
+                                        <td>{{ $centre->college == 'tacrs' ? 'Tely Alpha Center For Religious Sciences' : 'Alpha Higher Institute of Religious Sciences' }}</td>
                                         <td>{{ $centre->center }}</td>
                                         <td>{{ $centre->location }}</td>
                                         <td>

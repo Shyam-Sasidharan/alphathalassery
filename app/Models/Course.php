@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 class Course extends Model
 {
     protected $fillable = [
+        'college',
         'name',
         'home_content',
         'content',
