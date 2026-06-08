@@ -3,19 +3,23 @@
 @section('title', $course->name . ' | The Alpha Institute')
 
 @section('content')
-<div class="mt-24 pt-8">
+@php
+    $displayCourseName = preg_replace('/\s*\([^)]*\)\s*$/', '', $course->name);
+@endphp
+
+<div class="mt-8 pt-4">
     <!-- Hero Section -->
-    <section class="relative max-w-7xl mx-auto px-6 lg:px-12 mb-20">
-        <div class="grid lg:grid-cols-12 gap-12 items-center">
+    <section class="relative max-w-7xl mx-auto px-6 lg:px-12 mb-12">
+        <div class="grid lg:grid-cols-12 gap-8 items-center">
             <div class="lg:col-span-7 z-10">
-                <div class="inline-flex items-center gap-2 px-3 py-1 bg-tertiary-fixed/30 text-on-tertiary-fixed-variant rounded-full text-xs font-bold tracking-wider uppercase mb-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-tertiary-fixed/30 text-on-tertiary-fixed-variant rounded-full text-xs font-bold tracking-wider uppercase mb-4">
                     <span class="material-symbols-outlined text-[16px]">school</span>
                     {{ $course->category ? $course->category->name : 'Program' }}
                 </div>
-                <h1 class="font-display text-5xl lg:text-7xl font-black text-primary leading-[1.1] mb-8 tracking-tight">
-                    {{ $course->name }}
+                <h1 class="font-display text-5xl lg:text-6xl font-black text-primary leading-[1.05] mb-6 tracking-tight">
+                    {{ $displayCourseName }}
                 </h1>
-                <p class="text-xl text-on-surface-variant leading-relaxed max-w-2xl mb-10">
+                <p class="text-xl text-on-surface-variant leading-relaxed max-w-2xl mb-8">
                     {{ \Illuminate\Support\Str::limit(strip_tags($course->description), 180) }}
                 </p>
                 <div class="flex flex-wrap gap-4">
@@ -29,8 +33,8 @@
                 </div>
             </div>
             <div class="lg:col-span-5 relative">
-                <div class="aspect-[4/5] rounded-xl overflow-hidden shadow-2xl relative">
-                    <img alt="{{ $course->name }}" class="w-full h-full object-cover" src="{{ $course->photo }}"/>
+                <div class="aspect-[5/4] rounded-xl overflow-hidden shadow-2xl relative">
+                    <img alt="{{ $displayCourseName }}" class="w-full h-full object-cover" src="{{ $course->photo }}"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
                 </div>
                 <div class="absolute -bottom-10 -left-10 bg-surface-container-lowest p-8 rounded-xl shadow-[0_32px_64px_rgba(0,52,101,0.12)] border border-outline-variant/10 hidden md:block max-w-[280px]">
