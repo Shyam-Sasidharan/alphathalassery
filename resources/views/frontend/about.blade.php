@@ -4,14 +4,17 @@
 
 @section('content')
 <!-- Hero Section -->
-<header class="relative pt-48 pb-32 px-8 flex flex-col items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary-container to-primary -z-10"></div>
-    <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/graphy.png')] -z-10"></div>
-    <div class="max-w-4xl text-center space-y-6">
-        <span class="font-label text-tertiary-fixed tracking-[0.2em] uppercase text-xs font-bold">The Pursuit of Truth</span>
-        <h1 class="font-display text-5xl md:text-7xl text-on-primary leading-[1.1] tracking-tight font-bold">About Alpha Institute</h1>
-        <p class="font-body text-xl text-primary-fixed max-w-2xl mx-auto leading-relaxed opacity-90">An intellectual sanctuary dedicated to the profound synthesis of Faith, Reason, and Scientific Inquiry within the Catholic academic tradition.</p>
+<header class="relative h-[614px] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <img alt="Institute Library" class="w-full h-full object-cover brightness-[0.35]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgpAdv8Hd7KSDe5L-wgA0PUdeIplPcxCCMIKMF4c72LJYJx9E0pqx1V5YznRt7Cu-3uGQ4TSLz4m6c6ZOJA5eYxasJgm9T_-KLJHaevh3MHoZienoHyRA7Gvw5Ud_FcTiiSHuydaqa9aSTXQPMk7BeycdtH4RRI4nld_3Cz9IrbKMFE9znS1HNiMXk7Bz3LGFAnPEBDH_MOGzbum1u_ScyN44akTX2Eg-QPfaJWu5zCrByo5wdASMNDOc4tgdjeklaGotIRrLu6Q"/>
     </div>
+    <div class="relative z-10 text-center px-6">
+        <span class="font-label text-tertiary-fixed tracking-[0.2em] uppercase text-xs font-bold">The Pursuit of Truth</span>
+        <h1 class="font-display text-5xl md:text-7xl text-white tracking-tight mt-4 mb-6">About Alpha Institute</h1>
+        <div class="h-1 w-24 bg-tertiary-fixed mx-auto mb-6"></div>
+        <p class="text-surface-variant font-body text-lg md:text-xl max-w-3xl mx-auto opacity-90">An intellectual sanctuary dedicated to the profound synthesis of Faith, Reason, and Scientific Inquiry within the Catholic academic tradition.</p>
+    </div>
+    <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-surface to-transparent"></div>
 </header>
 
 <!-- Welcome Section -->
@@ -142,5 +145,4 @@
     </div>
 </section>
 @endsection
-
 
