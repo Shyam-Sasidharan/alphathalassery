@@ -81,8 +81,8 @@
                 <h1 class="font-headline text-4xl md:text-5xl font-black mb-6 leading-tight max-w-md">Alpha Higher Institute of Religious Sciences</h1>
                 <p class="font-body text-lg text-on-primary/80 mb-8 max-w-sm">Advancing the depth of theological study through rigorous academic inquiry and historical research.</p>
                 <div class="flex">
-                    <a href="{{ url('courses') }}" class="bg-tertiary-fixed text-on-tertiary-fixed px-8 py-4 rounded-md font-bold flex items-center gap-3 hover:bg-white transition-colors group/btn">
-                        Enter College
+                    <a href="{{ url('courses?college=ahirs') }}" class="bg-tertiary-fixed text-on-tertiary-fixed px-8 py-4 rounded-md font-bold flex items-center gap-3 hover:bg-white transition-colors group/btn">
+                        Enter Institute
                         <span class="material-symbols-outlined text-lg group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
                     </a>
                 </div>
@@ -97,8 +97,8 @@
                 <h1 class="font-headline text-4xl md:text-5xl font-black mb-6 leading-tight max-w-md">Tely-Alpha Center For Religious Sciences</h1>
                 <p class="font-body text-lg text-on-primary/80 mb-8 max-w-sm">Preserving and interpreting sacred traditions for the modern world through specialized curation.</p>
                 <div class="flex">
-                    <a href="{{ url('courses') }}" class="bg-tertiary-fixed text-on-tertiary-fixed px-8 py-4 rounded-md font-bold flex items-center gap-3 hover:bg-white transition-colors group/btn">
-                        Enter College
+                    <a href="{{ url('courses?college=tacrs') }}" class="bg-tertiary-fixed text-on-tertiary-fixed px-8 py-4 rounded-md font-bold flex items-center gap-3 hover:bg-white transition-colors group/btn">
+                        Enter Institute
                         <span class="material-symbols-outlined text-lg group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
                     </a>
                 </div>

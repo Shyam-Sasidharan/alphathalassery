@@ -19,15 +19,28 @@
 </section>
 
 @php
+    $selectedCollege = in_array(request('college'), ['ahirs', 'tacrs']) ? request('college') : null;
+    $hasCollegeColumn = \Illuminate\Support\Facades\Schema::hasColumn('courses', 'college');
     $allCourses = \App\Models\Course::orderBy('created_at')->get();
-    $ahirs = $allCourses->where('type', 'AHIRS');
-    $tacrs = $allCourses->where('type', 'TACRS');
+    $ahirs = $hasCollegeColumn
+        ? \App\Models\Course::where('college', 'ahirs')->orderBy('created_at')->get()
+        : $allCourses->where('type', 'AHIRS');
+    $tacrs = $hasCollegeColumn
+        ? \App\Models\Course::where('college', 'tacrs')->orderBy('created_at')->get()
+        : $allCourses->where('type', 'TACRS');
 
     if($ahirs->isEmpty() && $tacrs->isEmpty()) {
         $ahirs = $allCourses; // If no types, show all in first section
     }
+
+    if ($selectedCollege === 'ahirs') {
+        $tacrs = collect();
+    } elseif ($selectedCollege === 'tacrs') {
+        $ahirs = collect();
+    }
 @endphp
 
+@if(!$selectedCollege || $selectedCollege === 'ahirs')
 <!-- AHIRS Section -->
 <section class="max-w-7xl mx-auto px-6 mb-24" id="ahirs">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
@@ -76,8 +89,9 @@
         @endforeach
     </div>
 </section>
+@endif
 
-@if($tacrs->isNotEmpty())
+@if((!$selectedCollege || $selectedCollege === 'tacrs') && $tacrs->isNotEmpty())
 <!-- TACRS Section -->
 <section class="max-w-7xl mx-auto px-6 mb-24 py-0" id="tacrs">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
@@ -128,6 +142,5 @@
 </section>
 @endif
 @endsection
-
 
 
