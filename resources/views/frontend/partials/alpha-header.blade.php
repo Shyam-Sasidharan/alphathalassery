@@ -55,6 +55,7 @@
                             <span>{{ $collegeLabel }}</span>
                             <span class="material-symbols-outlined text-[16px] transition-transform duration-200">expand_more</span>
                         </button>
+                        <a class="block pt-1 text-[11px] text-primary hover:underline" href="{{ url('study-centres?college='.$collegeKey) }}">View {{ $collegeLabel }} Centers</a>
                         @php
                             $centerQuery = \App\Models\Center::orderBy('center');
                             if (\Illuminate\Support\Facades\Schema::hasColumn('centers', 'college')) {
@@ -63,7 +64,7 @@
                         @endphp
                         <div class="college-toggle-content hidden pt-2 pl-3 border-l border-outline-variant/20">
                             @forelse($centerQuery->get() as $center)
-                                <a class="block py-1 hover:text-primary text-on-surface-variant text-xs leading-snug" href="{{ url('study-centres') }}">{{$center->center}}</a>
+                            <a class="block py-1 hover:text-primary text-on-surface-variant text-xs leading-snug" href="{{ url('study-centres?college='.$collegeKey) }}">{{$center->center}}</a>
                             @empty
                                 <span class="block py-1 text-on-surface-variant text-xs opacity-60">No study centers added</span>
                             @endforelse
@@ -176,6 +177,7 @@
                                 <span>{{ $collegeLabel }}</span>
                                 <span class="material-symbols-outlined text-[16px] transition-transform duration-200">expand_more</span>
                             </button>
+                            <a class="block pb-1 text-xs text-primary hover:underline" href="{{ url('study-centres?college='.$collegeKey) }}">View {{ $collegeLabel }} Centers</a>
                             @php
                                 $centerQuery = \App\Models\Center::orderBy('center');
                                 if (\Illuminate\Support\Facades\Schema::hasColumn('centers', 'college')) {
@@ -184,7 +186,7 @@
                             @endphp
                             <div class="college-toggle-content hidden pl-3 border-l border-outline-variant/20">
                                 @forelse($centerQuery->get() as $center)
-                                    <a class="block py-1 text-on-surface-variant hover:text-primary text-[13px]" href="{{ url('study-centres') }}">{{$center->center}}</a>
+                                    <a class="block py-1 text-on-surface-variant hover:text-primary text-[13px]" href="{{ url('study-centres?college='.$collegeKey) }}">{{$center->center}}</a>
                                 @empty
                                     <span class="block py-1 text-on-surface-variant text-xs opacity-60">No study centers added</span>
                                 @endforelse

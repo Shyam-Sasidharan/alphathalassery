@@ -1,6 +1,14 @@
 @extends('layouts.alpha')
 
-@section('title', 'Study Centers | The Alpha Institute')
+@php
+    $selectedCollege = in_array(request('college'), ['ahirs', 'tacrs']) ? request('college') : null;
+    $collegeLabels = [
+        'ahirs' => 'Alpha Higher Institute of Religious Sciences',
+        'tacrs' => 'Tely-Alpha Center For Religious Sciences',
+    ];
+@endphp
+
+@section('title', ($selectedCollege ? $collegeLabels[$selectedCollege].' Study Centers' : 'Study Centers') . ' | The Alpha Institute')
 
 @section('content')
 <!-- Hero Section -->
@@ -17,7 +25,7 @@
                 <div class="h-[1px] w-12 bg-tertiary-fixed/40"></div>
             </div>
             <h1 class="text-5xl md:text-7xl font-display font-bold text-white tracking-tight mb-8">
-                Study <span class="text-tertiary-fixed italic">Centers</span>
+                {{ $selectedCollege ? $collegeLabels[$selectedCollege] : 'Study' }} <span class="text-tertiary-fixed italic">Centers</span>
             </h1>
             <div class="h-1 w-24 bg-tertiary-fixed mx-auto mb-10 rounded-full"></div>
             <p class="text-xl md:text-2xl text-primary-fixed/80 font-body leading-relaxed max-w-2xl mx-auto">
@@ -28,7 +36,11 @@
 </section>
 
 @php
-    $centers = \App\Models\Center::all();
+    $centerQuery = \App\Models\Center::query();
+    if ($selectedCollege && \Illuminate\Support\Facades\Schema::hasColumn('centers', 'college')) {
+        $centerQuery->where('college', $selectedCollege);
+    }
+    $centers = $centerQuery->get();
     $centerGroups = [
         'Study Centers in Kerala' => $centers->filter(function($c) { return $c->location === 'Study Centers in Kerala'; }),
         'Study Centers outside Kerala' => $centers->filter(function($c) { return $c->location === 'Study Centers outside Kerala'; }),
