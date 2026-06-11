@@ -1,16 +1,12 @@
 <nav class="bg-surface/80 dark:bg-surface-container-highest/80 backdrop-blur-xl sticky top-0 w-full z-50 shadow-[0_32px_32px_rgba(27,28,28,0.06)] border-b border-outline-variant/20 flex items-center gap-3 lg:gap-6 px-4 sm:px-6 lg:px-10 2xl:px-14 py-4">
-    <div class="flex items-center gap-3 shrink-0 xl:min-w-[150px]">
-        {{-- <a href="{{ url('/') }}">
-            <img alt="The Alpha Institute Logo" class="h-10 w-10 object-contain rounded-sm" src="{{ asset('front/images/logo.png') }}"/>
-        </a> --}}
-        <div class="flex items-center gap-2">
-            <a href="{{ url('/') }}" aria-label="Alpha Higher Institute">
-                <img alt="Alpha Higher Institute Logo" class="h-8 w-8 sm:h-10 sm:w-10 object-contain rounded-sm" src="{{ asset('front/images/alpha-higher-institute.png') }}"/>
-            </a>
-            <a href="{{ url('/') }}" aria-label="TELY-ALPHA">
-                <img alt="TELY-ALPHA Logo" class="h-8 w-8 sm:h-10 sm:w-10 object-contain rounded-sm" src="{{ asset('front/images/tely-alpha.png') }}"/>
-            </a>
-        </div>
+    <div class="flex items-center shrink-0">
+        <a href="{{ url('/') }}" aria-label="Tely-Alpha and Alpha Higher Institute">
+            <img
+                alt="Tely-Alpha and Alpha Higher Institute"
+                class="block h-auto w-auto max-h-10 sm:max-h-12 max-w-[145px] sm:max-w-[230px] xl:max-w-[250px] object-contain"
+                src="{{ asset('front/images/tely-alpha-combined.png') }}"
+            />
+        </a>
     </div>
 
     <!-- Desktop Navigation Links -->
