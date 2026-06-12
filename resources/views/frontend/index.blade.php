@@ -90,7 +90,7 @@
         </div>
         <!-- Tely-Alpha Center Side -->
         <div class="relative group overflow-hidden rounded-xl bg-primary-container">
-            <img class="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC92nHtixkb-WM8OccT16gfRuEvpRJypL1O1SqFop3JWMDMz5MWsjIsXXKPlae-IyS2O5GDgxibmOeNp_VMFc8kzqEsVzcNQ_9VJSlBYWxaWkDI-xbLy4c7cjVyGXtCfAH6wn4gCup4F2C6TAsvsUnpV6P6czG2YZMEA3x8IcEXiVIJM21eToRI_OWOwC0_rdMo4NF2_-0wBy0-2p8WvNGJdpqcSInS0GX0jomsJUM2N2jVztYu9qe6bAE6LrKh89Qy723pHPpgBQ"/>
+            <img class="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-105" src="{{ asset('front/images/tely-alpha-center-background.png') }}" alt="Tely-Alpha Center For Religious Science"/>
             <div class="absolute inset-0 bg-gradient-to-t from-primary-container via-primary-container/20 to-transparent"></div>
             <div class="relative h-full flex flex-col justify-end p-12 text-on-primary">
                 <span class="font-label text-xs uppercase tracking-[0.3em] text-tertiary-fixed mb-4"></span>
