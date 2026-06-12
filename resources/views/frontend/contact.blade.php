@@ -58,7 +58,7 @@
                 </div>
                 <div>
                     <h3 class="font-display text-xl font-bold text-tertiary mb-3">Digital Inquiry</h3>
-                    <p class="text-on-surface-variant font-body mb-4">info@alphathalassery.org</p>
+                    <p class="text-on-surface-variant font-body mb-4">alphits@gmail.com</p>
                     <div class="flex gap-3">
                         <a href="https://www.facebook.com/alphatly" class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-all">
                             <i class="fa-brands fa-facebook-f"></i>
