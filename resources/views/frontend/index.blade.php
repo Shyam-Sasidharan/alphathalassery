@@ -74,12 +74,12 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 h-[819px] min-h-[600px]">
         <!-- Alpha Higher Institute Side -->
         <div class="relative group overflow-hidden rounded-xl bg-primary">
-            <img class="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoIBOuTPgW0pCi8LieKwjpQ0PWLsOHYNHjESZJd-0JoZWR7P_Cjh0fH0drJeJm2yuGkyvyibPGGWPlcWe9PM2Vttz3p1VF9p0lMzDZ9mjrwsfUC6yeyqljuNlRhC1oxHDtdBf4QIV044e8bLMcSj7_BMam9kcyOXH9wm7tDqM-j_STKTHTK7LEaSbFfANkZglfEI7stsGL8IN5Xz6TOaoN0uJyTbV4S97IIKESLjsdOdqwxaQ3-n8FWK7hui8P0-sDy1cjRsHVlw"/>
+            <img class="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-105" src="{{ asset('front/images/alpha-higher-institute-background.png') }}" alt="Alpha Higher Institute of Religious Science"/>
             <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/20 to-transparent"></div>
             <div class="relative h-full flex flex-col justify-end p-12 text-on-primary">
-                <span class="font-label text-xs uppercase tracking-[0.3em] text-tertiary-fixed mb-4">Academic Excellence</span>
-                <h1 class="font-headline text-4xl md:text-5xl font-black mb-6 leading-tight max-w-md">Alpha Higher Institute of Religious Sciences</h1>
-                <p class="font-body text-lg text-on-primary/80 mb-8 max-w-sm">Advancing the depth of theological study through rigorous academic inquiry and historical research.</p>
+                <span class="font-label text-xs uppercase tracking-[0.3em] text-tertiary-fixed mb-4"></span>
+                <h1 class="font-headline text-4xl md:text-5xl font-black mb-6 leading-tight max-w-md">Alpha Higher Institute of Religious Science</h1>
+                <p class="font-body text-lg text-on-primary/80 mb-8 max-w-sm">Linked with Dharmaram Vidya Kshetram, Bengalauru.</p>
                 <div class="flex">
                     <a href="{{ url('courses?college=ahirs') }}" class="bg-tertiary-fixed text-on-tertiary-fixed px-8 py-4 rounded-md font-bold flex items-center gap-3 hover:bg-white transition-colors group/btn">
                         Enter Institute
@@ -93,9 +93,9 @@
             <img class="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC92nHtixkb-WM8OccT16gfRuEvpRJypL1O1SqFop3JWMDMz5MWsjIsXXKPlae-IyS2O5GDgxibmOeNp_VMFc8kzqEsVzcNQ_9VJSlBYWxaWkDI-xbLy4c7cjVyGXtCfAH6wn4gCup4F2C6TAsvsUnpV6P6czG2YZMEA3x8IcEXiVIJM21eToRI_OWOwC0_rdMo4NF2_-0wBy0-2p8WvNGJdpqcSInS0GX0jomsJUM2N2jVztYu9qe6bAE6LrKh89Qy723pHPpgBQ"/>
             <div class="absolute inset-0 bg-gradient-to-t from-primary-container via-primary-container/20 to-transparent"></div>
             <div class="relative h-full flex flex-col justify-end p-12 text-on-primary">
-                <span class="font-label text-xs uppercase tracking-[0.3em] text-tertiary-fixed mb-4">Spiritual Heritage</span>
-                <h1 class="font-headline text-4xl md:text-5xl font-black mb-6 leading-tight max-w-md">Tely-Alpha Center For Religious Sciences</h1>
-                <p class="font-body text-lg text-on-primary/80 mb-8 max-w-sm">Preserving and interpreting sacred traditions for the modern world through specialized curation.</p>
+                <span class="font-label text-xs uppercase tracking-[0.3em] text-tertiary-fixed mb-4"></span>
+                <h1 class="font-headline text-4xl md:text-5xl font-black mb-6 leading-tight max-w-md">Tely-Alpha Center For Religious Science</h1>
+                <p class="font-body text-lg text-on-primary/80 mb-8 max-w-sm">Run by the Archdiocese of Tellicherry.</p>
                 <div class="flex">
                     <a href="{{ url('courses?college=tacrs') }}" class="bg-tertiary-fixed text-on-tertiary-fixed px-8 py-4 rounded-md font-bold flex items-center gap-3 hover:bg-white transition-colors group/btn">
                         Enter Institute
