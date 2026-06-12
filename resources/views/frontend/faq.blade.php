@@ -20,7 +20,7 @@
 <section class="max-w-4xl mx-auto px-6 py-24">
     <div class="space-y-4">
         @php
-            $faqs = \App\Models\Faq::latest()->get();
+            $faqs = \App\Models\Faq::orderBy('created_at', 'asc')->orderBy('id', 'asc')->get();
         @endphp
 
         @forelse($faqs as $f)
