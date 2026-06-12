@@ -107,7 +107,7 @@
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
         <div class="max-w-2xl">
             <h2 class="text-4xl font-display font-bold text-primary mb-4 italic">Tely-Alpha Center For Religious Science (TACRS)</h2>
-            <p class="text-on-surface-variant font-body">TACRS focuses on the intersection of religious thought and contemporary scientific discourse, fostering dialogue between faith and modern reason.</p>
+            <p class="text-on-surface-variant font-body">Tely-Alpha Centre for Religious Science is an autonomous institution of theological studies run by the Catholic Archdiocese of Tellicherry. All the certificates issued by Alpha Institute are given under the capacity of the Institute itself.</p>
         </div>
         <div class="h-px flex-grow bg-outline-variant/30 mx-8 hidden lg:block mb-4"></div>
         <div class="flex gap-2">

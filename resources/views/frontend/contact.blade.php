@@ -29,11 +29,11 @@
                     <span class="material-symbols-outlined text-3xl">location_on</span>
                 </div>
                 <div>
-                    <h3 class="font-display text-xl font-bold text-primary mb-3">Our Sanctuary</h3>
+                    <h3 class="font-display text-xl font-bold text-primary mb-3">Our Institute</h3>
                     <p class="text-on-surface-variant leading-relaxed font-body">
-                        Alpha Center for Theology and Science,<br>
+                        Alpha Institute,<br>
                         Sandesa Bhavan, Thalassery-1,<br>
-                        PB.No.71, Kerala, India
+                        PB.No.71, Kerala, India, 670101
                     </p>
                 </div>
             </div>
@@ -93,15 +93,15 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="relative group">
                         <label class="block font-label text-[10px] uppercase tracking-widest font-bold text-outline mb-2 group-focus-within:text-primary transition-colors">Full Name</label>
-                        <input type="text" name="name" value="{{ old('name') }}" 
-                            class="w-full bg-surface-container-low border-b-2 border-outline-variant/30 px-0 py-3 focus:border-primary outline-none transition-all font-body text-lg" 
+                        <input type="text" name="name" value="{{ old('name') }}"
+                            class="w-full bg-surface-container-low border-b-2 border-outline-variant/30 px-0 py-3 focus:border-primary outline-none transition-all font-body text-lg"
                             placeholder="e.g. John Doe" required>
                         @if($errors->has('name'))<span class="text-error text-[10px] font-bold mt-1 block uppercase tracking-tighter">{{ $errors->first('name') }}</span>@endif
                     </div>
                     <div class="relative group">
                         <label class="block font-label text-[10px] uppercase tracking-widest font-bold text-outline mb-2 group-focus-within:text-primary transition-colors">Email Address</label>
-                        <input type="email" name="email" value="{{ old('email') }}" 
-                            class="w-full bg-surface-container-low border-b-2 border-outline-variant/30 px-0 py-3 focus:border-primary outline-none transition-all font-body text-lg" 
+                        <input type="email" name="email" value="{{ old('email') }}"
+                            class="w-full bg-surface-container-low border-b-2 border-outline-variant/30 px-0 py-3 focus:border-primary outline-none transition-all font-body text-lg"
                             placeholder="john@example.com" required>
                         @if($errors->has('email'))<span class="text-error text-[10px] font-bold mt-1 block uppercase tracking-tighter">{{ $errors->first('email') }}</span>@endif
                     </div>
@@ -109,16 +109,16 @@
 
                 <div class="relative group">
                     <label class="block font-label text-[10px] uppercase tracking-widest font-bold text-outline mb-2 group-focus-within:text-primary transition-colors">Phone Number</label>
-                    <input type="text" name="phone" value="{{ old('phone') }}" 
-                        class="w-full bg-surface-container-low border-b-2 border-outline-variant/30 px-0 py-3 focus:border-primary outline-none transition-all font-body text-lg" 
+                    <input type="text" name="phone" value="{{ old('phone') }}"
+                        class="w-full bg-surface-container-low border-b-2 border-outline-variant/30 px-0 py-3 focus:border-primary outline-none transition-all font-body text-lg"
                         placeholder="+91 0000 000 000">
                     @if($errors->has('phone'))<span class="text-error text-[10px] font-bold mt-1 block uppercase tracking-tighter">{{ $errors->first('phone') }}</span>@endif
                 </div>
 
                 <div class="relative group">
                     <label class="block font-label text-[10px] uppercase tracking-widest font-bold text-outline mb-2 group-focus-within:text-primary transition-colors">Message Content</label>
-                    <textarea name="message" rows="4" 
-                        class="w-full bg-surface-container-low border-b-2 border-outline-variant/30 px-0 py-3 focus:border-primary outline-none transition-all font-body text-lg resize-none" 
+                    <textarea name="message" rows="4"
+                        class="w-full bg-surface-container-low border-b-2 border-outline-variant/30 px-0 py-3 focus:border-primary outline-none transition-all font-body text-lg resize-none"
                         placeholder="State your inquiry with clarity..." required>{{ old('message') }}</textarea>
                     @if($errors->has('message'))<span class="text-error text-[10px] font-bold mt-1 block uppercase tracking-tighter">{{ $errors->first('message') }}</span>@endif
                 </div>
@@ -128,10 +128,10 @@
                         <div class="bg-white rounded-lg p-1 border border-outline-variant/30 shadow-inner">
                             {!! captcha_img() !!}
                         </div>
-                        <input type="text" name="captcha" placeholder="Code" 
+                        <input type="text" name="captcha" placeholder="Code"
                             class="bg-transparent border-b-2 border-outline-variant/30 px-0 py-2 focus:border-primary outline-none transition-all w-20 font-bold text-center" required>
                     </div>
-                    
+
                     <button type="submit" class="w-full md:w-auto bg-primary text-on-primary px-12 py-5 rounded-2xl font-bold shadow-[0_12px_40px_rgba(0,52,101,0.2)] hover:shadow-[0_16px_50px_rgba(0,52,101,0.3)] hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-4">
                         Send Inquiry
                         <span class="material-symbols-outlined">send</span>
@@ -151,10 +151,10 @@
 <!-- Full Width Map Section with Custom Styling -->
 <section class="w-full h-[500px] relative">
     <div class="absolute inset-0 bg-primary/5 pointer-events-none z-10"></div>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3906.0794828669355!2d75.47554081412422!3d11.759451343495995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba426f449941e09%3A0xaf36ae7cac28ea33!2sAlpha%20Institute%20of%20Theology%20%26%20Science!5e0!3m2!1sen!2sin!4v1581570006994!5m2!1sen!2sin" 
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3906.0794828669355!2d75.47554081412422!3d11.759451343495995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba426f449941e09%3A0xaf36ae7cac28ea33!2sAlpha%20Institute%20of%20Theology%20%26%20Science!5e0!3m2!1sen!2sin!4v1581570006994!5m2!1sen!2sin"
         width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
-        <a href="https://maps.app.goo.gl/YyR6BqW9b9R6BqW9" target="_blank" 
+        <a href="https://maps.app.goo.gl/YyR6BqW9b9R6BqW9" target="_blank"
             class="bg-white/90 backdrop-blur-md px-8 py-4 rounded-full shadow-2xl border border-primary/10 flex items-center gap-3 hover:bg-primary hover:text-white transition-all group">
             <span class="material-symbols-outlined text-primary group-hover:text-white transition-colors">directions</span>
             <span class="font-label text-sm font-bold uppercase tracking-widest">Get Directions to Thalassery</span>
