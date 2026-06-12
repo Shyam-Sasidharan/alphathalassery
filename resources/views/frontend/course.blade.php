@@ -20,7 +20,7 @@
                     {{ $displayCourseName }}
                 </h1>
                 <p class="text-xl text-on-surface-variant leading-relaxed max-w-2xl mb-8">
-                    {{ \Illuminate\Support\Str::limit(strip_tags($course->description), 180) }}
+                    {{ \Illuminate\Support\Str::limit(strip_tags($course->home_content), 180) }}
                 </p>
                 <div class="flex flex-wrap gap-4">
                     <a href="javascript:;" data-registration-open class="bg-primary text-on-primary px-8 py-4 rounded-md font-bold text-lg flex items-center gap-3 shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
@@ -76,12 +76,14 @@
     <section class="max-w-7xl mx-auto px-6 lg:px-12 pb-24">
         <div class="max-w-4xl mx-auto space-y-20">
             <!-- Course Overview -->
+            @if(trim(strip_tags($course->home_content)))
             <article>
                 <h2 class="font-display text-4xl font-bold text-primary mb-8 border-l-4 border-tertiary-fixed pl-6 uppercase tracking-tight">Course Overview</h2>
                 <div class="prose prose-lg text-on-surface-variant leading-relaxed space-y-6 max-w-none">
-                    {!! $course->description !!}
+                    {!! $course->home_content !!}
                 </div>
             </article>
+            @endif
 
             <!-- Additional Details if any -->
             @if($course->content)

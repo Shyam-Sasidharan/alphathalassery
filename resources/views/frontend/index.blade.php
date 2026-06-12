@@ -175,7 +175,7 @@
                             <h4 class="font-headline font-bold text-xl mb-2 group-hover:text-primary transition-colors">
                                 <a href="{{ url('course/'.$course->slug) }}">{{ $course->name }}</a>
                             </h4>
-                            <p class="text-sm text-on-surface-variant line-clamp-2">{!! strip_tags($course->description) !!}</p>
+                            <p class="text-sm text-on-surface-variant line-clamp-2">{!! strip_tags($course->home_content) !!}</p>
                         </div>
                     @endforeach
                 </div>
@@ -192,7 +192,7 @@
                             <h4 class="font-headline font-bold text-xl mb-2 group-hover:text-secondary transition-colors">
                                 <a href="{{ url('course/'.$course->slug) }}">{{ $course->name }}</a>
                             </h4>
-                            <p class="text-sm text-on-surface-variant line-clamp-2">{!! strip_tags($course->description) !!}</p>
+                            <p class="text-sm text-on-surface-variant line-clamp-2">{!! strip_tags($course->home_content) !!}</p>
                         </div>
                     @endforeach
                 </div>

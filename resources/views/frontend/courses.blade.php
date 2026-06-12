@@ -76,7 +76,7 @@
                     <p class="font-serif italic text-tertiary mb-1">{{ $course->subtitle }}</p>
                     <h3 class="text-2xl font-display font-bold text-primary mb-4 leading-tight">{{ $course->name }}</h3>
                     <div class="text-on-surface-variant text-sm font-body leading-relaxed mb-6 line-clamp-3">
-                        {!! strip_tags($course->description) !!}
+                        {!! strip_tags($course->home_content) !!}
                     </div>
                     <div class="space-y-3 mb-8">
                         <div class="flex items-center gap-3 text-sm">
@@ -127,7 +127,7 @@
                     <p class="font-serif italic text-tertiary mb-1">{{ $course->subtitle }}</p>
                     <h3 class="text-2xl font-display font-bold text-primary mb-4 leading-tight">{{ $course->name }}</h3>
                     <div class="text-on-surface-variant text-sm font-body leading-relaxed mb-6 line-clamp-3">
-                        {!! strip_tags($course->description) !!}
+                        {!! strip_tags($course->home_content) !!}
                     </div>
                     <div class="space-y-3 mb-8">
                         <div class="flex items-center gap-3 text-sm">

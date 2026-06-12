@@ -54,15 +54,15 @@
 
                             <div class="col-sm-12 col-md-12 col-lg-12">
                                 <div class="form-group {{ $errors->first('home_content') ? 'has-error' : '' }}">
-                                    <label for="home_content">Home Content</label>
-                                    <textarea rows="10" class="form-control" id="home_content" placeholder="Course Content" autocomplete="off" name="home_content">{{ old('home_content') }}</textarea>
+                                    <label for="home_content">Course Overview</label>
+                                    <textarea rows="10" class="form-control" id="home_content" placeholder="Enter Course Overview" autocomplete="off" name="home_content">{{ old('home_content') }}</textarea>
                                     <span class="text-red">{!! $errors->first('home_content') !!}</span>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-12 col-lg-12">
                                 <div class="form-group {{ $errors->first('content') ? 'has-error' : '' }}">
-                                    <label for="content">Content</label>
-                                    <textarea rows="10" class="form-control" id="content" placeholder="Course Content" autocomplete="off" name="content">{{ old('content') }}</textarea>
+                                    <label for="content">Syllabus &amp; Details</label>
+                                    <textarea rows="10" class="form-control" id="content" placeholder="Enter Syllabus and Additional Details" autocomplete="off" name="content">{{ old('content') }}</textarea>
                                     <span class="text-red">{!! $errors->first('content') !!}</span>
                                 </div>
                             </div>
