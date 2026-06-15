@@ -114,7 +114,7 @@
             <img class="w-full h-full object-cover" src="{{ asset('front/images/alpha2.jpg') }}" alt="Alpha Institute project ceremony"/>
         </div>
         <div class="absolute -bottom-8 -right-8 bg-tertiary-fixed p-8 rounded-xl shadow-xl hidden lg:block">
-            <span class="font-headline italic text-2xl text-on-tertiary-fixed block">Established 1894</span>
+            <span class="font-headline italic text-2xl text-on-tertiary-fixed block">Established 2008</span>
             <span class="font-label text-xs uppercase tracking-widest text-on-tertiary-fixed opacity-70">A Century of Grace</span>
         </div>
     </div>
