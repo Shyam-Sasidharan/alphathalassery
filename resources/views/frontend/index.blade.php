@@ -139,64 +139,178 @@
 </section>
 
 <!-- Courses Offered Section -->
-<section class="bg-surface-container-low py-24">
-    <div class="max-w-7xl mx-auto px-12">
-        <div class="flex justify-between items-end mb-16">
-            <div>
-                <h2 class="font-headline text-4xl font-bold text-primary mb-2">Courses Offered</h2>
-                <p class="text-on-surface-variant font-body">Distinguished programs of study across our two institutions.</p>
+<section class="bg-surface-container-low py-16">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,2fr)_minmax(340px,1fr)] gap-10">
+            <div class="flex justify-between items-end mb-10">
+                <div>
+                    <h2 class="font-headline text-4xl font-bold text-primary mb-2">Courses Offered</h2>
+                    <p class="text-on-surface-variant font-body">Distinguished programs of study across our two institutions.</p>
+                </div>
+                <a href="{{ url('courses') }}" class="text-primary font-bold hover:underline flex items-center gap-2">
+                    View All Programs
+                    <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+                </a>
             </div>
-            <a href="{{ url('courses') }}" class="text-primary font-bold hover:underline flex items-center gap-2">
-                View All Programs
-                <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
-            </a>
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,2fr)_minmax(340px,1fr)] gap-10 items-start">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             @php
                 $ahirs = \App\Models\Course::where('college', 'ahirs')->latest()->take(4)->get();
                 $tacrs = \App\Models\Course::where('college', 'tacrs')->latest()->take(4)->get();
             @endphp
             <!-- AHIRS Column -->
-            <div class="space-y-6">
+            <div>
                 <div class="flex items-center gap-4 mb-4">
                     <h3 class="font-label text-xs font-bold uppercase tracking-[0.4em] text-primary">Alpha Higher Institute (AHIRS)</h3>
                     <div class="h-px flex-grow bg-outline-variant/30"></div>
                 </div>
-                <div class="grid gap-4">
+                <div class="space-y-5">
                     @forelse($ahirs as $course)
-                        <div class="bg-surface border border-outline-variant/10 p-6 rounded-xl hover:shadow-md transition-shadow group">
+                        <article class="rounded-xl bg-surface p-7 border border-outline-variant/10 shadow-sm hover:shadow-md transition-shadow group">
                             <h4 class="font-headline font-bold text-xl mb-2 group-hover:text-primary transition-colors">
                                 <a href="{{ url('course/'.$course->slug) }}">{{ $course->name }}</a>
                             </h4>
-                            <p class="text-sm text-on-surface-variant line-clamp-2">{!! strip_tags($course->home_content) !!}</p>
-                        </div>
+                            <p class="text-sm leading-relaxed text-on-surface-variant line-clamp-3">{!! strip_tags($course->home_content) !!}</p>
+                        </article>
                     @empty
                         <p class="text-sm text-on-surface-variant">No AHIRS courses available.</p>
                     @endforelse
                 </div>
             </div>
             <!-- TACRS Column -->
-            <div class="space-y-6">
+            <div>
                 <div class="flex items-center gap-4 mb-4">
                     <h3 class="font-label text-xs font-bold uppercase tracking-[0.4em] text-secondary">Tely-Alpha Center (TACRS)</h3>
                     <div class="h-px flex-grow bg-outline-variant/30"></div>
                 </div>
-                <div class="grid gap-4">
+                <div class="space-y-5">
                     @forelse($tacrs as $course)
-                        <div class="bg-surface border border-outline-variant/10 p-6 rounded-xl hover:shadow-md transition-shadow group">
+                        <article class="rounded-xl bg-surface p-7 border border-outline-variant/10 shadow-sm hover:shadow-md transition-shadow group">
                             <h4 class="font-headline font-bold text-xl mb-2 group-hover:text-secondary transition-colors">
                                 <a href="{{ url('course/'.$course->slug) }}">{{ $course->name }}</a>
                             </h4>
-                            <p class="text-sm text-on-surface-variant line-clamp-2">{!! strip_tags($course->home_content) !!}</p>
-                        </div>
+                            <p class="text-sm leading-relaxed text-on-surface-variant line-clamp-3">{!! strip_tags($course->home_content) !!}</p>
+                        </article>
                     @empty
                         <p class="text-sm text-on-surface-variant">No TACRS courses available.</p>
                     @endforelse
                 </div>
             </div>
+            </div>
+
+        @php
+            $alphaInstituteLeaders = [
+                [
+                    'name' => 'Moran Mor Baselios Cardinal Cleemis',
+                    'role' => 'Major Archbishop, CBCI President',
+                    'date' => '18 May 2016',
+                    'image' => 'front/images/moran-more.jpg',
+                    'detail_image' => 'front/images/moran-mor-footer.jpg',
+                    'content' => [
+                        'Alpha Institute is doing a wonderful service in our country for the theological training of the laity and the religious. The students of Alpha Institute include Catholic faithful from all three Catholic rites of the nation, namely Syro-Malabar, Latin, and Syro-Malankara. Students from other Christian denominations are also making use of the courses run by the Institute. The pedagogical methodology of the Institute makes use of modern social communication facilities, including regular theology classes telecast through the Shalom television network, and has made Catholic theology more popular in our region. The syllabus followed, as well as the faculty of the Institute, is of reputable excellence.',
+                    ],
+                ],
+                [
+                    'name' => 'Mar Andrews Thazath',
+                    'role' => 'Archbishop, KCBC President',
+                    'date' => '10 December 2013',
+                    'image' => 'front/images/Mar-Andrews-Thazhathu.jpg',
+                    'detail_image' => 'front/images/mar-andrews-thazhath-footer.jpg',
+                    'content' => [
+                        'As the President of the Catholic Bishop’s conference of India (CBCI) I write this letter to recommend Alpha Center for Theology and Religious Science, Tellicherry. Alpha Institute is doing a great service in our country for the theological training of the laity and the religious. The pedagogical methodology of the Institute that includes modern social communication facilities including the regular theology classes telecast through television network.',
+                        'Another motivation for the launching of Alpha Institute is to make the opportunity for theological pursuit to the laity who are interested in learning theology. The Indian Theology Institutes are mainly meant for the formation of the priestly candidates. Consequently, the laity get little chance to pursue their theological aspirations. More over the time-schedule in the seminaries are not applicable to the laity who are working throughout the year. As Alpha Institute is erected with the sole purpose of theological studies and research, it opens new horizons in the field of academic excellence irrespective of the life statuses availing the time schedule according to their convenience.',
+                    ],
+                ],
+                [
+                    'name' => 'Archbishop Mar George Valiamattam',
+                    'role' => 'Archbishop, Founder',
+                    'image' => 'front/images/valiamattam.jpg',
+                    'detail_image' => 'front/images/valiamattam_header.jpg',
+                    'signature_image' => 'front/images/valiyamattam_footer.jpg',
+                    'content' => [
+                        'I, George Valiamattam, Archbishop of Tellicherry, by the power invested in me by the grace of God and the consent of the Supreme Pontiff of the Holy See, hereby declare the erection of Alpha Center for Theology and Science for the theological formation of the Catholic laity and the religious. The following are the mandates for the Institute:',
+                        'The aim of the Alpha Institute is to promote study and research in the various fields of Catholic theology, with special emphasis on Asian Christian theology. The research program is intended to bring about personal integration in the life of individuals and the Church on theological, spiritual, religious, psychological, and social levels. The Institute is intended to foster harmony among the three levels of Christian life, namely devotion, knowledge, and action.',
+                        'The Institute is intended to teach solid Catholic theology in its spotless originality. The Higher Academic Council, headed by the Archbishop of Tellicherry, will verify the content of the curriculum annually. The Institute is erected with the goal of encouraging clear and creative thinking, in consonance with the teachings of the Holy Catholic Church and the dictates of the Gospel, in the context of Asian religious and spiritual traditions, conducive to an experience of the supreme Truth through selfless service and loving commitment.',
+                        'The Institute is erected with the goal of defending the Catholic faith from the ever-increasing challenges raised by modern atheistic and agnostic ideologies. The creedal dilemma among the faithful caused by various sectarian groups must be clarified in a timely manner.',
+                    ],
+                ],
+                [
+                    'name' => 'Mar Joseph Pamplany',
+                    'role' => 'Co-Patron',
+                    'image' => 'front/images/Pamplany.jpg',
+                    'detail_image' => 'front/images/pamplany_header.jpg',
+                    'signature_image' => 'front/images/pamplany_footer.jpg',
+                    'content' => [
+                        'His Grace Archbishop Mar George Valiamattam, the former Vice-President of the Catholic Bishops Conference of India (CBCI), founded this Institute in 2006. His Grace Archbishop Mar George Njaralakatt, the Metropolitan Archbishop of Tellicherry, is the present Chancellor of the Institute. Both KCBC and CBCI have given approval to its courses.',
+                        'It organizes studies with an interdisciplinary or multidisciplinary approach. Courses are guided by renowned scholars of international standing. The experienced expertise of scholars who have accomplished doctoral and post-doctoral research in Roman and other European universities is competent to guide research in Sacred Scripture, Biblical Archaeology, various branches of theology, and philosophy.',
+                        'The research program is intended to bring about personal integration in the lives of individuals and the Church on theological, spiritual, religious, psychological, and social levels. The Institute fosters the harmony of devotion, knowledge, and action. While striving hard to excel in serious study and research, every student is encouraged to do his or her best to realize the harmony of loving devotion, wisdom, and activity in a spirit of selfless service for the Holy Catholic Church.',
+                        'The Institute is authorized to issue appropriate course certificates to students who have successfully completed all academic requirements. The Board of Examiners, constituted by the Higher Academic Council of the Institute, will be the competent scrutinizing authority for issuing certificates. In due course, the Institute may approach other ecclesiastical universities for affiliation and recognition.',
+                        'At present, Alpha Institute has 72 study centers across the world, covering 10 nationalities.',
+                    ],
+                ],
+            ];
+        @endphp
+
+        <aside class="overflow-hidden border border-outline-variant/30 bg-surface-container-lowest shadow-sm">
+            <div class="bg-[#1377b8] px-6 py-5 text-center">
+                <h2 class="font-label text-xl font-bold uppercase tracking-wide text-white">On Alpha Institute</h2>
+            </div>
+            @foreach($alphaInstituteLeaders as $leader)
+                <article
+                    tabindex="0"
+                    role="button"
+                    class="group flex cursor-pointer items-center gap-4 border-t border-outline-variant/30 px-5 py-4 transition-colors hover:bg-surface-container-low focus:bg-surface-container-low focus:outline-none"
+                    data-leader-details
+                    data-leader-name="{{ $leader['name'] }}"
+                    data-leader-role="{{ $leader['role'] }}"
+                    data-leader-date="{{ isset($leader['date']) ? $leader['date'] : '' }}"
+                    data-leader-image="{{ asset($leader['image']) }}"
+                    data-leader-detail-image="{{ asset($leader['detail_image']) }}"
+                    data-leader-signature-image="{{ isset($leader['signature_image']) ? asset($leader['signature_image']) : '' }}"
+                    data-leader-content="{{ isset($leader['content']) ? e(json_encode($leader['content'])) : '[]' }}"
+                    aria-label="View details for {{ $leader['name'] }}"
+                >
+                    <div class="h-20 w-20 shrink-0 overflow-hidden rounded-full border-4 border-white bg-surface-container-high shadow-md">
+                        <img
+                            class="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                            src="{{ asset($leader['image']) }}"
+                            alt="{{ $leader['name'] }}"
+                        />
+                    </div>
+                    <div class="min-w-0">
+                        <h3 class="font-headline text-lg font-bold leading-snug text-on-surface">{{ $leader['name'] }}</h3>
+                        <p class="mt-1 font-label text-xs text-on-surface-variant">{{ $leader['role'] }}</p>
+                    </div>
+                </article>
+            @endforeach
+        </aside>
         </div>
     </div>
 </section>
+
+<div id="leaderDetailsModal" class="fixed inset-0 z-[100] hidden items-start justify-center overflow-y-auto bg-black/70 p-4 md:py-8" role="dialog" aria-modal="true" aria-labelledby="leaderDetailsName">
+    <div class="relative my-auto max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl bg-surface shadow-2xl">
+        <button type="button" class="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-surface/90 text-primary shadow" data-leader-details-close aria-label="Close details">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <div>
+            <div class="flex flex-col justify-center p-8 md:p-10">
+                <span class="font-label text-xs font-bold uppercase tracking-[0.25em] text-tertiary">On Alpha Institute</span>
+                <p id="leaderDetailsDate" class="mt-3 hidden font-label text-xs font-bold uppercase tracking-wider text-outline"></p>
+                <h2 id="leaderDetailsName" class="mt-3 font-headline text-3xl font-bold leading-tight text-primary"></h2>
+                <p id="leaderDetailsRole" class="mt-4 font-label text-sm font-bold uppercase tracking-wider text-on-surface-variant"></p>
+                <div class="mt-7 border-t border-outline-variant/20 pt-6">
+                    <img id="leaderDetailsOfficial" class="max-h-28 w-full object-contain object-left" src="" alt="Official details"/>
+                </div>
+                <div id="leaderDetailsContent" class="mt-7 hidden space-y-4 border-t border-outline-variant/20 pt-6 font-body text-sm leading-relaxed text-on-surface-variant"></div>
+                <div id="leaderDetailsSignatureWrap" class="mt-7 hidden border-t border-outline-variant/20 pt-6">
+                    <img id="leaderDetailsSignature" class="max-h-24 w-full object-contain object-left" src="" alt="Signature"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Our Professors Section -->
 <section class="py-24 max-w-7xl mx-auto px-6 md:px-12" data-professor-section>
@@ -410,6 +524,80 @@
             nextSelector: '[data-gallery-next]',
             dotsSelector: '[data-gallery-dots]',
             label: 'gallery'
+        });
+
+        const leaderModal = document.getElementById('leaderDetailsModal');
+        const leaderDate = document.getElementById('leaderDetailsDate');
+        const leaderName = document.getElementById('leaderDetailsName');
+        const leaderRole = document.getElementById('leaderDetailsRole');
+        const leaderOfficial = document.getElementById('leaderDetailsOfficial');
+        const leaderContent = document.getElementById('leaderDetailsContent');
+        const leaderSignatureWrap = document.getElementById('leaderDetailsSignatureWrap');
+        const leaderSignature = document.getElementById('leaderDetailsSignature');
+
+        const closeLeaderDetails = () => {
+            leaderModal.classList.add('hidden');
+            leaderModal.classList.remove('flex');
+            document.body.classList.remove('overflow-hidden');
+        };
+
+        const openLeaderDetails = (card) => {
+            leaderDate.textContent = card.dataset.leaderDate || '';
+            leaderDate.classList.toggle('hidden', !card.dataset.leaderDate);
+            leaderName.textContent = card.dataset.leaderName;
+            leaderRole.textContent = card.dataset.leaderRole;
+            leaderOfficial.src = card.dataset.leaderDetailImage;
+            leaderOfficial.alt = 'Official details for ' + card.dataset.leaderName;
+
+            let paragraphs = [];
+            try {
+                paragraphs = JSON.parse(card.dataset.leaderContent || '[]');
+            } catch (error) {
+                paragraphs = [];
+            }
+
+            leaderContent.innerHTML = '';
+            paragraphs.forEach((paragraph) => {
+                const element = document.createElement('p');
+                element.textContent = paragraph;
+                leaderContent.appendChild(element);
+            });
+            leaderContent.classList.toggle('hidden', paragraphs.length === 0);
+
+            const signatureImage = card.dataset.leaderSignatureImage;
+            leaderSignature.src = signatureImage || '';
+            leaderSignature.alt = 'Signature of ' + card.dataset.leaderName;
+            leaderSignatureWrap.classList.toggle('hidden', !signatureImage);
+
+            leaderModal.classList.remove('hidden');
+            leaderModal.classList.add('flex');
+            document.body.classList.add('overflow-hidden');
+        };
+
+        document.querySelectorAll('[data-leader-details]').forEach((card) => {
+            card.addEventListener('click', () => openLeaderDetails(card));
+            card.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    openLeaderDetails(card);
+                }
+            });
+        });
+
+        document.querySelectorAll('[data-leader-details-close]').forEach((button) => {
+            button.addEventListener('click', closeLeaderDetails);
+        });
+
+        leaderModal.addEventListener('click', (event) => {
+            if (event.target === leaderModal) {
+                closeLeaderDetails();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !leaderModal.classList.contains('hidden')) {
+                closeLeaderDetails();
+            }
         });
     });
 </script>
