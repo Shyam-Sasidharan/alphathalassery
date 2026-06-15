@@ -34,7 +34,17 @@
 
 @php
     $categories = \App\Models\Category::with('items')->get();
-    $publications = \App\Models\Publication::latest()->paginate(12);
+    $selectedCategory = $categories->first(function ($category) {
+        return $category->slug === request('category');
+    });
+    $publicationQuery = \App\Models\Publication::with('category')->latest();
+
+    if ($selectedCategory) {
+        $publicationQuery->where('category_id', $selectedCategory->id);
+    }
+
+    $publications = $publicationQuery->paginate(12);
+    $publications->appends(request()->except('page'));
 @endphp
 
 <!-- Main Content Area -->
@@ -45,16 +55,26 @@
             <div class="sticky top-32">
                 <h2 class="font-display text-xl text-primary mb-6 border-b border-outline-variant/30 pb-2">Categories</h2>
                 <ul class="space-y-3 font-label text-sm uppercase tracking-wider">
+                    <li>
+                        <a class="flex items-center transition-colors group {{ $selectedCategory ? 'text-on-surface-variant hover:text-primary' : 'text-primary font-bold' }}"
+                           href="{{ url('publications') }}">
+                            <span class="w-1.5 h-1.5 rounded-full mr-3 transition-all {{ $selectedCategory ? 'bg-outline-variant/50 group-hover:bg-tertiary' : 'bg-tertiary' }}"></span>
+                            All Publications
+                        </a>
+                    </li>
                     @foreach($categories as $category)
                     <li>
-                        <a class="flex items-center text-on-surface-variant hover:text-primary transition-colors group" href="#">
-                            <span class="w-1.5 h-1.5 rounded-full bg-outline-variant/50 mr-3 group-hover:bg-tertiary transition-all"></span>
+                        <a class="flex items-center transition-colors group {{ $selectedCategory && $selectedCategory->id === $category->id ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary' }}"
+                           href="{{ url('publications') . '?category=' . urlencode($category->slug) }}">
+                            <span class="w-1.5 h-1.5 rounded-full mr-3 transition-all {{ $selectedCategory && $selectedCategory->id === $category->id ? 'bg-tertiary' : 'bg-outline-variant/50 group-hover:bg-tertiary' }}"></span>
                             {{ $category->name }}
+                            <span class="ml-auto text-[10px] opacity-60">{{ $category->items->count() }}</span>
                         </a>
                     </li>
                     @endforeach
                 </ul>
                 
+                {{--
                 <div class="mt-12 bg-surface-container-low p-6 rounded-xl border border-outline-variant/20">
                     <h3 class="font-display text-lg text-primary mb-3">Order Enquiry</h3>
                     <p class="text-xs text-on-surface-variant leading-relaxed mb-4">Interested in any of our publications? Fill out the form to get more details.</p>
@@ -80,6 +100,7 @@
                         <button type="submit" class="w-full bg-primary text-white text-[10px] uppercase tracking-widest font-bold py-3 rounded-lg hover:bg-primary-container transition-colors">Submit Enquiry</button>
                     </form>
                 </div>
+                --}}
             </div>
         </aside>
 
@@ -87,7 +108,7 @@
         <div class="flex-1">
             <div class="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end border-b border-outline-variant/20 pb-6 gap-4">
                 <div>
-                    <h2 class="font-display text-3xl text-primary">Academic Catalog</h2>
+                    <h2 class="font-display text-3xl text-primary">{{ $selectedCategory ? $selectedCategory->name : 'Academic Catalog' }}</h2>
                     <p class="text-on-surface-variant mt-1">Discover our latest scholarly works and research journals.</p>
                 </div>
             </div>
