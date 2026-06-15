@@ -6,7 +6,7 @@
 <!-- Hero Section -->
 <header class="relative h-[614px] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-        <img alt="Institute Library" class="w-full h-full object-cover brightness-[0.35]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgpAdv8Hd7KSDe5L-wgA0PUdeIplPcxCCMIKMF4c72LJYJx9E0pqx1V5YznRt7Cu-3uGQ4TSLz4m6c6ZOJA5eYxasJgm9T_-KLJHaevh3MHoZienoHyRA7Gvw5Ud_FcTiiSHuydaqa9aSTXQPMk7BeycdtH4RRI4nld_3Cz9IrbKMFE9znS1HNiMXk7Bz3LGFAnPEBDH_MOGzbum1u_ScyN44akTX2Eg-QPfaJWu5zCrByo5wdASMNDOc4tgdjeklaGotIRrLu6Q"/>
+        <img alt="Alpha Institute Campus" class="w-full h-full object-cover brightness-[0.35]" src="{{ asset('front/images/about-alpha-institute-banner.png') }}"/>
     </div>
     <div class="relative z-10 text-center px-6">
         <span class="font-label text-tertiary-fixed tracking-[0.2em] uppercase text-xs font-bold">The Pursuit of Truth</span>
@@ -145,4 +145,3 @@
     </div>
 </section>
 @endsection
-
