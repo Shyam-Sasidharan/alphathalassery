@@ -74,11 +74,11 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 h-[819px] min-h-[600px]">
         <!-- Alpha Higher Institute Side -->
         <div class="relative group overflow-hidden rounded-xl bg-primary">
-            <img class="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-105" src="{{ asset('front/images/alpha-higher-institute-background.png') }}" alt="Alpha Higher Institute of Religious Science"/>
+            <img class="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-105" src="{{ asset('front/images/alpha-higher-institute-background.png') }}" alt="Alpha Higher Institute of Religious Sciences"/>
             <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/20 to-transparent"></div>
             <div class="relative h-full flex flex-col justify-end p-12 text-on-primary">
                 <span class="font-label text-xs uppercase tracking-[0.3em] text-tertiary-fixed mb-4"></span>
-                <h1 class="font-headline text-4xl md:text-5xl font-black mb-6 leading-tight max-w-md">Alpha Higher Institute of Religious Science</h1>
+                <h1 class="font-headline text-4xl md:text-5xl font-black mb-6 leading-tight max-w-md">Alpha Higher Institute of Religious Sciences</h1>
                 <p class="font-body text-lg text-on-primary/80 mb-8 max-w-sm">Linked with Dharmaram Vidya Kshetram, Bengalauru.</p>
                 <div class="flex">
                     <a href="{{ url('courses?college=ahirs') }}" class="bg-tertiary-fixed text-on-tertiary-fixed px-8 py-4 rounded-md font-bold flex items-center gap-3 hover:bg-white transition-colors group/btn">

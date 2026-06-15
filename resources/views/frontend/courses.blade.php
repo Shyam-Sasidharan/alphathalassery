@@ -6,7 +6,7 @@
 @php
     $selectedCollege = in_array(request('college'), ['ahirs', 'tacrs']) ? request('college') : null;
     $coursePageHeading = [
-        'ahirs' => 'Alpha Higher Institute of Religious Science',
+        'ahirs' => 'Alpha Higher Institute of Religious Sciences',
         'tacrs' => 'Tely-Alpha Center For Religious Science',
     ][$selectedCollege] ?? 'Course Directory';
     $coursePageDescription = $selectedCollege === 'ahirs'
@@ -55,7 +55,7 @@
 <section class="max-w-7xl mx-auto px-6 mb-24" id="ahirs">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
         <div class="max-w-2xl">
-            <h2 class="text-4xl font-display font-bold text-primary mb-4 italic">Alpha Higher Institute of Religious Science (AHIRS)</h2>
+            <h2 class="text-4xl font-display font-bold text-primary mb-4 italic">Alpha Higher Institute of Religious Sciences (AHIRS)</h2>
             <p class="text-on-surface-variant font-body">The Baccalaureate in Religious Sciences program is for three years. To qualify for this, a candidate must, as per rule, obtain 180ECTS. Each ECTS (25-30 Hours) is equivalent to 15 lecture hours and 10 hours of corresponding personal study, Assignment, and Final examination of each subject..</p>
         </div>
         <div class="h-px flex-grow bg-outline-variant/30 mx-8 hidden lg:block mb-4"></div>
