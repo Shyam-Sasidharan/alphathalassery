@@ -153,15 +153,8 @@
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
             @php
-                $courses = \App\Models\Course::latest()->take(4)->get();
-                $ahirs = $courses->where('type', 'AHIRS'); // Assuming there's a type or category
-                $tacrs = $courses->where('type', 'TACRS');
-
-                // If no type, just split them
-                if($ahirs->isEmpty() && $tacrs->isEmpty()) {
-                    $ahirs = $courses->take(2);
-                    $tacrs = $courses->slice(2);
-                }
+                $ahirs = \App\Models\Course::where('college', 'ahirs')->latest()->take(4)->get();
+                $tacrs = \App\Models\Course::where('college', 'tacrs')->latest()->take(4)->get();
             @endphp
             <!-- AHIRS Column -->
             <div class="space-y-6">
@@ -170,14 +163,16 @@
                     <div class="h-px flex-grow bg-outline-variant/30"></div>
                 </div>
                 <div class="grid gap-4">
-                    @foreach($ahirs as $course)
+                    @forelse($ahirs as $course)
                         <div class="bg-surface border border-outline-variant/10 p-6 rounded-xl hover:shadow-md transition-shadow group">
                             <h4 class="font-headline font-bold text-xl mb-2 group-hover:text-primary transition-colors">
                                 <a href="{{ url('course/'.$course->slug) }}">{{ $course->name }}</a>
                             </h4>
                             <p class="text-sm text-on-surface-variant line-clamp-2">{!! strip_tags($course->home_content) !!}</p>
                         </div>
-                    @endforeach
+                    @empty
+                        <p class="text-sm text-on-surface-variant">No AHIRS courses available.</p>
+                    @endforelse
                 </div>
             </div>
             <!-- TACRS Column -->
@@ -187,14 +182,16 @@
                     <div class="h-px flex-grow bg-outline-variant/30"></div>
                 </div>
                 <div class="grid gap-4">
-                    @foreach($tacrs as $course)
+                    @forelse($tacrs as $course)
                         <div class="bg-surface border border-outline-variant/10 p-6 rounded-xl hover:shadow-md transition-shadow group">
                             <h4 class="font-headline font-bold text-xl mb-2 group-hover:text-secondary transition-colors">
                                 <a href="{{ url('course/'.$course->slug) }}">{{ $course->name }}</a>
                             </h4>
                             <p class="text-sm text-on-surface-variant line-clamp-2">{!! strip_tags($course->home_content) !!}</p>
                         </div>
-                    @endforeach
+                    @empty
+                        <p class="text-sm text-on-surface-variant">No TACRS courses available.</p>
+                    @endforelse
                 </div>
             </div>
         </div>
