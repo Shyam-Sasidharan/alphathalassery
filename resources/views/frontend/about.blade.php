@@ -117,15 +117,17 @@
         <h2 class="font-display text-4xl text-primary font-bold">Episcopal Patrons of Alpha Institute</h2>
         <div class="w-24 h-1 bg-tertiary mx-auto mt-6"></div>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-7 gap-5">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
         @foreach([
-            ['name' => 'Archbishop Mar Joseph Pamplany', 'role' => 'Chancellor', 'image' => 'front/images/Pamplany.jpg'],
-            ['name' => 'Archbishop Mar George Valiamattam', 'role' => 'Founder', 'image' => 'front/images/valiamattam.jpg'],
+            ['name' => 'Archbishop Mar Joseph Pamplany', 'role' => 'Chancellor Tely-Alpha Center For Religious Science, Moderator Alpha Higher Institute of Religious Sciences', 'image' => 'front/images/Pamplany.jpg'],
+            ['name' => 'Archbishop Mar George Valiamattam', 'role' => 'Founder Alpha Institute', 'image' => 'front/images/valiamattam.jpg'],
+            {{--
             ['name' => 'Bishop Mar Joseph Srampickal', 'role' => 'Patron at UK', 'image' => 'front/images/srampickal.jpg'],
             ['name' => 'Ret. Rev. Dr. Paul Hinder', 'role' => 'Patron at Gulf Region', 'image' => 'front/images/hinder.jpg'],
             ['name' => 'Bishop Mar Lawrence Mukkuzhy', 'role' => 'Patron at Karnataka', 'image' => 'front/images/mukkuzhy.jpg'],
             ['name' => 'Bishop Mar Joseph Kollamparabil', 'role' => 'Patron at Jagadalpur', 'image' => 'front/images/kollamparambil.jpg'],
             ['name' => 'Bishop Mar Jacob Angadiyath', 'role' => 'Patron at USA', 'image' => 'front/images/CMM.jpg'],
+            --}}
         ] as $patron)
             <article class="group h-full">
                 <div class="relative overflow-hidden rounded-xl mb-6 aspect-[3/4] bg-surface-container-high">
