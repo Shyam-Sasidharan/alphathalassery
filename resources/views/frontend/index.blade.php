@@ -115,7 +115,7 @@
         </div>
         <div class="absolute -bottom-8 -right-8 bg-tertiary-fixed p-8 rounded-xl shadow-xl hidden lg:block">
             <span class="font-headline italic text-2xl text-on-tertiary-fixed block">Established 2008</span>
-            <span class="font-label text-xs uppercase tracking-widest text-on-tertiary-fixed opacity-70">A Century of Grace</span>
+            <span class="font-label text-xs uppercase tracking-widest text-on-tertiary-fixed opacity-70"></span>
         </div>
     </div>
     <div class="md:col-span-7 space-y-8">
