@@ -22,7 +22,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         <div class="relative group">
             <div class="absolute -inset-4 bg-tertiary-fixed/10 rounded-xl -rotate-2 -z-10"></div>
-            <img alt="Alpha Institute Campus" class="rounded-xl shadow-2xl w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-[1.02]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyUTmhSQkDcGgREszBRl2P8sbyeYmrctGjSCGoMNPXq0nyWB4p2l7iEoR2fE9PH2MOO6u5jG8fb-oHGuJTf1FefYyySf6QeaU88l2KB2tezifnI0snDmRmuLskDIKcewINgX2ed-8obnmdCiVBglVAA7tUqqjEHzHgI4_lbClD9TfgD_QSFEo6BCfFc5eLnqorSBsbPnrxzKQtCkZmRdHbHxtohJ6OHmdm2DU3xm3wKOqxPDOuUealAY7FY5cVHlIpSVg4DPz_Ug"/>
+            <img alt="Alpha Institute Campus" class="rounded-xl shadow-2xl w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-[1.02]" src="{{ asset('front/images/about-alpha-institute-banner.png') }}"/>
         </div>
         <div class="space-y-8">
             <h2 class="font-display text-4xl text-primary leading-tight font-bold">Welcome to Alpha Center for Theology and Science</h2>
