@@ -8,7 +8,12 @@
                         <span class="material-symbols-outlined text-[160px]">edit_note</span>
                     </div>
                     <div class="relative z-10 space-y-6">
-                        <img src="{{ asset('front/images/logo.png') }}" class="h-16 w-16 brightness-0 invert" alt="Alpha Logo">
+                        <img
+                            src="{{ asset('front/images/alpha-higher-institute.png') }}"
+                            class="max-h-20 max-w-44 object-contain"
+                            alt="Alpha Higher Institute of Religious Sciences"
+                            data-registration-college-logo
+                        >
                         <h2 class="font-display text-4xl font-bold leading-tight" data-registration-college-title>Alpha Higher Institute of Religious Sciences</h2>
                         <p class="font-body text-on-primary-container text-lg opacity-80" data-registration-college-description>Linked with Dharmaram Vidya Kshetram, Bengalauru.</p>
                     </div>

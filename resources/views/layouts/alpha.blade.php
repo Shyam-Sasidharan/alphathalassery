@@ -83,11 +83,13 @@
         const registrationColleges = {
             ahirs: {
                 label: 'Alpha Higher Institute of Religious Sciences',
-                description: 'Linked with Dharmaram Vidya Kshetram, Bengalauru.'
+                description: 'Linked with Dharmaram Vidya Kshetram, Bengalauru.',
+                logo: '{{ asset('front/images/alpha-higher-institute.png') }}'
             },
             tacrs: {
                 label: 'Tely-Alpha Center For Religious Sciences',
-                description: 'Run by the Archdiocese of Tellicherry.'
+                description: 'Run by the Archdiocese of Tellicherry.',
+                logo: '{{ asset('front/images/tely-alpha.png') }}'
             }
         };
 
@@ -95,11 +97,13 @@
             const selectedCollege = registrationColleges[college] ? college : 'ahirs';
             const selectedLabel = registrationColleges[selectedCollege].label;
             const selectedDescription = registrationColleges[selectedCollege].description;
+            const selectedLogo = registrationColleges[selectedCollege].logo;
 
             $('[data-registration-college-input]').val(selectedCollege);
             $('[data-registration-college-label]').text(selectedLabel);
             $('[data-registration-college-title]').text(selectedLabel);
             $('[data-registration-college-description]').text(selectedDescription);
+            $('[data-registration-college-logo]').attr('src', selectedLogo).attr('alt', selectedLabel);
 
             $('[data-registration-college-option]').each(function() {
                 const isActive = $(this).data('registration-college-option') === selectedCollege;
