@@ -117,10 +117,11 @@
         <h2 class="font-display text-4xl text-primary font-bold">Episcopal Patrons of Alpha Institute</h2>
         <div class="w-24 h-1 bg-tertiary mx-auto mt-6"></div>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-4xl mx-auto">
         @foreach([
             ['name' => 'Archbishop Mar Joseph Pamplany', 'role' => 'Chancellor Tely-Alpha Center For Religious Science, Moderator Alpha Higher Institute of Religious Sciences', 'image' => 'front/images/Pamplany.jpg'],
-            ['name' => 'Archbishop Mar George Valiamattam', 'role' => 'Founder Alpha Institute', 'image' => 'front/images/valiamattam.jpg'],
+            ['name' => 'Archbishop Mar George Valiamattam', 'role' => 'Founder Alpha Institute, Archbishop Emeritus of Thalassery', 'image' => 'front/images/valiamattam.jpg'],
+            ['name' => 'MAR GEORGE NJARALAKATT', 'role' => 'Archbishop Emeritus of Thalassery', 'image' => 'front/images/mar-george-njaralakatt.jpeg'],
             {{--
             ['name' => 'Bishop Mar Joseph Srampickal', 'role' => 'Patron at UK', 'image' => 'front/images/srampickal.jpg'],
             ['name' => 'Ret. Rev. Dr. Paul Hinder', 'role' => 'Patron at Gulf Region', 'image' => 'front/images/hinder.jpg'],
