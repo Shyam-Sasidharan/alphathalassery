@@ -81,16 +81,25 @@
 
     <script>
         const registrationColleges = {
-            ahirs: 'Alpha Higher Institute of Religious Sciences',
-            tacrs: 'Tely-Alpha Center For Religious Sciences'
+            ahirs: {
+                label: 'Alpha Higher Institute of Religious Sciences',
+                description: 'Linked with Dharmaram Vidya Kshetram, Bengalauru.'
+            },
+            tacrs: {
+                label: 'Tely-Alpha Center For Religious Sciences',
+                description: 'Run by the Archdiocese of Tellicherry.'
+            }
         };
 
         function setRegistrationCollege(college) {
             const selectedCollege = registrationColleges[college] ? college : 'ahirs';
-            const selectedLabel = registrationColleges[selectedCollege];
+            const selectedLabel = registrationColleges[selectedCollege].label;
+            const selectedDescription = registrationColleges[selectedCollege].description;
 
             $('[data-registration-college-input]').val(selectedCollege);
             $('[data-registration-college-label]').text(selectedLabel);
+            $('[data-registration-college-title]').text(selectedLabel);
+            $('[data-registration-college-description]').text(selectedDescription);
 
             $('[data-registration-college-option]').each(function() {
                 const isActive = $(this).data('registration-college-option') === selectedCollege;

@@ -9,8 +9,8 @@
                     </div>
                     <div class="relative z-10 space-y-6">
                         <img src="{{ asset('front/images/logo.png') }}" class="h-16 w-16 brightness-0 invert" alt="Alpha Logo">
-                        <h2 class="font-display text-4xl font-bold leading-tight">Begin Your Intellectual Journey</h2>
-                        <p class="font-body text-on-primary-container text-lg opacity-80">Join a global community of scholars dedicated to the pursuit of theological truth and scientific discovery.</p>
+                        <h2 class="font-display text-4xl font-bold leading-tight" data-registration-college-title>Alpha Higher Institute of Religious Sciences</h2>
+                        <p class="font-body text-on-primary-container text-lg opacity-80" data-registration-college-description>Linked with Dharmaram Vidya Kshetram, Bengalauru.</p>
                     </div>
                     <div class="relative z-10 pt-12">
                         <div class="flex items-center gap-4 text-sm font-label tracking-widest uppercase opacity-60">
