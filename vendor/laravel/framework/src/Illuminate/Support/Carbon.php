@@ -2,47 +2,73 @@
 
 namespace Illuminate\Support;
 
-use JsonSerializable;
 use Carbon\Carbon as BaseCarbon;
-use Illuminate\Support\Traits\Macroable;
+use Carbon\CarbonImmutable as BaseCarbonImmutable;
+use Illuminate\Support\Traits\Conditionable;
+use Illuminate\Support\Traits\Dumpable;
+use Ramsey\Uuid\Uuid;
+use Symfony\Component\Uid\Ulid;
 
-class Carbon extends BaseCarbon implements JsonSerializable
+class Carbon extends BaseCarbon
 {
-    use Macroable;
+    use Conditionable, Dumpable;
 
     /**
-     * The custom Carbon JSON serializer.
-     *
-     * @var callable|null
+     * {@inheritdoc}
      */
-    protected static $serializer;
-
-    /**
-     * Prepare the object for JSON serialization.
-     *
-     * @return array|string
-     */
-    public function jsonSerialize()
+    public static function setTestNow(mixed $testNow = null): void
     {
-        if (static::$serializer) {
-            return call_user_func(static::$serializer, $this);
-        }
-
-        $carbon = $this;
-
-        return call_user_func(function () use ($carbon) {
-            return get_object_vars($carbon);
-        });
+        BaseCarbon::setTestNow($testNow);
+        BaseCarbonImmutable::setTestNow($testNow);
     }
 
     /**
-     * JSON serialize all Carbon instances using the given callback.
-     *
-     * @param  callable  $callback
-     * @return void
+     * Create a Carbon instance from a given ordered UUID or ULID.
      */
-    public static function serializeUsing($callback)
+    public static function createFromId(Uuid|Ulid|string $id): static
     {
-        static::$serializer = $callback;
+        if (is_string($id)) {
+            $id = Ulid::isValid($id) ? Ulid::fromString($id) : Uuid::fromString($id);
+        }
+
+        return static::createFromInterface($id->getDateTime());
+    }
+
+    /**
+     * Get the current date / time plus a given amount of time.
+     */
+    public function plus(
+        int $years = 0,
+        int $months = 0,
+        int $weeks = 0,
+        int $days = 0,
+        int $hours = 0,
+        int $minutes = 0,
+        int $seconds = 0,
+        int $microseconds = 0
+    ): static {
+        return $this->add("
+            $years years $months months $weeks weeks $days days
+            $hours hours $minutes minutes $seconds seconds $microseconds microseconds
+        ");
+    }
+
+    /**
+     * Get the current date / time minus a given amount of time.
+     */
+    public function minus(
+        int $years = 0,
+        int $months = 0,
+        int $weeks = 0,
+        int $days = 0,
+        int $hours = 0,
+        int $minutes = 0,
+        int $seconds = 0,
+        int $microseconds = 0
+    ): static {
+        return $this->sub("
+            $years years $months months $weeks weeks $days days
+            $hours hours $minutes minutes $seconds seconds $microseconds microseconds
+        ");
     }
 }

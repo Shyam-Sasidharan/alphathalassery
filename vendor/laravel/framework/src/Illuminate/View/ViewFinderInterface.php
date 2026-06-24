@@ -12,7 +12,7 @@ interface ViewFinderInterface
     const HINT_PATH_DELIMITER = '::';
 
     /**
-     * Get the fully qualified location of the view.
+     * Get the fully-qualified location of the view.
      *
      * @param  string  $view
      * @return string
@@ -50,7 +50,7 @@ interface ViewFinderInterface
      *
      * @param  string  $namespace
      * @param  string|array  $hints
-     * @return $this
+     * @return void
      */
     public function replaceNamespace($namespace, $hints);
 

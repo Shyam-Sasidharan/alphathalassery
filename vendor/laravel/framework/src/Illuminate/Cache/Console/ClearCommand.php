@@ -2,12 +2,14 @@
 
 namespace Illuminate\Cache\Console;
 
-use Illuminate\Console\Command;
 use Illuminate\Cache\CacheManager;
+use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
+#[AsCommand(name: 'cache:clear')]
 class ClearCommand extends Command
 {
     /**
@@ -43,7 +45,6 @@ class ClearCommand extends Command
      *
      * @param  \Illuminate\Cache\CacheManager  $cache
      * @param  \Illuminate\Filesystem\Filesystem  $files
-     * @return void
      */
     public function __construct(CacheManager $cache, Filesystem $files)
     {
@@ -56,23 +57,31 @@ class ClearCommand extends Command
     /**
      * Execute the console command.
      *
-     * @return void
+     * @return int
      */
     public function handle()
     {
-        $this->laravel['events']->fire(
+        $this->laravel['events']->dispatch(
             'cache:clearing', [$this->argument('store'), $this->tags()]
         );
 
-        $this->cache()->flush();
+        $successful = $this->cache()->flush();
 
         $this->flushFacades();
 
-        $this->laravel['events']->fire(
+        if (! $successful) {
+            $this->components->error('Failed to clear cache. Make sure you have the appropriate permissions.');
+
+            return self::FAILURE;
+        }
+
+        $this->laravel['events']->dispatch(
             'cache:cleared', [$this->argument('store'), $this->tags()]
         );
 
-        $this->info('Cache cleared successfully.');
+        $this->components->info('Application cache cleared successfully.');
+
+        return self::SUCCESS;
     }
 
     /**
@@ -82,7 +91,11 @@ class ClearCommand extends Command
      */
     public function flushFacades()
     {
-        foreach ($this->files->files(storage_path('framework/cache')) as $file) {
+        if (! $this->files->exists($storagePath = storage_path('framework/cache'))) {
+            return;
+        }
+
+        foreach ($this->files->files($storagePath) as $file) {
             if (preg_match('/facade-.*\.php$/', $file)) {
                 $this->files->delete($file);
             }
@@ -108,7 +121,7 @@ class ClearCommand extends Command
      */
     protected function tags()
     {
-        return array_filter(explode(',', $this->option('tags')));
+        return array_filter(explode(',', $this->option('tags') ?? ''));
     }
 
     /**
@@ -119,7 +132,7 @@ class ClearCommand extends Command
     protected function getArguments()
     {
         return [
-            ['store', InputArgument::OPTIONAL, 'The name of the store you would like to clear.'],
+            ['store', InputArgument::OPTIONAL, 'The name of the store you would like to clear'],
         ];
     }
 
@@ -131,7 +144,7 @@ class ClearCommand extends Command
     protected function getOptions()
     {
         return [
-            ['tags', null, InputOption::VALUE_OPTIONAL, 'The cache tags you would like to clear.', null],
+            ['tags', null, InputOption::VALUE_OPTIONAL, 'The cache tags you would like to clear', null],
         ];
     }
 }

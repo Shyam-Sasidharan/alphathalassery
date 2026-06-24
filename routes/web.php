@@ -11,41 +11,11 @@
 |
 */
 
-Route::get('/test-email', function () {
-    Mail::raw('This is a test email from Laravel using Gmail SMTP.', function ($message) {
-        $message->to('munzirbm@gmail.com') // Change to your test email
-            ->subject('Test Email')
-            ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
-    });
-
-    return 'Test email sent successfully!';
-});
-
 Route::get('/register', function () {
     return redirect()->route('login');
 });
 
-Auth::routes();
-
-Route::any('captcha-test', function() {
-    if (request()->getMethod() == 'POST') {
-        $rules = ['captcha' => 'required|captcha'];
-        $validator = validator()->make(request()->all(), $rules);
-        if ($validator->fails()) {
-            echo '<p style="color: #ff0000;">Incorrect!</p>';
-        } else {
-            echo '<p style="color: #00ff30;">Matched :)</p>';
-        }
-    }
-
-    $form = '<form method="post" action="captcha-test">';
-    $form .= '<input type="hidden" name="_token" value="' . csrf_token() . '">';
-    $form .= '<p>' . captcha_img() . '</p>';
-    $form .= '<p><input type="text" name="captcha"></p>';
-    $form .= '<p><button type="submit" name="check">Check</button></p>';
-    $form .= '</form>';
-    return $form;
-});
+Auth::routes(['register' => false]);
 
 
 /**
@@ -55,47 +25,6 @@ Route::any('captcha-test', function() {
 Route::middleware(['auth'])->group(function (){
 
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-
-    Route::match(['GET', 'POST'], 'admin/menu', 'MenuController@index')->name('menu');
-
-    Route::prefix('admin/about')->name('about.')->group(function(){
-        Route::get('delete/{image}/delete', 'AboutController@deleteImage')->name('delete-image');
-        Route::match(['GET', 'POST'], 'who-we-are', 'AboutController@who_we_are')->name('who_we_are');
-    });
-    Route::match(['GET', 'POST'], 'admin/government-rules', 'RuleController@index')->name('government_rules');
-    Route::match(['GET', 'POST'], 'admin/terms', 'TermController@index')->name('terms');
-    
-    
-
-    foreach (config('pages') as $k => $page) {
-        if (is_array($page)){
-            Route::prefix("admin/$k")->name("{$k}.")->group(function() use ($page){
-
-                foreach ($page as $media) {
-                    Route::get($media, ucfirst($media)."Controller@index")->name($media);
-                    Route::prefix($media)->name("{$media}.")->group(function() use ($media){
-                        Route::get('create', ucfirst($media).'Controller@create')->name('create');
-                        Route::post('create', ucfirst($media).'Controller@store')->name('create');
-                        Route::get('{'.$media.'}/edit', ucfirst($media).'Controller@edit')->name('edit');
-                        Route::post('{'.$media.'}/edit', ucfirst($media).'Controller@update')->name('edit');
-                        Route::get('{'.$media.'}/delete', ucfirst($media).'Controller@delete')->name('delete');
-
-                    });
-                }
-
-            });
-        }else{
-            Route::get("admin/".$page, ucfirst($page)."Controller@index")->name($page);
-            Route::prefix("admin/".$page)->name("{$page}.")->group(function() use ($page){
-                Route::get('create', ucfirst($page).'Controller@create')->name('create');
-                Route::post('create', ucfirst($page).'Controller@store')->name('create');
-                Route::get('{'.$page.'}/edit', ucfirst($page).'Controller@edit')->name('edit');
-                Route::post('{'.$page.'}/edit', ucfirst($page).'Controller@update')->name('edit');
-                Route::get('{'.$page.'}/delete', ucfirst($page).'Controller@delete')->name('delete');
-
-            });
-        }
-    }
 
     Route::prefix('admin')->group(function(){
 

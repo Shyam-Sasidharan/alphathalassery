@@ -2,9 +2,9 @@
 
 namespace Illuminate\Foundation\Validation;
 
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Validation\Factory;
+use Illuminate\Foundation\Precognition;
+use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 trait ValidatesRequests
@@ -15,8 +15,10 @@ trait ValidatesRequests
      * @param  \Illuminate\Contracts\Validation\Validator|array  $validator
      * @param  \Illuminate\Http\Request|null  $request
      * @return array
+     *
+     * @throws \Illuminate\Validation\ValidationException
      */
-    public function validateWith($validator, Request $request = null)
+    public function validateWith($validator, ?Request $request = null)
     {
         $request = $request ?: request();
 
@@ -24,9 +26,14 @@ trait ValidatesRequests
             $validator = $this->getValidationFactory()->make($request->all(), $validator);
         }
 
-        $validator->validate();
+        if ($request->isPrecognitive()) {
+            $validator->after(Precognition::afterValidationHook($request))
+                ->setRules(
+                    $request->filterPrecognitiveRules($validator->getRulesWithoutPlaceholders())
+                );
+        }
 
-        return $this->extractInputFromRules($request, $validator->getRules());
+        return $validator->validate();
     }
 
     /**
@@ -35,31 +42,26 @@ trait ValidatesRequests
      * @param  \Illuminate\Http\Request  $request
      * @param  array  $rules
      * @param  array  $messages
-     * @param  array  $customAttributes
+     * @param  array  $attributes
      * @return array
+     *
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function validate(Request $request, array $rules,
-                             array $messages = [], array $customAttributes = [])
+                             array $messages = [], array $attributes = [])
     {
-        $this->getValidationFactory()
-             ->make($request->all(), $rules, $messages, $customAttributes)
-             ->validate();
+        $validator = $this->getValidationFactory()->make(
+            $request->all(), $rules, $messages, $attributes
+        );
 
-        return $this->extractInputFromRules($request, $rules);
-    }
+        if ($request->isPrecognitive()) {
+            $validator->after(Precognition::afterValidationHook($request))
+                ->setRules(
+                    $request->filterPrecognitiveRules($validator->getRulesWithoutPlaceholders())
+                );
+        }
 
-    /**
-     * Get the request input based on the given validation rules.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  array  $rules
-     * @return array
-     */
-    protected function extractInputFromRules(Request $request, array $rules)
-    {
-        return $request->only(collect($rules)->keys()->map(function ($rule) {
-            return Str::contains($rule, '.') ? explode('.', $rule)[0] : $rule;
-        })->unique()->toArray());
+        return $validator->validate();
     }
 
     /**
@@ -69,16 +71,16 @@ trait ValidatesRequests
      * @param  \Illuminate\Http\Request  $request
      * @param  array  $rules
      * @param  array  $messages
-     * @param  array  $customAttributes
+     * @param  array  $attributes
      * @return array
      *
      * @throws \Illuminate\Validation\ValidationException
      */
     public function validateWithBag($errorBag, Request $request, array $rules,
-                                    array $messages = [], array $customAttributes = [])
+                                    array $messages = [], array $attributes = [])
     {
         try {
-            return $this->validate($request, $rules, $messages, $customAttributes);
+            return $this->validate($request, $rules, $messages, $attributes);
         } catch (ValidationException $e) {
             $e->errorBag = $errorBag;
 

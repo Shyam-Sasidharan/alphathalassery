@@ -1,9 +1,6 @@
 <?php
 //ini_set('display_errors', '1');
 //error_reporting(E_ALL);
-// Laravel 5.5's dependencies emit PHP 8.1+/8.2 deprecations during bootstrap.
-// Keep this only as a bridge while migrating the application to Laravel 12.
-error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
 /**
  * Laravel - A PHP Framework For Web Artisans
  *

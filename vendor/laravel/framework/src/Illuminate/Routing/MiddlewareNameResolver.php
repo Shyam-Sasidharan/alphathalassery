@@ -3,13 +3,15 @@
 namespace Illuminate\Routing;
 
 use Closure;
+use LogicException;
+use Throwable;
 
 class MiddlewareNameResolver
 {
     /**
      * Resolve the middleware name to a class name(s) preserving passed parameters.
      *
-     * @param  string  $name
+     * @param  \Closure|string  $name
      * @param  array  $map
      * @param  array  $middlewareGroups
      * @return \Closure|string|array
@@ -37,7 +39,7 @@ class MiddlewareNameResolver
         // Finally, when the middleware is simply a string mapped to a class name the
         // middleware name will get parsed into the full class name and parameters
         // which may be run using the Pipeline which accepts this string format.
-        list($name, $parameters) = array_pad(explode(':', $name, 2), 2, null);
+        [$name, $parameters] = array_pad(explode(':', $name, 2), 2, null);
 
         return ($map[$name] ?? $name).(! is_null($parameters) ? ':'.$parameters : '');
     }
@@ -49,6 +51,8 @@ class MiddlewareNameResolver
      * @param  array  $map
      * @param  array  $middlewareGroups
      * @return array
+     *
+     * @throws Throwable
      */
     protected static function parseMiddlewareGroup($name, $map, $middlewareGroups)
     {
@@ -59,6 +63,8 @@ class MiddlewareNameResolver
             // merge its middleware into the results. This allows groups to conveniently
             // reference other groups without needing to repeat all their middlewares.
             if (isset($middlewareGroups[$middleware])) {
+                throw_if($name === $middleware, fn () => new LogicException("[$name] middleware group is referencing itself."));
+
                 $results = array_merge($results, static::parseMiddlewareGroup(
                     $middleware, $map, $middlewareGroups
                 ));
@@ -66,7 +72,7 @@ class MiddlewareNameResolver
                 continue;
             }
 
-            list($middleware, $parameters) = array_pad(
+            [$middleware, $parameters] = array_pad(
                 explode(':', $middleware, 2), 2, null
             );
 
