@@ -384,7 +384,8 @@
         </div>
 
         @php
-            $galleries = \App\Models\Gallery::latest()->get()->filter(function ($gallery) {
+            $galleryFolders = \App\Models\GalleryFolder::withCount('galleries')->orderBy('name')->get();
+            $generalGalleryImages = \App\Models\Gallery::whereNull('gallery_folder_id')->latest()->get()->filter(function ($gallery) {
                 return !empty($gallery->image) && file_exists(public_path(ltrim($gallery->image, '/')));
             });
             $galleryPlaceholder = asset('front/images/gallery-placeholder.svg');
@@ -392,17 +393,37 @@
 
         <div class="relative">
             <div class="gallery-carousel flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-8" data-gallery-carousel>
-                @forelse($galleries as $gallery)
-                    <article class="gallery-card snap-start shrink-0 basis-[calc(85%-10px)] sm:basis-[calc(50%-10px)] lg:basis-[calc(33.333%-14px)] xl:basis-[calc(25%-15px)] aspect-square overflow-hidden rounded-xl group relative bg-surface border border-outline-variant/15">
-                        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="{{ $gallery->photo }}" alt="Gallery image"/>
-                        <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    </article>
+                @forelse($galleryFolders as $folder)
+                    <a href="{{ url('gallery?folder='.$folder->slug) }}" class="gallery-card snap-start shrink-0 basis-[calc(85%-10px)] sm:basis-[calc(50%-10px)] lg:basis-[calc(33.333%-14px)] xl:basis-[calc(25%-15px)] aspect-square overflow-hidden rounded-xl group relative bg-surface border border-outline-variant/15">
+                        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="{{ $folder->cover_photo }}" alt="{{ $folder->name }}"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/10 to-transparent flex flex-col justify-end p-6">
+                            <span class="material-symbols-outlined text-tertiary-fixed text-4xl mb-3">folder_open</span>
+                            <h3 class="text-white font-display text-xl font-bold">{{ $folder->name }}</h3>
+                            <p class="text-white/75 text-sm mt-1">{{ $folder->galleries_count }} images</p>
+                        </div>
+                    </a>
                 @empty
-                    <article class="gallery-card snap-start shrink-0 basis-[calc(85%-10px)] sm:basis-[calc(50%-10px)] lg:basis-[calc(33.333%-14px)] xl:basis-[calc(25%-15px)] aspect-square overflow-hidden rounded-xl group relative bg-surface border border-outline-variant/15">
-                        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="{{ $galleryPlaceholder }}" alt="Gallery image placeholder"/>
-                        <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    </article>
+                    @if($generalGalleryImages->isEmpty())
+                        <a href="{{ url('gallery') }}" class="gallery-card snap-start shrink-0 basis-[calc(85%-10px)] sm:basis-[calc(50%-10px)] lg:basis-[calc(33.333%-14px)] xl:basis-[calc(25%-15px)] aspect-square overflow-hidden rounded-xl group relative bg-surface border border-outline-variant/15">
+                            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="{{ $galleryPlaceholder }}" alt="Gallery folder placeholder"/>
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/10 to-transparent flex flex-col justify-end p-6">
+                                <span class="material-symbols-outlined text-tertiary-fixed text-4xl mb-3">folder_open</span>
+                                <h3 class="text-white font-display text-xl font-bold">Gallery</h3>
+                            </div>
+                        </a>
+                    @endif
                 @endforelse
+
+                @if($generalGalleryImages->isNotEmpty())
+                    <a href="{{ url('gallery?folder=general') }}" class="gallery-card snap-start shrink-0 basis-[calc(85%-10px)] sm:basis-[calc(50%-10px)] lg:basis-[calc(33.333%-14px)] xl:basis-[calc(25%-15px)] aspect-square overflow-hidden rounded-xl group relative bg-surface border border-outline-variant/15">
+                        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="{{ $generalGalleryImages->first()->photo }}" alt="General Gallery"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/10 to-transparent flex flex-col justify-end p-6">
+                            <span class="material-symbols-outlined text-tertiary-fixed text-4xl mb-3">folder_open</span>
+                            <h3 class="text-white font-display text-xl font-bold">General Gallery</h3>
+                            <p class="text-white/75 text-sm mt-1">{{ $generalGalleryImages->count() }} images</p>
+                        </div>
+                    </a>
+                @endif
             </div>
 
             <div class="flex justify-center gap-2" data-gallery-dots></div>

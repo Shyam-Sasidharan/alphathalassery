@@ -42,6 +42,7 @@ class GalleryController extends Controller
 
         $this->validate($request, [
             'name' => 'required',
+            'gallery_folder_id' => 'nullable|exists:gallery_folders,id',
         ]);
 
         $data = $request->except('_token', 'image');
@@ -81,6 +82,7 @@ class GalleryController extends Controller
 
         $this->validate($request, [
             'name' => 'required',
+            'gallery_folder_id' => 'nullable|exists:gallery_folders,id',
         ]);
         $data = $request->except('_token', 'image');
         if ($image) {

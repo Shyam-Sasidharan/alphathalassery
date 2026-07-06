@@ -49,6 +49,19 @@
                             </div>
                             <div class="clearfix"></div>
                             <div class="col-sm-12">
+                                <div class="form-group {{ $errors->first('gallery_folder_id') ? 'has-error' : '' }}">
+                                    <label for="gallery_folder_id">Gallery Folder</label>
+                                    <select class="form-control" id="gallery_folder_id" name="gallery_folder_id">
+                                        <option value="">General Gallery</option>
+                                        @foreach(\App\Models\GalleryFolder::orderBy('name')->get() as $folder)
+                                            <option value="{{ $folder->id }}" {{ old('gallery_folder_id') == $folder->id ? 'selected' : '' }}>{{ $folder->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-red">{!! $errors->first('gallery_folder_id') !!}</span>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-sm-12">
                                 <div class="form-group {{ $errors->first('image') ? 'has-error' : '' }}">
                                     <label for="image">Image</label>
                                     <input type="file"

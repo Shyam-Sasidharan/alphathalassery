@@ -52,6 +52,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
+                                    <th>Folder</th>
                                     <th>Images</th>
                                     <th>Action</th>
                                 </tr>
@@ -61,6 +62,7 @@
                                     <tr>
                                         <td>{{ (($galleries->currentPage() - 1) * $galleries->perPage() + ($loop->index + 1)) }}</td>
                                         <td>{{ $gallery->name }}</td>
+                                        <td>{{ $gallery->folder ? $gallery->folder->name : 'General Gallery' }}</td>
                                         <td>
                                             <img src="{{$gallery->photo}}" class="img-responsive" width="100">
                                         </td>

@@ -19,6 +19,10 @@
                 <i class="fa fa-image"></i>
                 <span>Gallery</span>
             </a>
+            <a href="{{ route('gallery_folder') }}" class="cms-app-tile cms-tile-pink {{ request()->is('admin/gallery_folders') || request()->is('admin/gallery_folder/*') ? 'active' : '' }}">
+                <i class="fa fa-folder-open-o"></i>
+                <span>Gallery Folders</span>
+            </a>
             <a href="{{ route('category') }}" class="cms-app-tile cms-tile-green {{ request()->is('admin/categories') || request()->is('admin/category/*') ? 'active' : '' }}">
                 <i class="fa fa-sitemap"></i>
                 <span>Publication Category</span>

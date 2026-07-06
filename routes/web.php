@@ -75,6 +75,14 @@ Route::middleware(['auth'])->group(function (){
         });
 
         Route::get('gallery', "GalleryController@index")->name('gallery');
+        Route::get('gallery_folders', "GalleryFolderController@index")->name('gallery_folder');
+        Route::prefix('gallery_folder')->name("gallery_folder.")->group(function(){
+            Route::get('create', 'GalleryFolderController@create')->name('create');
+            Route::post('create', 'GalleryFolderController@store')->name('create');
+            Route::get('{gallery_folder}/edit', 'GalleryFolderController@edit')->name('edit');
+            Route::post('{gallery_folder}/edit', 'GalleryFolderController@update')->name('edit');
+            Route::get('{gallery_folder}/delete', 'GalleryFolderController@delete')->name('delete');
+        });
         Route::prefix('gallery')->name("gallery.")->group(function(){
             Route::get('create', 'GalleryController@create')->name('create');
             Route::post('create', 'GalleryController@store')->name('create');
