@@ -1,6 +1,6 @@
 @extends('layouts.alpha')
 
-@section('title', 'The Alpha Institute | Dual College Portal')
+@section('title', 'The Alpha Institute | Tely-Alpha Portal')
 
 @section('css')
 <style>
