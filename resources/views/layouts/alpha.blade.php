@@ -5,7 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'The Alpha Institute')</title>
+    @php
+        $baseMetaTitle = trim($__env->yieldContent('title', 'The Alpha Institute | Tely Alpha Portal'));
+        $metaTitle = strpos($baseMetaTitle, 'Tely Alpha Portal') !== false ? $baseMetaTitle : $baseMetaTitle . ' | Tely Alpha Portal';
+        $metaDescription = trim($__env->yieldContent('meta_description', 'The Alpha Institute and Tely Alpha Portal bring together Alpha Higher Institute of Religious Sciences and Tely-Alpha Center For Religious Science for theological education, religious science, study centers, courses, publications, gallery, and academic resources.'));
+        $metaKeywords = trim($__env->yieldContent('meta_keywords', 'The Alpha Institute, Tely Alpha Portal, Alpha Higher Institute of Religious Sciences, Tely-Alpha Center For Religious Science, TACRS, theology courses, religious science, study centers, Thalassery'));
+        $metaImage = trim($__env->yieldContent('meta_image', asset('front/images/logo.png')));
+        $metaUrl = url()->current();
+    @endphp
+
+    <title>{{ $metaTitle }}</title>
+    <meta name="description" content="{{ $metaDescription }}">
+    <meta name="keywords" content="{{ $metaKeywords }}">
+    <meta name="author" content="The Alpha Institute, Tely Alpha Portal">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ $metaUrl }}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $metaTitle }}">
+    <meta property="og:description" content="{{ $metaDescription }}">
+    <meta property="og:url" content="{{ $metaUrl }}">
+    <meta property="og:image" content="{{ $metaImage }}">
+    <meta property="og:site_name" content="The Alpha Institute | Tely Alpha Portal">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $metaTitle }}">
+    <meta name="twitter:description" content="{{ $metaDescription }}">
+    <meta name="twitter:image" content="{{ $metaImage }}">
+
+    <script type="application/ld+json">
+        {
+            "@@context": "https://schema.org",
+            "@type": "EducationalOrganization",
+            "name": "The Alpha Institute | Tely Alpha Portal",
+            "alternateName": [
+                "The Alpha Institute",
+                "Tely Alpha Portal",
+                "Alpha Higher Institute of Religious Sciences",
+                "Tely-Alpha Center For Religious Science",
+                "TACRS"
+            ],
+            "url": "{{ url('/') }}",
+            "logo": "{{ asset('front/images/logo.png') }}"
+        }
+    </script>
 
     <link rel="shortcut icon" href="{{ asset('front/images/logo.png') }}" type="image/x-icon">
 
