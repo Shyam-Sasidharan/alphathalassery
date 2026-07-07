@@ -10,7 +10,7 @@
     </div>
     <div class="relative z-10 text-center px-6">
         <span class="font-label text-tertiary-fixed tracking-[0.2em] uppercase text-xs font-bold">The Pursuit of Truth</span>
-        <h1 class="font-display text-5xl md:text-7xl text-white tracking-tight mt-4 mb-6">About Alpha Institute</h1>
+        <h1 class="font-display text-5xl md:text-7xl text-white tracking-tight mt-4 mb-6">About Alpha Center</h1>
         <div class="h-1 w-24 bg-tertiary-fixed mx-auto mb-6"></div>
         <p class="text-surface-variant font-body text-lg md:text-xl max-w-3xl mx-auto opacity-90">An intellectual sanctuary dedicated to the profound synthesis of Faith, Reason, and Scientific Inquiry within the Catholic academic tradition.</p>
     </div>
@@ -114,7 +114,7 @@
 <section class="py-24 px-8 max-w-7xl mx-auto">
     <div class="text-center mb-16 space-y-4">
         <span class="font-label text-tertiary tracking-[0.2em] uppercase text-xs font-bold">Institutional Governance</span>
-        <h2 class="font-display text-4xl text-primary font-bold">Episcopal Patrons of Alpha Institute</h2>
+        <h2 class="font-display text-4xl text-primary font-bold">Episcopal Patrons of Alpha Center</h2>
         <div class="w-24 h-1 bg-tertiary mx-auto mt-6"></div>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-4xl mx-auto">
