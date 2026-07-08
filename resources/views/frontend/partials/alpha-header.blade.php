@@ -15,7 +15,7 @@
 
         <div class="nav-dropdown relative group cursor-pointer">
             <span class="text-on-surface-variant dark:text-surface-variant font-bold flex items-center gap-1 {{ request()->is('course*') || request()->is('courses') ? 'text-primary border-b-2 border-tertiary-fixed' : '' }}">Courses <span class="material-symbols-outlined text-[16px]">expand_more</span></span>
-            <div class="dropdown-content hidden absolute top-full left-0 mt-1 bg-surface border border-outline-variant/20 shadow-xl rounded-lg py-3 w-80 glass-effect z-50">
+            <div class="dropdown-content hidden absolute top-full left-0 mt-1 bg-surface border border-outline-variant/20 shadow-xl rounded-lg py-3 w-[min(90vw,30rem)] max-h-[70vh] overflow-y-auto glass-effect z-50 whitespace-normal">
                 <a class="block px-6 py-2 hover:bg-primary/5 text-primary" href="{{ url('courses') }}">All Programs</a>
                 @foreach(['ahirs' => 'AHIRS Portal', 'tacrs' => 'TACRS Portal'] as $collegeKey => $collegeLabel)
                     <div class="px-6 py-2">
@@ -31,7 +31,7 @@
                         @endphp
                         <div class="college-toggle-content hidden pt-2 pl-3 border-l border-outline-variant/20">
                             @forelse($courseQuery->get() as $course)
-                                <a class="block py-1 hover:text-primary text-on-surface-variant text-xs leading-snug" href="{{ url('course/'.$course->slug) }}">{{$course->name}}</a>
+                                <a class="block py-1 pr-2 hover:text-primary text-on-surface-variant text-xs leading-snug whitespace-normal break-words" href="{{ url('course/'.$course->slug) }}">{{$course->name}}</a>
                             @empty
                                 <span class="block py-1 text-on-surface-variant text-xs opacity-60">No courses added</span>
                             @endforelse
@@ -43,7 +43,7 @@
 
         <div class="nav-dropdown relative group cursor-pointer">
             <span class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary-container flex items-center gap-1 {{ request()->is('study-centres') ? 'text-primary' : '' }}">Study Centers <span class="material-symbols-outlined text-[16px]">expand_more</span></span>
-            <div class="dropdown-content hidden absolute top-full left-0 mt-1 bg-surface border border-outline-variant/20 shadow-xl rounded-lg py-3 w-80 glass-effect z-50">
+            <div class="dropdown-content hidden absolute top-full left-0 mt-1 bg-surface border border-outline-variant/20 shadow-xl rounded-lg py-3 w-[min(90vw,30rem)] max-h-[70vh] overflow-y-auto glass-effect z-50 whitespace-normal">
                 <a class="block px-6 py-2 hover:bg-primary/5 text-on-surface-variant" href="{{ url('study-centres') }}">View Centers</a>
                 @foreach(['ahirs' => 'AHIRS Portal', 'tacrs' => 'TACRS Portal'] as $collegeKey => $collegeLabel)
                     <div class="px-6 py-2">
@@ -60,7 +60,7 @@
                         @endphp
                         <div class="college-toggle-content hidden pt-2 pl-3 border-l border-outline-variant/20">
                             @forelse($centerQuery->get() as $center)
-                            <a class="block py-1 hover:text-primary text-on-surface-variant text-xs leading-snug" href="{{ url('study-centres?college='.$collegeKey) }}">{{$center->center}}</a>
+                            <a class="block py-1 pr-2 hover:text-primary text-on-surface-variant text-xs leading-snug whitespace-normal break-words" href="{{ url('study-centres?college='.$collegeKey) }}">{{$center->center}}</a>
                             @empty
                                 <span class="block py-1 text-on-surface-variant text-xs opacity-60">No study centers added</span>
                             @endforelse
