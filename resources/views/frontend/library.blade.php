@@ -19,23 +19,12 @@
 @endsection
 
 @section('content')
-<!-- Hero Section -->
-<section class="relative bg-primary overflow-hidden">
-    <div class="absolute inset-0">
-        <img alt="Library Background" class="w-full h-full object-cover brightness-[0.35]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgpAdv8Hd7KSDe5L-wgA0PUdeIplPcxCCMIKMF4c72LJYJx9E0pqx1V5YznRt7Cu-3uGQ4TSLz4m6c6ZOJA5eYxasJgm9T_-KLJHaevh3MHoZienoHyRA7Gvw5Ud_FcTiiSHuydaqa9aSTXQPMk7BeycdtH4RRI4nld_3Cz9IrbKMFE9znS1HNiMXk7Bz3LGFAnPEBDH_MOGzbum1u_ScyN44akTX2Eg-QPfaJWu5zCrByo5wdASMNDOc4tgdjeklaGotIRrLu6Q"/>
-    </div>
-    <div class="relative z-10 max-w-7xl mx-auto px-8 py-16 md:py-20 flex flex-col items-center text-center">
-        <div class="w-20 h-1 bg-tertiary-fixed mb-6"></div>
-        <h1 class="font-display text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight">Library</h1>
-        <p class="font-body text-xl md:text-2xl text-white max-w-3xl mx-auto leading-relaxed opacity-95 mb-6">
-            Access Alpha Central Library facilities and collaborating theological libraries for research and reference.
-        </p>
-        <div class="flex items-center gap-3 text-tertiary-fixed">
-            <span class="material-symbols-outlined">menu_book</span>
-            <span class="font-label font-bold uppercase tracking-[0.3em] text-xs">Alpha Library Catalogue</span>
-        </div>
-    </div>
-</section>
+@include('frontend.partials.page-banner', [
+    'pageKey' => 'library',
+    'defaultTitle' => 'Library',
+    'defaultDescription' => 'Access Alpha Central Library facilities and collaborating theological libraries for research and reference.',
+    'height' => 'h-[360px]',
+])
 
 <section class="bg-surface-bright py-12 px-8 border-b border-outline-variant/10">
     <div class="max-w-5xl mx-auto">

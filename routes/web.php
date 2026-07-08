@@ -75,6 +75,11 @@ Route::middleware(['auth'])->group(function (){
         });
 
         Route::get('gallery', "GalleryController@index")->name('gallery');
+        Route::get('page_banners', "PageBannerController@index")->name('page_banner');
+        Route::prefix('page_banner')->name("page_banner.")->group(function(){
+            Route::get('{page_banner}/edit', 'PageBannerController@edit')->name('edit');
+            Route::post('{page_banner}/edit', 'PageBannerController@update')->name('edit');
+        });
         Route::get('gallery_folders', "GalleryFolderController@index")->name('gallery_folder');
         Route::prefix('gallery_folder')->name("gallery_folder.")->group(function(){
             Route::get('create', 'GalleryFolderController@create')->name('create');

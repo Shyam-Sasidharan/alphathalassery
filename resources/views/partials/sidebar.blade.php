@@ -23,6 +23,10 @@
                 <i class="fa fa-folder-open-o"></i>
                 <span>Gallery Folders</span>
             </a>
+            <a href="{{ route('page_banner') }}" class="cms-app-tile cms-tile-blue {{ request()->is('admin/page_banners') || request()->is('admin/page_banner/*') ? 'active' : '' }}">
+                <i class="fa fa-picture-o"></i>
+                <span>Page Banners</span>
+            </a>
             <a href="{{ route('category') }}" class="cms-app-tile cms-tile-green {{ request()->is('admin/categories') || request()->is('admin/category/*') ? 'active' : '' }}">
                 <i class="fa fa-sitemap"></i>
                 <span>Publication Category</span>

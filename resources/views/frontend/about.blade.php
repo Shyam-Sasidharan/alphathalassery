@@ -3,19 +3,13 @@
 @section('title', 'About Alpha Institute | The Alpha Institute')
 
 @section('content')
-<!-- Hero Section -->
-<header class="relative h-[614px] flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 z-0">
-        <img alt="Alpha Institute Campus" class="w-full h-full object-cover brightness-[0.35]" src="{{ asset('front/images/about-alpha-institute-banner.png') }}"/>
-    </div>
-    <div class="relative z-10 text-center px-6">
-        <span class="font-label text-tertiary-fixed tracking-[0.2em] uppercase text-xs font-bold">The Pursuit of Truth</span>
-        <h1 class="font-display text-5xl md:text-7xl text-white tracking-tight mt-4 mb-6">About Alpha Center</h1>
-        <div class="h-1 w-24 bg-tertiary-fixed mx-auto mb-6"></div>
-        <p class="text-surface-variant font-body text-lg md:text-xl max-w-3xl mx-auto opacity-90">An intellectual sanctuary dedicated to the profound synthesis of Faith, Reason, and Scientific Inquiry within the Catholic academic tradition.</p>
-    </div>
-    <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-surface to-transparent"></div>
-</header>
+@include('frontend.partials.page-banner', [
+    'pageKey' => 'about',
+    'defaultTitle' => 'About Alpha Center',
+    'defaultDescription' => 'An intellectual sanctuary dedicated to the profound synthesis of Faith, Reason, and Scientific Inquiry within the Catholic academic tradition.',
+    'defaultImage' => asset('front/images/about-alpha-institute-banner.png'),
+    'height' => 'h-[614px]',
+])
 
 <!-- Welcome Section -->
 <section class="py-24 px-8 max-w-7xl mx-auto">
