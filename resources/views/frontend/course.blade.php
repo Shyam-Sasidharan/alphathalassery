@@ -5,6 +5,11 @@
 @section('content')
 @php
     $displayCourseName = preg_replace('/\s*\([^)]*\)\s*$/', '', $course->name);
+    $registrationCollege = in_array($course->college, ['ahirs', 'tacrs']) ? $course->college : null;
+    if (! $registrationCollege) {
+        $courseType = strtolower($course->type ?: '');
+        $registrationCollege = strpos($courseType, 'tacrs') !== false ? 'tacrs' : 'ahirs';
+    }
 @endphp
 
 <div class="mt-8 pt-4">
@@ -23,7 +28,7 @@
                     {{ \Illuminate\Support\Str::limit(strip_tags($course->home_content), 180) }}
                 </p>
                 <div class="flex flex-wrap gap-4">
-                    <a href="javascript:;" data-registration-open class="bg-primary text-on-primary px-8 py-4 rounded-md font-bold text-lg flex items-center gap-3 shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
+                    <a href="javascript:;" data-registration-open data-registration-college="{{ $registrationCollege }}" class="bg-primary text-on-primary px-8 py-4 rounded-md font-bold text-lg flex items-center gap-3 shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
                         Apply Now
                         <span class="material-symbols-outlined">arrow_forward</span>
                     </a>
@@ -114,7 +119,7 @@
                     Join a community of scholars dedicated to the pursuit of Truth. Applications are now open for qualified candidates.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <button data-registration-open class="bg-tertiary-fixed text-on-tertiary-fixed px-10 py-4 rounded-md font-bold text-lg hover:brightness-110 transition-all">Apply Now</button>
+                    <button data-registration-open data-registration-college="{{ $registrationCollege }}" class="bg-tertiary-fixed text-on-tertiary-fixed px-10 py-4 rounded-md font-bold text-lg hover:brightness-110 transition-all">Apply Now</button>
                     <a href="{{ url('contact') }}" class="bg-white/10 text-white backdrop-blur-md px-10 py-4 rounded-md font-bold text-lg hover:bg-white/20 transition-all">Contact Admissions</a>
                 </div>
             </div>
