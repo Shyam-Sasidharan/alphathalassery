@@ -108,6 +108,11 @@
 </section>
 
 <!-- About Section -->
+@php
+    $welcomeContent = \App\Models\HomeContent::where('section_key', 'welcome')->first();
+    $welcomeTitle = $welcomeContent && trim($welcomeContent->title) ? $welcomeContent->title : 'Welcome to Alpha Center for Theology and Science';
+    $welcomeDescription = $welcomeContent && trim($welcomeContent->description) ? $welcomeContent->description : 'The Alpha Institute stands as the guardian of dual legacies. While the Higher Institute focuses on the rigorous intellectual framework of theology, the Tely-Alpha Center serves as the experiential heart, curating the living history of religious expression. Together, we provide a holistic education that honors both the mind and the spirit.';
+@endphp
 <section class="max-w-7xl mx-auto py-24 px-12 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
     <div class="md:col-span-5 relative">
         <div class="aspect-square rounded-xl overflow-hidden shadow-2xl">
@@ -119,11 +124,11 @@
         </div>
     </div>
     <div class="md:col-span-7 space-y-8">
-        <h2 class="font-headline text-3xl font-black text-primary tracking-tight">Welcome to Alpha Center for Theology and Science
+        <h2 class="font-headline text-3xl font-black text-primary tracking-tight">{{ $welcomeTitle }}
             {{-- <br/><span class="italic text-tertiary">Two Paths.</span> --}}
         </h2>
         <p class="font-body text-xl leading-relaxed text-on-surface-variant">
-            The Alpha Institute stands as the guardian of dual legacies. While the Higher Institute focuses on the rigorous intellectual framework of theology, the Tely-Alpha Center serves as the experiential heart, curating the living history of religious expression. Together, we provide a holistic education that honors both the mind and the spirit.
+            {!! nl2br(e($welcomeDescription)) !!}
         </p>
         <div class="grid grid-cols-2 gap-8 pt-4 hidden">
             <div class="border-l-4 border-tertiary-fixed pl-6">

@@ -29,6 +29,11 @@ Route::middleware(['auth'])->group(function (){
     Route::prefix('admin')->group(function(){
 
         Route::get('courses', "CourseController@index")->name('course');
+        Route::get('home_contents', "HomeContentController@index")->name('home_content');
+        Route::prefix('home_content')->name("home_content.")->group(function(){
+            Route::get('{home_content}/edit', 'HomeContentController@edit')->name('edit');
+            Route::post('{home_content}/edit', 'HomeContentController@update')->name('edit');
+        });
         Route::prefix('course')->name("course.")->group(function(){
             Route::get('create', 'CourseController@create')->name('create');
             Route::post('create', 'CourseController@store')->name('create');

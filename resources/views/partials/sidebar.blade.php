@@ -11,6 +11,10 @@
                 <i class="fa fa-paper-plane-o"></i>
                 <span>Courses</span>
             </a>
+            <a href="{{ route('home_content') }}" class="cms-app-tile cms-tile-soft {{ request()->is('admin/home_contents') || request()->is('admin/home_content/*') ? 'active' : '' }}">
+                <i class="fa fa-home"></i>
+                <span>Home Content</span>
+            </a>
             <a href="{{ route('semester') }}" class="cms-app-tile cms-tile-lavender {{ request()->is('admin/semesters') || request()->is('admin/semester/*') ? 'active' : '' }}">
                 <i class="fa fa-sliders"></i>
                 <span>Semesters</span>
