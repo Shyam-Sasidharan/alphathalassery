@@ -23,9 +23,10 @@
                 <i class="fa fa-folder-open-o"></i>
                 <span>Gallery Folders</span>
             </a>
-            <a href="{{ route('page_banner') }}" class="cms-app-tile cms-tile-blue {{ request()->is('admin/page_banners') || request()->is('admin/page_banner/*') ? 'active' : '' }}">
-                <i class="fa fa-picture-o"></i>
-                <span>Page Banners</span>
+            {{-- Page Banners menu hidden --}}
+            <a href="{{ route('recognized_certificate') }}" class="cms-app-tile cms-tile-green {{ request()->is('admin/recognized_certificates') || request()->is('admin/recognized_certificate/*') ? 'active' : '' }}">
+                <i class="fa fa-certificate"></i>
+                <span>Recognized Certificates</span>
             </a>
             <a href="{{ route('category') }}" class="cms-app-tile cms-tile-green {{ request()->is('admin/categories') || request()->is('admin/category/*') ? 'active' : '' }}">
                 <i class="fa fa-sitemap"></i>

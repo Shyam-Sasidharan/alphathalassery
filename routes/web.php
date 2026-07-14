@@ -80,6 +80,14 @@ Route::middleware(['auth'])->group(function (){
             Route::get('{page_banner}/edit', 'PageBannerController@edit')->name('edit');
             Route::post('{page_banner}/edit', 'PageBannerController@update')->name('edit');
         });
+        Route::get('recognized_certificates', "RecognizedCertificateController@index")->name('recognized_certificate');
+        Route::prefix('recognized_certificate')->name("recognized_certificate.")->group(function(){
+            Route::get('create', 'RecognizedCertificateController@create')->name('create');
+            Route::post('create', 'RecognizedCertificateController@store')->name('create');
+            Route::get('{recognized_certificate}/edit', 'RecognizedCertificateController@edit')->name('edit');
+            Route::post('{recognized_certificate}/edit', 'RecognizedCertificateController@update')->name('edit');
+            Route::get('{recognized_certificate}/delete', 'RecognizedCertificateController@delete')->name('delete');
+        });
         Route::get('gallery_folders', "GalleryFolderController@index")->name('gallery_folder');
         Route::prefix('gallery_folder')->name("gallery_folder.")->group(function(){
             Route::get('create', 'GalleryFolderController@create')->name('create');
@@ -200,6 +208,16 @@ Route::namespace('Frontend')->group(function(){
         return view('frontend.news')->withNews($news);
     });
     Route::view('gallery', 'frontend.gallery');
+    Route::get('recognized-certificates', function () {
+        $certificates = \App\Models\RecognizedCertificate::where('status', 1)->latest()->get();
+
+        return view('frontend.recognized-certificates', compact('certificates'));
+    })->name('frontend.recognized_certificates');
+    Route::get('recognized-certificate/{recognized_certificate}', function (\App\Models\RecognizedCertificate $recognized_certificate) {
+        abort_unless($recognized_certificate->status, 404);
+
+        return view('frontend.recognized-certificate', compact('recognized_certificate'));
+    })->name('frontend.recognized_certificate');
     Route::view('courses', 'frontend.courses');
     Route::view('study-centres', 'frontend.study-centres');
     Route::view('publications', 'frontend.publications');

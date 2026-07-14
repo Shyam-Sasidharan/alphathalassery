@@ -86,18 +86,24 @@
             </div>
             <!-- Certificates -->
             <div class="md:col-span-7 bg-tertiary-fixed p-12 rounded-xl flex items-center gap-12">
-                <div class="hidden lg:block w-48 h-48 flex-shrink-0 bg-on-tertiary-fixed-variant/5 rounded-full border-4 border-on-tertiary-fixed-variant/10 p-4">
+                <a href="{{ route('frontend.recognized_certificates') }}" class="hidden lg:block w-48 h-48 flex-shrink-0 bg-on-tertiary-fixed-variant/5 rounded-full border-4 border-on-tertiary-fixed-variant/10 p-4 hover:scale-105 transition-transform" aria-label="View all recognized certificates">
                     <div class="w-full h-full border border-dashed border-on-tertiary-fixed-variant/30 rounded-full flex items-center justify-center">
                         <span class="material-symbols-outlined text-on-tertiary-fixed-variant text-6xl" data-weight="fill">verified</span>
                     </div>
-                </div>
+                </a>
                 <div>
+                    @php
+                        $recognizedCertificates = \App\Models\RecognizedCertificate::where('status', 1)->latest()->get();
+                    @endphp
                     <h3 class="font-display text-3xl text-on-tertiary-fixed font-bold mb-4">Recognized Certificates</h3>
                     <p class="font-body text-on-tertiary-fixed-variant leading-relaxed text-lg mb-6">Our programs are accredited through the highest ecclesial authorities, ensuring your academic journey is recognized globally within the Catholic Church and beyond. Certificates are awarded upon rigorous assessment and comprehensive examinations.</p>
-                    <button class="font-label text-sm font-bold text-on-tertiary-fixed flex items-center gap-2 hover:translate-x-2 transition-transform">
-                        View Accreditation Details
+                    <a href="{{ route('frontend.recognized_certificates') }}" class="inline-flex items-center gap-3 px-5 py-3 rounded-lg bg-on-tertiary-fixed/15 text-on-tertiary-fixed font-label text-sm font-bold hover:bg-on-tertiary-fixed/25 hover:translate-x-1 transition-all">
+                        <span class="w-11 h-11 rounded-full bg-on-tertiary-fixed/15 flex items-center justify-center flex-none">
+                            <span class="material-symbols-outlined text-2xl">workspace_premium</span>
+                        </span>
+                        <span>View Certificates</span>
                         <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
