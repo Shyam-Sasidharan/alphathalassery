@@ -121,7 +121,7 @@
         @foreach([
             ['name' => 'Archbishop Mar Joseph Pamplany', 'role' => 'Chancellor Tely-Alpha Center For Religious Science, Moderator Alpha Higher Institute of Religious Sciences', 'image' => 'front/images/Pamplany.jpg'],
             ['name' => 'Archbishop Mar George Valiamattam', 'role' => 'Founder Alpha Institute, Archbishop Emeritus of Thalassery', 'image' => 'front/images/valiamattam.jpg'],
-            ['name' => 'MAR GEORGE NJARALAKATT', 'role' => 'Archbishop Emeritus of Thalassery', 'image' => 'front/images/mar-george-njaralakatt.jpeg'],
+            ['name' => 'MAR GEORGE NJARALAKATT', 'role' => "Archbishop Emeritus of Thalassery\nFormer Chancellor, Alpha Institute", 'image' => 'front/images/mar-george-njaralakatt.jpeg'],
             {{--
             ['name' => 'Bishop Mar Joseph Srampickal', 'role' => 'Patron at UK', 'image' => 'front/images/srampickal.jpg'],
             ['name' => 'Ret. Rev. Dr. Paul Hinder', 'role' => 'Patron at Gulf Region', 'image' => 'front/images/hinder.jpg'],
@@ -138,11 +138,11 @@
                         src="{{ asset($patron['image']) }}"
                     />
                     <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-                        <p class="text-on-primary text-xs font-label uppercase tracking-widest">{{ $patron['role'] }}</p>
+                        <p class="text-on-primary text-xs font-label uppercase tracking-widest">{!! nl2br(e($patron['role'])) !!}</p>
                     </div>
                 </div>
                 <h4 class="font-headline text-lg xl:text-base text-primary font-bold text-center leading-snug">{{ $patron['name'] }}</h4>
-                <p class="font-label text-sm text-on-surface-variant text-center mt-1">{{ $patron['role'] }}</p>
+                <p class="font-label text-sm text-on-surface-variant text-center mt-1">{!! nl2br(e($patron['role'])) !!}</p>
             </article>
         @endforeach
     </div>
